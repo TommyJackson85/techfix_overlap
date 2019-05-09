@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^$', index, name="index"),
     url(r'^accounts/', include(accounts_urls)),
     url(r'^bugs/', include('bugs.urls')),
+    url(r'^features/', include('features.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'bugs',
+    'features',
     'accounts',
 ]
 
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'accounts.backends.EmailAuth'
+    'accounts.backends.EmailAuth',
 ]
 
 # Internationalization
