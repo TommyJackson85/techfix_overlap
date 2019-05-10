@@ -39,6 +39,8 @@ def create_or_edit_featurepost(request, pk=None):
     if request.method == "POST":
         form = FeaturePostForm(request.POST, request.FILES, instance=feature_post)
         if form.is_valid():
+            feature_post = form.save(commit=False)
+            feature_post.user = request.user
             feature_post = form.save()
             return redirect(feature_post_detail, feature_post.pk)
     else:

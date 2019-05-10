@@ -1,8 +1,9 @@
+from django.db import models
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.contrib.auth.models import User
 from .models import Post
 from .forms import BugPostForm
-
 
 def get_bug_posts(request):
     """
@@ -37,8 +38,13 @@ def create_or_edit_bugpost(request, pk=None):
     """
     bug_post = get_object_or_404(Post, pk=pk) if pk else None
     if request.method == "POST":
+        #receive form
         form = BugPostForm(request.POST, request.FILES, instance=bug_post)
+        #receive user name
+        #form.username = user
         if form.is_valid():
+            bug_post = form.save(commit=False)
+            bug_post.user = request.user
             bug_post = form.save()
             return redirect(bug_post_detail, bug_post.pk)
     else:
