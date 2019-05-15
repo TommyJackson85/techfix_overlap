@@ -5,15 +5,29 @@ from django.contrib.auth.models import User
 from .models import Post
 from .forms import BugPostForm
 
+def vote_bug_post(request, pk):
+    """
+    Upvotes bug post redirects to list of bug posts
+    """
+    bug_post = get_object_or_404(Post, pk=pk)
+    bug_post.votes += 1
+    bug_post.save()
+    bug_posts = Post.objects.filter(published_date__lte=timezone.now()
+        ).order_by('-published_date')
+    return redirect(get_bug_posts)
+
+    
+
 def get_bug_posts(request):
     """
     Create a view that will return a list
     of Bug Posts that were published prior to 'now'
     and render them to the 'bugposts.html' template
     """
+    user = request.user
     bug_posts = Post.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
-    return render(request, "bugposts.html", {'bug_posts': bug_posts})
+    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'user': user})
 
 
 def bug_post_detail(request, pk):

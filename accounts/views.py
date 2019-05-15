@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from bugs.models import Post as BugPost
+from features.models import Post as FeaturePost
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
 
@@ -66,4 +68,14 @@ def registration(request):
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
-    return render(request, 'profile.html', {"profile": user})
+    logged_in_user_bugposts = BugPost.objects.filter(user=request.user)
+    logged_in_user_featureposts = FeaturePost.objects.filter(user=request.user)
+    return render(request, 'profile.html', {    "profile": user, 
+                                                "bug_posts":logged_in_user_bugposts,
+                                                "feature_posts":logged_in_user_featureposts
+                                            }
+    )
+    
+    
+    
+    

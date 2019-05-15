@@ -5,7 +5,13 @@
             <a class="story-img" href="#">
                 <img src="/media/img/profile.jpg" class="img-circle">
             </a>
-            <p><span class="boldtext">Author:</span>{{ bug_post.user }}</p>
+            {% if bug_post.user == user %}
+                <p><span class="boldtext">This is your post!</span></p>
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit Post</a>
+            {% else %}
+                <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
+            {% endif %}
+            <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn btn-default">Vote Post</a>
         </div>
         <div class="col-sm-10 col-md-9">
             <h3>{{ bug_post.title }}</h3>
@@ -14,9 +20,9 @@
                     <p>{{ bug_post.content }}</p>
                     <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
                     <p><span class="boldtext">Views:</span> {{ bug_post.views }}</p>
+                    <p><span class="boldtext">Votes:</span> {{ bug_post.votes }}</p>
                     <p><span class="boldtext">Tag:</span> {{ bug_post.tag }}</p>
                     <a href="{% url 'get_bug_posts' %}" class="btn btn-default">Back to Blog</a>
-                    <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit Post</a>
                     <hr>
                 </div>
             </div>

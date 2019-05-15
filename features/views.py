@@ -3,6 +3,16 @@ from django.utils import timezone
 from .models import Post
 from .forms import FeaturePostForm
 
+def vote_feature_post(request, pk):
+    """
+    Upvotes bug post redirects to list of bug posts
+    """
+    feature_post = get_object_or_404(Post, pk=pk)
+    feature_post.votes += 1
+    feature_post.save()
+    feature_post = Post.objects.filter(published_date__lte=timezone.now()
+        ).order_by('-published_date')
+    return redirect(get_feature_posts)
 
 def get_feature_posts(request):
     """
@@ -10,6 +20,7 @@ def get_feature_posts(request):
     of Feature Posts that were published prior to 'now'
     and render them to the 'featureposts.html' template
     """
+    user = request.user
     feature_posts = Post.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
     return render(request, "featureposts.html", {'feature_posts': feature_posts})
