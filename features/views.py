@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post
-from .forms import FeaturePostForm
+from .models import Post, Comment
+from .forms import FeaturePostForm, FeatureCommentForm
 
 def vote_feature_post(request, pk):
     """
@@ -34,10 +34,27 @@ def feature_post_detail(request, pk):
     Or return a 404 error if the post is
     not found
     """
-    feature_post = get_object_or_404(Post, pk=pk)
+    
+    feature_post = get_object_or_404(Post, pk=pk) if pk else None
     feature_post.views += 1
     feature_post.save()
-    return render(request, "featurepostdetail.html", {'feature_post': feature_post})
+    
+    """
+    Used this stack overflow post for reference in building comment functions.
+    https://stackoverflow.com/questions/43421904/how-to-link-a-comment-to-a-single-post-in-django
+    """   
+    feature_comments = Comment.objects.filter(post=feature_post).order_by('published_date')
+    
+    if request.method == 'POST':
+        form = FeatureCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post= feature_post
+            comment.user = request.user
+            comment.save()
+    else:
+        form = FeatureCommentForm()
+    return render(request, "featurepostdetail.html", {'feature_post': feature_post, 'form': form, 'feature_comments': feature_comments})
 
 
 def create_or_edit_featurepost(request, pk=None):

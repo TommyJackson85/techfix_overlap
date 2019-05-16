@@ -20,3 +20,21 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+        
+
+class Comment(models.Model):
+    """
+    A single Blog comment
+    """
+    post = models.ForeignKey(
+        Post, related_name='bugs'
+    )    
+    user= models.ForeignKey(
+       User, default=None, on_delete=models.CASCADE, related_name='bugscommentuser'
+    )
+    content = models.TextField()
+    created_date = models.DateTimeField(auto_now_add=True)
+    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    
+    def __unicode__(self):
+        return self.content

@@ -17,8 +17,8 @@
                         
                         <p><a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">Read more</a></p>
                         <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
-                        <p><span class="boldtext">Views:</span> {{bug_post.views}}</p>
-                        <p><span class="boldtext">Votes:</span> {{bug_post.votes}}</p>
+                        <p><span class="boldtext">Views:</span> {{ bug_post.views }}</p>
+                        <p><span class="boldtext">Votes:</span> {{ bug_post.votes }}</p>
                         <p><span class="boldtext">Tag:</span> {{ bug_post.tag }}</p>
                     </div>
                 </div>

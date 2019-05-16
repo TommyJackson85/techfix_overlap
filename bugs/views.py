@@ -2,8 +2,8 @@ from django.db import models
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.models import User
-from .models import Post
-from .forms import BugPostForm
+from .models import Post, Comment
+from .forms import BugPostForm, BugCommentForm
 
 def vote_bug_post(request, pk):
     """
@@ -38,11 +38,26 @@ def bug_post_detail(request, pk):
     Or return a 404 error if the post is
     not found
     """
-    bug_post = get_object_or_404(Post, pk=pk)
+    bug_post = get_object_or_404(Post, pk=pk) if pk else None
     bug_post.views += 1
     bug_post.save()
-    return render(request, "bugpostdetail.html", {'bug_post': bug_post})
-
+    
+    """
+    Used this stack overflow post for reference in building comment functions.
+    https://stackoverflow.com/questions/43421904/how-to-link-a-comment-to-a-single-post-in-django
+    """   
+    bug_comments = Comment.objects.filter(post=bug_post).order_by('published_date')
+    
+    if request.method == 'POST':
+        form = BugCommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post= bug_post
+            comment.user = request.user
+            comment.save()
+    else:
+        form = BugCommentForm()
+    return render(request, "bugpostdetail.html", {'bug_post': bug_post, 'form': form, 'bug_comments': bug_comments})
 
 def create_or_edit_bugpost(request, pk=None):
     """
