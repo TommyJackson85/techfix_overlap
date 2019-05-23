@@ -8,13 +8,14 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     """Add a quantity of the specified product to the cart"""
-    quantity = int(request.POST.get('quantity'))
+    money_amount = request.POST.get('money_amount')
+    print(money_amount)
 
     cart = request.session.get('cart', {})
-    cart[id] = cart.get(id, quantity)
+    cart[id] = cart.get(id, money_amount)
 
     request.session['cart'] = cart
-    return redirect(reverse('index'))
+    return redirect(view_cart)
 
 
 def adjust_cart(request, id):

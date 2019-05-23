@@ -1,3 +1,4 @@
+    
 {% extends 'base.html' %}
 {% block content %}
     {% for feature_post in feature_posts %}
@@ -19,7 +20,7 @@
                         <p><span class="boldtext">Published on:</span> {{ feature_post.published_date }} </p>
                         <p><span class="boldtext">Views:</span> {{ feature_post.views }}</p>
                         <p><span class="boldtext">Votes:</span> {{ feature_post.votes }}</p>
-                        <p><span class="boldtext">Tag:</span> {{ feature_post.tag }}</p>
+                        <p><span class="boldtext">Votes Cost:</span> {{ feature_post.votes_cost }}</p>
                     </div>
                 </div>
             </div>

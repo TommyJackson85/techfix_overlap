@@ -6,7 +6,7 @@ class FeaturePostForm(forms.ModelForm):
     
     class Meta:
         model = Post
-        fields = ('title', 'content', 'tag', 'published_date')
+        fields = ('title', 'content', 'published_date')
         
 
 class FeatureCommentForm(forms.ModelForm):

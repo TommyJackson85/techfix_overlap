@@ -19,6 +19,8 @@ from django.views.static import serve
 from .settings import MEDIA_ROOT
 from accounts.views import index
 from accounts import urls as accounts_urls
+from cart import urls as cart_urls
+from checkout import urls as urls_checkout
 
 #maybe replace with url(r'^$', RedirectView.as_view(url='posts/')),
 urlpatterns = [
@@ -27,5 +29,9 @@ urlpatterns = [
     url(r'^accounts/', include(accounts_urls)),
     url(r'^bugs/', include('bugs.urls')),
     url(r'^features/', include('features.urls')),
+    url(r'^cart/', include(cart_urls)),
+    url(r'^checkout/', include(urls_checkout)),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT})
 ]
+
+

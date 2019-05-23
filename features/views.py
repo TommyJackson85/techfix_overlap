@@ -2,18 +2,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post, Comment
 from .forms import FeaturePostForm, FeatureCommentForm
-
+"""
 def vote_feature_post(request, pk):
-    """
+    
     Upvotes bug post redirects to list of bug posts
-    """
+    
     feature_post = get_object_or_404(Post, pk=pk)
     feature_post.votes += 1
+    
     feature_post.save()
     feature_post = Post.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
     return redirect(get_feature_posts)
-
+"""
 def get_feature_posts(request):
     """
     Create a view that will return a list

@@ -16,7 +16,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
-    tag = models.CharField(max_length=30, blank=True, null=True)
+    votes_cost = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title
