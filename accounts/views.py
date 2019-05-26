@@ -6,7 +6,6 @@ from bugs.models import Post as BugPost
 from features.models import Post as FeaturePost
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
-
 def index(request):
     """Return the index.html file"""
     return render(request, 'index.html')

@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+STATUS_LABELS =  [
+    ('To Do', 'To Do'),
+    ('Doing', 'Doing'), 
+    ('Done', 'Done'),
+    ]
+
 class Post(models.Model):
     """
     A single Blog post
@@ -17,6 +23,7 @@ class Post(models.Model):
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
     votes_cost = models.IntegerField(default=0)
+    status = models.CharField(max_length=50, choices=STATUS_LABELS, default='To Do')
 
     def __unicode__(self):
         return self.title

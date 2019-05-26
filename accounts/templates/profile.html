@@ -1,48 +1,65 @@
-{% extends 'base.html' %} {% block page_title %}{{ user }}'s Profile{% endblock %} {% block page_heading %}{{ user }}'s Profile{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% block page_title %}{{ user }}'s{% endblock %} {% block page_heading %}{{ user }}'s Account{% endblock %} {% block content %}
 
 <div class="row">
-    <div class="col-md-2 col-sm-3 text-center">
+    <div class="col-md-4">
+        <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email: {{ profile.email }}</p>
+    </div>
+    <div class="col-md-8">
         <a type="button" class="btn" href="{% url 'new_bug_post' %}">Create Bug Report</a>
         <a type="button" class="btn" href="{% url 'new_feature_post' %}">Create Feature Suggestion</a>
-        <p>{{ profile.email }}</p>
     </div>
 </div>
 <hr>
 <h4>Bug Posts:</h4>
+<div class="row">
 {% for bug_post in bug_posts %}
-    <div class="row">
-        <div class="col-md-10 col-sm-9">
-            <h3>{{ bug_post.title }}</h3>
-            <div class="row">
-                <div class="col-xs-9">
-                    <p>{{ bug_post.content|truncatewords:30 }}</p>
-                    <p><a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit Post</a></p>
-                    <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
-                    <p><span class="boldtext">Views:</span> {{bug_post.views}}</p>
-                    <p><span class="boldtext">Tag:</span> {{ bug_post.tag }}</p>
-                </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <p>{{ bug_post.title }}<p>
+                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments </p>
+            </div>
+            <div class="panel-body">
+                <p>{{ bug_post.content|truncatewords:30 }}</p>
+                {% if bug_post.user == user %}
+                <p><span class="boldtext">This is your post!</span></p>
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                {% else %}
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true">: {{ bug_post.user }}</p>
+                {% endif %}
+                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
             </div>
         </div>
-        <hr>
     </div>
 {% endfor %}
+</div>
 <h4>Feature Posts:</h4>
+<div class="row">
 {% for feature_post in feature_posts %}
-    <div class="row">
-        <div class="col-md-10 col-sm-9">
-            <h3>{{ feature_post.title }}</h3>
-            <div class="row">
-                <div class="col-xs-9">
-                    <p>{{ feature_post.content|truncatewords:30 }}</p>
-                    <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit Post</a>
-                    <p><span class="boldtext">Published on:</span> {{ feature_post.published_date }} </p>
-                    <p><span class="boldtext">Views:</span> {{feature_post.views}}</p>
-                    <p><span class="boldtext">Tag:</span> {{ feature_post.tag }}</p>
-                </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <p>{{ feature_post.title }}<p>
+                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ( <span class="boldtext">Funds:</span> €{{ feature_post.votes_cost }} ) ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments </p>
+            </div>
+            <div class="panel-body">
+                <p>{{ feature_post.content|truncatewords:30 }}</p>
+                {% if feature_post.user == user %}
+                <p><span class="boldtext">This is your post!</span></p>
+                <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit</a>
+                {% else %}
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true">: {{ feature_post.user }}</p>
+                {% endif %}
+                <a href="{% url 'feature_post_detail' feature_post.id %}"  class="btn btn-default">View</a>
+                <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
             </div>
         </div>
-        <hr>
     </div>
 {% endfor %}
+</div>
 
 {% endblock %}

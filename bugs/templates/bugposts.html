@@ -1,30 +1,29 @@
 {% extends 'base.html' %}
+{% block page_heading %}Search Bug Reports{% endblock page_heading %} 
 {% block content %}
+<div class="row">
     {% for bug_post in bug_posts %}
-        <div class="row">
-            <div class="col-md-10 col-sm-9">
-                <h3>{{ bug_post.title }}</h3>
-                <div class="row">
-                    <div class="col-xs-9">
-                        <p>{{ bug_post.content|truncatewords:30 }}</p>
-                        
-                        {% if bug_post.user == user %}
-                            <p><span class="boldtext">This is your post!</span></p>
-                            <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit Post</a>
-                        {% else %}
-                            <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
-                        {% endif %}
-                        
-                        <p><a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">Read more</a></p>
-                        <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
-                        <p><span class="boldtext">Views:</span> {{ bug_post.views }}</p>
-                        <p><span class="boldtext">Votes:</span> {{ bug_post.votes }}</p>
-                        <p><span class="boldtext">Tag:</span> {{ bug_post.tag }}</p>
-                    </div>
-                </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <p>{{ bug_post.title }}<p>
+                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments </p>
             </div>
-            <hr>
+            <div class="panel-body">
+                <p>{{ bug_post.content|truncatewords:30 }}</p>
+                {% if bug_post.user == user %}
+                <p><span class="boldtext">This is your post!</span></p>
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                {% else %}
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user }}</p>
+                {% endif %}
+                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
+            </div>
         </div>
+    </div>
     {% endfor %}
+</div>
 {% endblock %}
 
