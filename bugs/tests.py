@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Post
+from .forms import BugPostForm, BugCommentForm
 
 # Create your tests here.
 
@@ -15,3 +16,7 @@ class PostTests(TestCase):
         self.assertEqual(test_content.content, "This bus being tested")
         self.assertEqual(test_content.views, 0)
         self.assertEqual(test_content.votes, 0)
+        
+class BugPostFormTest(TestCase):
+    def test_str(self):
+        test_content = BugPostForm()
