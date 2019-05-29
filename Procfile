@@ -1,1 +1,1 @@
-web: gunicorn blog.wsgi:application
+web: gunicorn tf_overlap.wsgi:application
