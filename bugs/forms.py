@@ -1,16 +1,16 @@
 from django import forms
-from .models import Post, Comment
+from .models import BugPost, BugComment
 
 
 class BugPostForm(forms.ModelForm):
     
     class Meta:
-        model = Post
+        model = BugPost
         fields = ('title', 'content', 'published_date')
 
 
 class BugCommentForm(forms.ModelForm):
     
     class Meta:
-        model = Comment
+        model = BugComment
         fields = ('content', 'published_date')

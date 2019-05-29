@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Comment
+from .models import FeaturePost, FeatureComment
 from .forms import FeaturePostForm, FeatureCommentForm
 """
 def vote_feature_post(request, pk):
@@ -22,7 +22,7 @@ def get_feature_posts(request):
     and render them to the 'featureposts.html' template
     """
     user = request.user
-    feature_posts = Post.objects.filter(published_date__lte=timezone.now()
+    feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
     return render(request, "featureposts.html", {'feature_posts': feature_posts})
 
@@ -36,7 +36,7 @@ def feature_post_detail(request, pk):
     not found
     """
     
-    feature_post = get_object_or_404(Post, pk=pk) if pk else None
+    feature_post = get_object_or_404(FeaturePost, pk=pk) if pk else None
     feature_post.views += 1
     feature_post.save()
     
@@ -44,7 +44,7 @@ def feature_post_detail(request, pk):
     Used this stack overflow post for reference in building comment functions.
     https://stackoverflow.com/questions/43421904/how-to-link-a-comment-to-a-single-post-in-django
     """   
-    feature_comments = Comment.objects.filter(post=feature_post).order_by('published_date')
+    feature_comments = FeatureComment.objects.filter(post=feature_post).order_by('published_date')
     
     if request.method == 'POST':
         form = FeatureCommentForm(request.POST)
@@ -64,7 +64,7 @@ def create_or_edit_featurepost(request, pk=None):
     or edit a post depending if the Post ID
     is null or not
     """
-    feature_post = get_object_or_404(Post, pk=pk) if pk else None
+    feature_post = get_object_or_404(FeaturePost, pk=pk) if pk else None
     if request.method == "POST":
         form = FeaturePostForm(request.POST, request.FILES, instance=feature_post)
         if form.is_valid():

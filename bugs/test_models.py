@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Post
+from .models import BugPost
 from .forms import BugPostForm, BugCommentForm
 
 # Create your tests here.
@@ -11,7 +11,7 @@ class PostTests(TestCase):
     """
     def test_str(self):
         #user field from model
-        test_content = Post(title='Test Bug Post', content="This bus being tested", views=0, votes=0)
+        test_content = BugPost(title='Test Bug Post', content="This bus being tested", views=0, votes=0)
         self.assertEqual(test_content.title, 'Test Bug Post')
         self.assertEqual(test_content.content, "This bus being tested")
         self.assertEqual(test_content.views, 0)

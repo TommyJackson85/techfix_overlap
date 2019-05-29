@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-class Post(models.Model):
+class BugPost(models.Model):
     """
     A single Blog post
     """
@@ -21,12 +21,12 @@ class Post(models.Model):
         return self.title
         
 
-class Comment(models.Model):
+class BugComment(models.Model):
     """
     A single Blog comment
     """
     post = models.ForeignKey(
-        Post, related_name='bugs'
+        BugPost, related_name='bugs'
     )    
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='bugscommentuser'

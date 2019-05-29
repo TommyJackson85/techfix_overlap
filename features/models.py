@@ -9,7 +9,7 @@ STATUS_LABELS =  [
     ('Done', 'Done'),
     ]
 
-class Post(models.Model):
+class FeaturePost(models.Model):
     """
     A single Blog post
     """
@@ -28,12 +28,12 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
         
-class Comment(models.Model):
+class FeatureComment(models.Model):
     """
     A single Blog comment
     """
     post = models.ForeignKey(
-        Post, related_name='bugs'
+        FeaturePost, related_name='bugs'
     )    
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='featurescommentuser'

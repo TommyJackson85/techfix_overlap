@@ -5,7 +5,7 @@ from .forms import MakePaymentForm, OrderForm
 from .models import OrderLineItem
 from django.conf import settings
 from django.utils import timezone
-from features.models import Post as FeatureVoted
+from features.models import FeaturePost as FeatureVoted
 import stripe
 
 # Create your views here.

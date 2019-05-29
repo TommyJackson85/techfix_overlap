@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from features.models import Post as FeatureVoted
+from features.models import FeaturePost as FeatureVoted
 
 
 def cart_contents(request):

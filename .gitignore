@@ -3,3 +3,6 @@
 .~c9
 __pycahce__/
 env.py
+*.png
+static/
+media/

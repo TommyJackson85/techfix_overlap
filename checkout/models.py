@@ -1,5 +1,5 @@
 from django.db import models
-from features.models import Post as FeatureVoted
+from features.models import FeaturePost as FeatureVoted
 
 # Create your models here.
 class Order(models.Model):
