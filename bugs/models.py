@@ -1,7 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+STATUS_LABELS =  [
+    ('To Do', 'To Do'),
+    ('Doing', 'Doing'), 
+    ('Done', 'Done'),
+    ]
 
 class BugPost(models.Model):
     """
@@ -16,6 +20,8 @@ class BugPost(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
+    status = models.CharField(max_length=50, choices=STATUS_LABELS, default='To Do')
+    comment_count = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title

@@ -55,8 +55,12 @@ def bug_post_detail(request, pk):
             comment.post= bug_post
             comment.user = request.user
             comment.save()
+            
+            bug_post.comment_count = bug_comments.count()
+            bug_post.save()
     else:
         form = BugCommentForm()
+        
     return render(request, "bugpostdetail.html", {'bug_post': bug_post, 'form': form, 'bug_comments': bug_comments})
 
 def create_or_edit_bugpost(request, pk=None):
@@ -79,3 +83,16 @@ def create_or_edit_bugpost(request, pk=None):
     else:
         form = BugPostForm(instance=bug_post)
     return render(request, 'bugpostform.html', {'form': form})
+    
+def delete_bug_post(request, pk):
+    """
+    Create a view that returns a single
+    Post object based on the post ID (pk) and
+    render it to the 'postdetail.html' template.
+    Or return a 404 error if the post is
+    not found
+    """
+    post = get_object_or_404(BugPost, pk=pk)
+    post.delete()
+    return redirect(get_bug_posts)
+ 

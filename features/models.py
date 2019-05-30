@@ -24,6 +24,7 @@ class FeaturePost(models.Model):
     votes = models.IntegerField(default=0)
     votes_cost = models.IntegerField(default=0)
     status = models.CharField(max_length=50, choices=STATUS_LABELS, default='To Do')
+    comment_count = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title

@@ -7,8 +7,11 @@
                 <img src="/media/img/profile.jpg" class="img-circle">
             </a>
             {% if bug_post.user == user %}
-                <p><span class="boldtext">This is your post!</span></p>
-                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit Post</a>
+            <p><span class="boldtext">This is your post!</span></p>
+                {% if bug_post.status == "To Do" %}
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                {% endif %}
             {% else %}
                 <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
             {% endif %}
@@ -16,6 +19,7 @@
         </div>
         <div class="col-sm-10 col-md-9">
             <h3>{{ bug_post.title }}</h3>
+            <h3>{{ bug_comment_count }}</h3>
             <div class="row">
                 <div class="col-xs-9">
                     <p>{{ bug_post.content }}</p>

@@ -7,14 +7,17 @@
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <p>{{ bug_post.title }}<p>
-                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments </p>
+                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
             </div>
             <div class="panel-body">
                 <p>{{ bug_post.content|truncatewords:30 }}</p>
                 {% if bug_post.user == user %}
                 <p><span class="boldtext">This is your post!</span></p>
-                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                    {% if bug_post.status == "To Do" %}
+                    <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                    <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                    {% endif %}
                 {% else %}
                 <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user }}</p>
                 {% endif %}

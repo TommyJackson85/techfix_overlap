@@ -11,13 +11,15 @@
             <div class="panel-heading">
                 <p>{{ feature_post.title }}<p>
                 <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ( <span class="boldtext">Funds:</span> €{{ feature_post.votes_cost }} ) ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Comments </p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ( <span class="boldtext">Funds:</span> €{{ feature_post.votes_cost }} ) ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
             </div>
             <div class="panel-body">
                 <p>{{ feature_post.content|truncatewords:30 }}</p>
                 {% if feature_post.user == user %}
                 <p><span class="boldtext">This is your post!</span></p>
-                <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit</a>
+                    {% if feature_post.status == "To Do" %}
+                    <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit</a>
+                    {% endif %}
                 {% else %}
                 <p><span class="glyphicon glyphicon-user" aria-hidden="true"> </span> <span class="boldtext">Author: {{ feature_post.user }}</span></p>
                 {% endif %}

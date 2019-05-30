@@ -53,6 +53,8 @@ def feature_post_detail(request, pk):
             comment.post= feature_post
             comment.user = request.user
             comment.save()
+            feature_post.comment_count = feature_comments.count()
+            feature_post.save()
     else:
         form = FeatureCommentForm()
     return render(request, "featurepostdetail.html", {'feature_post': feature_post, 'form': form, 'feature_comments': feature_comments})
