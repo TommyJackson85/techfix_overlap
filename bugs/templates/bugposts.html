@@ -2,6 +2,15 @@
 {% block page_heading %}Search Bug Reports{% endblock page_heading %} 
 {% block content %}
 <div class="row">
+    <div class="display col-xs-12">
+        <form class="navbar-form navbar-left" action="{% url 'search_bug_posts' %}" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" name="q">
+            </div>
+            <button type="search" class="btn btn-default">Search</button>
+        </form>
+    </div>
+
     {% for bug_post in bug_posts %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-danger">

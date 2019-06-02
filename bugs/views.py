@@ -28,7 +28,18 @@ def get_bug_posts(request):
     bug_posts = BugPost.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
     return render(request, "bugposts.html", {'bug_posts': bug_posts, 'user': user})
+    
+    
+def search_bug_posts(request):
+    """
+    Create a view that will return a list
+    of Bug Posts that were published prior to 'now'
+    and render them to the 'bugposts.html' template
+    """
+    user = request.user
+    bug_posts = BugPost.objects.filter(title__icontains=request.GET['q'], published_date__lte=timezone.now())
 
+    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'user': user})
 
 def bug_post_detail(request, pk):
     """

@@ -21,11 +21,16 @@ class TestAccountsViews(TestCase):
         page = self.client.get("/accounts/profile/")
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "profile.html")
+    
+    def test_index_page_load(self):
+        page = self.client.get("/")
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "index.html")
         
     def test_logout(self):
         response = self.client.get("/accounts/logout/")
         self.assertRedirects(response, '/accounts/login/?next=/accounts/logout/', status_code=302, target_status_code=200, fetch_redirect_response=True)
-        
+    
     def test_user_can_log_in(self):
         test_user = User.objects.create_user(username="test", email="test@example.com", password="Madetotest")
         response = self.client.post("/accounts/login/", {

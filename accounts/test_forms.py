@@ -41,6 +41,16 @@ class TestAccountsForms(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['password2'], ['Passwords must match'])
         
+    def test_both_registration_passwords_fields_are_filled(self):
+        form = UserRegistrationForm({
+            'username': 'admin',
+            'email': 'admin@example.com',
+            'password1': '',
+            'password2': 'pa55word2'
+        })
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors['password2'], ['Please confirm your password'])
+        
     def test_registration_email_must_be_unique(self):
         
         User.objects.create_user(

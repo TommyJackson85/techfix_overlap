@@ -22,8 +22,11 @@ def get_feature_posts(request):
     and render them to the 'featureposts.html' template
     """
     user = request.user
-    feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
-        ).order_by('-published_date')
+    if request.method == 'POST':
+        feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
+            ).order_by('-published_date')
+    else:
+        feature_posts = FeaturePost.objects.filter(title__icontains=request.GET['q'])
     return render(request, "featureposts.html", {'feature_posts': feature_posts})
 
 

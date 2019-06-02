@@ -5,6 +5,12 @@
 
 {% block content %}
 <div class="row">
+    <div class="display">
+        <form action="{% url 'get_feature_posts' %}" method="get">
+            <input type="text" name="q">
+            <button type="search">Search</button>
+        </form>
+    </div>
     {% for feature_post in feature_posts %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-warning">
