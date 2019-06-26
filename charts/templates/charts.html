@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block head_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+{% endblock head_js %}
+{% block page_heading %}Progress Charts{% endblock page_heading %} 
+{% block content %}
+
+<div class="col-xs-12">
+    <div class="btn-group col-xs-12 col-sm-6" role="group" aria-label="...">
+      <button id="daily_graph_toggle" type="button" class="btn btn-default">Daily</button>
+      <button id="weekly_graph_toggle" type="button" class="btn btn-default">Weekly</button>
+      <button id="monthly_graph_toggle" type="button" class="btn btn-default">Monthly</button>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div id="daily_graph" class="col-xs-12 col-sm-6">
+        <h5>Average amount of bugs/features worked on daily.</h5>
+        <canvas id="dailyProgressChart"></canvas>
+    </div>
+    <div id="weekly_graph" class="col-xs-12 col-sm-6">
+     <h5>Average amount of bugs/features worked on weekly.</h5>
+        <canvas id="weeklyProgressChart"></canvas>
+    </div>
+    <div id="monthly_graph" class="col-xs-12 col-sm-6">
+        <h5>Average amount of bugs/features worked on monthly.</h5>
+        <canvas id="monthlyProgressChart"></canvas>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div id="bug_votes_graph" class="col-xs-12 col-sm-6">
+        <h5>Highest Voted Bugs</h5>
+        <canvas id="higestBugsVotedChart"></canvas>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block body_js %}
+<script>
+    
+var options = {}
+
+var retrieveData = function(d) {
+    return {
+        datasets: [{
+            data: d,
+            backgroundColor:[
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+        }],
+        labels: ['Bugs', 'Features']
+    };
+}
+
+var daily_data = retrieveData(JSON.parse('{{ data.daily }}'))
+var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'))
+var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'))
+
+//var vote_data_titles = retrieveData('{{ data.most_voted_bugs.title }}')
+
+//var vote_data_votes = retrieveData(JSON.parse('{{ data.most_voted_bugs.votes }}'))
+
+
+/*top_five_voted['title'].append(p.title)
+top_five_voted['votes'].append(p.votes)*/
+
+//doughnut chart
+var ctx = function(id) { 
+    return document.getElementById(id).getContext('2d'); 
+}
+
+var ctxDaily = ctx('dailyProgressChart');
+var ctxWeekly = ctx('weeklyProgressChart');
+var ctxMonthly = ctx('monthlyProgressChart');
+
+var daily_progress_chart = new Chart(ctxDaily, {
+    type: 'doughnut',
+    data: daily_data,
+    options: options
+});
+var weekly_progress_chart = new Chart(ctxWeekly, {
+    type: 'doughnut',
+    data: weekly_data,
+    options: options
+});
+var monthly_progress_chart = new Chart(ctxMonthly, {
+    type: 'doughnut',
+    data: monthly_data,
+    options: options
+});
+
+
+$('#monthly_graph').show();
+$('#weekly_graph').hide();
+$('#monthly_graph').hide();
+
+$("#monthly_graph_toggle").click(function () {
+    $("#monthly_graph").show();
+    $("#weekly_graph").hide();
+    $("#daily_graph").hide();
+});
+$("#weekly_graph_toggle").click(function () {
+    $("#monthly_graph").hide();
+    $("#weekly_graph").show();
+    $("#daily_graph").hide();
+});
+$('#daily_graph_toggle').on('click', function(){
+    $("#monthly_graph").hide();
+    $("#weekly_graph").hide();
+    $("#daily_graph").show();
+})
+
+var rechieveVotesData = function(votes, titles) {
+    return {
+        datasets: [{
+            data: votes,
+            backgroundColor:[
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(230, 99, 132, 1)',
+                'rgba(20, 162, 235, 1)',
+                'rgba(100, 162, 235, 1)'
+            ],
+        }],
+        labels: titles
+    }
+}
+console.log(JSON.stringify("{{ data.most_voted_bugs.title }}"))
+var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'))
+
+var ctxBugVotes = ctx('higestBugsVotedChart');
+
+var most_voted_bugs = new Chart(ctxBugVotes, {
+    type: 'doughnut',
+    data: bug_votes_data,
+    options: options
+});
+console.log(bug_votes_data.datasets.data)
+console.log(bug_votes_data.labels)
+
+</script>
+{% endblock body_js %}

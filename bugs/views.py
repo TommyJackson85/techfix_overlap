@@ -53,6 +53,10 @@ def bug_post_detail(request, pk):
     bug_post.views += 1
     bug_post.save()
     
+
+    print("My Time")
+    print(bug_post.start_time)
+    
     """
     Used this stack overflow post for reference in building comment functions.
     https://stackoverflow.com/questions/43421904/how-to-link-a-comment-to-a-single-post-in-django
@@ -90,6 +94,10 @@ def create_or_edit_bugpost(request, pk=None):
             bug_post = form.save(commit=False)
             bug_post.user = request.user
             bug_post = form.save()
+
+            print("My Time")
+
+            
             return redirect(bug_post_detail, bug_post.pk)
     else:
         form = BugPostForm(instance=bug_post)
