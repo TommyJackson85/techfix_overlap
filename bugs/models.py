@@ -42,10 +42,10 @@ class BugComment(models.Model):
      on_delete=models.CASCADE,
     """
     post = models.ForeignKey(
-        BugPost, related_name='bugs'
+        BugPost, on_delete=models.CASCADE, related_name='bugs'
     )    
     user= models.ForeignKey(
-       User, default=None, related_name='bugscommentuser'
+       User, default=None, on_delete=models.CASCADE, related_name='bugscommentuser'
     )
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)

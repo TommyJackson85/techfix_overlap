@@ -18,8 +18,8 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False)
-    feature_voted = models.ForeignKey(FeatureVoted, null=False)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
+    feature_voted = models.ForeignKey(FeatureVoted, on_delete=models.CASCADE, null=False)
     money_amount = models.IntegerField(blank=False)
 
     def __str__(self):
