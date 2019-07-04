@@ -12,9 +12,10 @@ STATUS_LABELS =  [
 class FeaturePost(models.Model):
     """
     A single Blog post
+     on_delete=models.CASCADE,
     """
     user= models.ForeignKey(
-       User, default=None, on_delete=models.CASCADE, related_name='features'
+       User, default=None, related_name='features'
     )
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -34,10 +35,10 @@ class FeatureComment(models.Model):
     A single Blog comment
     """
     post = models.ForeignKey(
-        FeaturePost, related_name='bugs', on_delete='CASCADE'
+        FeaturePost, related_name='bugs'
     )    
     user= models.ForeignKey(
-       User, default=None, on_delete=models.CASCADE, related_name='featurescommentuser'
+       User, default=None, related_name='featurescommentuser'
     )
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)

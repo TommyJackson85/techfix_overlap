@@ -39,12 +39,13 @@ class BugPost(models.Model):
 class BugComment(models.Model):
     """
     A single Blog comment
+     on_delete=models.CASCADE,
     """
     post = models.ForeignKey(
-        BugPost, related_name='bugs', on_delete='CASCADE'
+        BugPost, related_name='bugs'
     )    
     user= models.ForeignKey(
-       User, default=None, on_delete=models.CASCADE, related_name='bugscommentuser'
+       User, default=None, related_name='bugscommentuser'
     )
     content = models.TextField()
     created_date = models.DateTimeField(auto_now_add=True)
