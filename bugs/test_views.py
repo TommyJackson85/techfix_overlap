@@ -40,8 +40,14 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, "bugpostform.html")
         
     def test_post_create_an_item(self):
-        user = User.objects.create_user(username='Ems_1', password='generic')
+        user = User.objects.create(username='testuser')
+        user.set_password('12345')
+        user.save()
+        c = Client()
+        logged_in = c.login(username='testuser', password='12345')
+        
         response = self.client.post("/bugs/new/", {"title": "Create a Test", "content": "ggggg"})
+        
         bug_post = get_object_or_404(BugPost, pk=1)
         bug_post.user = User.objects.create_user(username='Ems_1', password='generic')
         bug_post.save()

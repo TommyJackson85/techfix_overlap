@@ -34,7 +34,7 @@ class FeatureComment(models.Model):
     A single Blog comment
     """
     post = models.ForeignKey(
-        FeaturePost, related_name='bugs'
+        FeaturePost, related_name='bugs', on_delete='CASCADE'
     )    
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='featurescommentuser'
