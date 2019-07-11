@@ -128,10 +128,13 @@ def get_charts(request):
     if bug_posts_time:
         #calls the get averages function from above
         bug_post_averages = get_averages(bug_posts_time, now, all_days, user)
-        
+    else:
+        bug_post_averages = [0, 0, 0]
     bug_posts_votes = BugPost.objects.all().order_by('-votes')[:5]      
     if bug_posts_votes:
         most_voted_bugs = get_most_voted(bug_posts_votes)
+    else:
+        most_voted_bugs = None
         
     # data.category: ['Bugs', 'Features']
     daily = [bug_post_averages[0], 3]

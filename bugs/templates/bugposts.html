@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+
 {% block page_heading %}Search Bug Reports{% endblock page_heading %} 
 {% block content %}
 <div class="row">
@@ -10,53 +13,21 @@
             <button type="search" class="btn btn-default">Search</button>
         </form>
     </div>
-    
-<div class="col-xs-12 col-md-8">
-    <h4>On Waiting List:</h4>
-    {% for bug_post in bug_posts %}
-    {% if bug_post.status == "To Do"%}
-    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <p>{{ bug_post.title }}<p>
-                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
-            </div>
-            <div class="panel-body">
-                <p>{{ bug_post.content|truncatewords:30 }}</p>
-                {% if bug_post.user == user %}
-                <p><span class="boldtext">This is your post!</span></p>
-                    {% if bug_post.status == "To Do" %}
-                    <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                    <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
-                    {% endif %}
-                {% else %}
-                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user }}</p>
-                {% endif %}
-                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
-                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    </div>
-    
-    <button type="button" class="btn btn-primary" id="toggle_bug_data">Toggle</button>
-    
-    <side id="in_progress_bugs" class="col-xs-12 col-md-4">
+
+  <side id="in_progress_bugs" class="col-xs-12 col-md-4 col-md-push-8 in_progress_bugs">
+        <button type="button" class="btn btn-primary toggle_bug_data">Finished Tickets</button>
         <h4>In Progress:</h4>
         {% for bug_post in bug_posts %}
         {% if bug_post.status == "Doing"%}
         <div class="col-xs-12 col-sm-4 col-md-12">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <p>{{ bug_post.title }}<p>
+                    <p>{{ bug_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
-                    <p>{{ bug_post.content|truncatewords:30 }}</p>
+                    <p>{{ bug_post.content|slice:":25" }}</p>
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
@@ -64,7 +35,7 @@
                         <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
@@ -74,19 +45,20 @@
     {% endif %}
     {% endfor %}
     </side>
-    <side id="finished_bugs" class="col-xs-12 col-md-4">
+    <side id="finished_bugs" class="col-xs-12 col-md-4 col-md-push-8 finished_bugs">
+        <button type="button" class="btn btn-primary toggle_bug_data">In Progress Tickets</button>
         <h4>Done!</h4>
         {% for bug_post in bug_posts %}
         {% if bug_post.status == "Done"%}
         <div class="col-xs-12 col-sm-4 col-md-12">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <p>{{ bug_post.title }}<p>
+                    <p>{{ bug_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
-                    <p>{{ bug_post.content|truncatewords:30 }}</p>
+                    <p>{{ bug_post.content|slice:":25" }}</p>
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
@@ -94,7 +66,7 @@
                         <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
@@ -104,23 +76,40 @@
         {% endif %}
         {% endfor %}
     </side>
+    
+<div class="col-xs-12 col-md-8 col-md-pull-4">
+    <h4>On Waiting List:</h4>
+    {% for bug_post in bug_posts %}
+    {% if bug_post.status == "To Do"%}
+    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <p>{{ bug_post.title|slice:":25" }}<p>
+                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
+                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
+            </div>
+            <div class="panel-body">
+                <p>{{ bug_post.content|slice:":25" }}</p>
+                {% if bug_post.user == user %}
+                <p><span class="boldtext">This is your post!</span></p>
+                    {% if bug_post.status == "To Do" %}
+                    <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                    <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                    {% endif %}
+                {% else %}
+                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                {% endif %}
+                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    </div>
 </div>
 {% endblock content %}
 
 {% block body_js %}
-<script>
-$('.finished_bugs').hide();
-$("#toggle_bug_data").click(function () {
-    if ($("#in_progress_bugs").is(":visible")) {
-         $("#in_progress_bugs").hide();
-         $("#finished_bugs").show();
-    } else {
-        $("#finished_bugs").hide();
-        $("#in_progress_bugs").show();
-    }
-});
-
-
-
-</script>
+<script src="{% static 'js/bugs_and_features.js' %}"></script>
 {% endblock body_js %}

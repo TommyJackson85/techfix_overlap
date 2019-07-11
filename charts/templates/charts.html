@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
+
 {% block head_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 {% endblock head_js %}
+<!--<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>-->
 {% block page_heading %}Progress Charts{% endblock page_heading %} 
 {% block content %}
 
@@ -39,6 +40,88 @@
 {% endblock content %}
 
 {% block body_js %}
+<script type="text/javascript">
+    var retrieveData = function(d) {
+        return {
+            datasets: [{
+                data: d,
+                backgroundColor:[
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+            }],
+            labels: ['Bugs', 'Features']
+        };
+    }
+        
+    var rechieveVotesData = function(votes, titles) {
+        return {
+            datasets: [{
+                data: votes,
+                backgroundColor:[
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(230, 99, 132, 1)',
+                    'rgba(20, 162, 235, 1)',
+                    'rgba(100, 162, 235, 1)'
+                ],
+            }],
+            labels: titles
+        }
+    }
+    var daily_data = retrieveData(JSON.parse('{{ data.daily }}'))
+    var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'))
+    var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'))
+    var vote_data_titles = retrieveData('{{ data.most_voted_bugs.title }}')
+    var vote_data_votes = retrieveData(JSON.parse('{{ data.most_voted_bugs.votes }}'))
+    console.log(JSON.stringify("{{ data.most_voted_bugs.title }}"))
+    var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'))
+</script>
+<script src="{% static 'js/charts.js' %}"></script>
+
+<!--<script>
+
+    var options = {}
+    
+    var retrieveData = function(d) {
+        return {
+            datasets: [{
+                data: d,
+                backgroundColor:[
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                ],
+            }],
+            labels: ['Bugs', 'Features']
+        };
+    }
+    
+    var rechieveVotesData = function(votes, titles) {
+        return {
+            datasets: [{
+                data: votes,
+                backgroundColor:[
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(230, 99, 132, 1)',
+                    'rgba(20, 162, 235, 1)',
+                    'rgba(100, 162, 235, 1)'
+                ],
+            }],
+            labels: titles
+        }
+    }
+    
+    var daily_data = retrieveData(JSON.parse('{{ data.daily }}'))
+    var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'))
+    var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'))
+    var vote_data_titles = retrieveData('{{ data.most_voted_bugs.title }}')
+    var vote_data_votes = retrieveData(JSON.parse('{{ data.most_voted_bugs.votes }}'))
+    console.log(JSON.stringify("{{ data.most_voted_bugs.title }}"))
+    var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'))
+
+</script>
+
 <script>
     
 var options = {}
@@ -142,5 +225,5 @@ var most_voted_bugs = new Chart(ctxBugVotes, {
 console.log(bug_votes_data.datasets.data)
 console.log(bug_votes_data.labels)
 
-</script>
+</script>-->
 {% endblock body_js %}
