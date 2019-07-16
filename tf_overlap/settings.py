@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'django_jasmine',
     'bugs',
     'cart',
     'charts',
@@ -46,6 +47,10 @@ INSTALLED_APPS = [
     'accounts',
     'checkout',
     'storages',
+]
+
+JASMINE_TEST_DIRECTORY = [
+
 ]
 
 MIDDLEWARE = [

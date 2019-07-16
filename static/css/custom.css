@@ -68,3 +68,45 @@ caption p {
 .finished_bugs, .in_progress_bugs {
     background-color: red;
 }
+
+.ticket {
+    padding-top: 10px;
+}
+
+.ticket .panel-body a {
+    margin: 0 15px 15px 0;
+} 
+
+.comment_form {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 10;
+  padding: 10px 10px 10px 10px;
+}
+
+.edit_button, .delete_button, .vote_button {
+    margin: 0 15px 15px 0;
+}
+.sticky_side_buttons{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10;
+    z-index: 10;
+}
+.sticky_side_buttons a {
+    margin: 0 0 15px 0;
+}
+.comment_form {
+  top: 100;
+  opacity: 1;
+  background-color: orange;
+  border-radius: 5px 5px 5px 5px;
+}
+.comments {
+    background-color: yellow;
+    border-radius: 0 0 5px 5px;
+}
+
+.comment_form_toggle {
+    margin: 10px 5px 10px 10px;
+}

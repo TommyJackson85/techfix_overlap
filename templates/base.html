@@ -18,7 +18,7 @@
     {% endblock head_js %}
 </head>
 
-<body>
+<body id="main_body">
 <!--<nav class="navbar navbar-default">
         <ul class="nav navbar-nav">
             <li><a href="{% url 'get_bug_posts' %}">Bugs</a></li>
@@ -41,7 +41,7 @@
         </ul>
     </nav>-->
  
-    <nav class="navbar navbar-default">
+<nav class="navbar navbar-default">
    <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -82,21 +82,16 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-    
-    <div class="container">
-    
-    <h1>
-        {% block page_heading %}{% endblock %}
-    </h1>
+<div class="container">
+    {% block page_heading %}{% endblock %}
     {% if messages %}
     <div>
         {% for message in messages %} {{ message }} {% endfor %}
     </div>
     {% endif %} {% block content %}{% endblock content %}
-    
-    </div>
-    {% block body_js %}
-    {% endblock body_js %}
+</div>
+{% block body_js %}
+{% endblock body_js %}
 </body>
 
 </html>

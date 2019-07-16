@@ -27,7 +27,20 @@ def get_bug_posts(request):
     user = request.user
     bug_posts = BugPost.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
-    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'user': user})
+    
+    doing_count=0
+    to_do_count=0
+    done_count=0
+    
+    for post in list(bug_posts):
+        if post.status == 'Doing':
+            doing_count += 1
+        if post.status == 'To Do':
+            to_do_count += 1
+        if post.status == 'Done':
+            done_count += 1
+    
+    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'doing_count': doing_count, 'to_do_count': to_do_count, 'done_count': done_count, 'user': user})
     
     
 def search_bug_posts(request):
@@ -38,8 +51,18 @@ def search_bug_posts(request):
     """
     user = request.user
     bug_posts = BugPost.objects.filter(title__icontains=request.GET['q'], published_date__lte=timezone.now())
-
-    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'user': user})
+    doing_count = 0
+    to_do_count = 0
+    done_count = 0
+    for post in list(bug_posts):
+        if post.status == 'Doing':
+            doing_count += 1
+        if post.status == 'To Do':
+            to_do_count += 1
+        if post.status == 'Done':
+            done_count += 1
+    
+    return render(request, "bugposts.html", {'bug_posts': bug_posts, 'doing_count': doing_count, 'to_do_count': to_do_count, 'done_count': done_count, 'user': user})
 
 def bug_post_detail(request, pk):
     """
