@@ -68,9 +68,21 @@ def user_profile(request):
     user = User.objects.get(email=request.user.email)
     logged_in_user_bugposts = BugPost.objects.filter(user=request.user)
     logged_in_user_featureposts = FeaturePost.objects.filter(user=request.user)
+    
+    bug_count = 0
+    for bug in list(logged_in_user_bugposts):
+        bug_count += 1
+        
+    feature_count = 0
+    for feature in list(logged_in_user_featureposts):
+        feature_count += 1
+    
+    
     return render(request, 'profile.html', {    "profile": user, 
                                                 "bug_posts":logged_in_user_bugposts,
-                                                "feature_posts":logged_in_user_featureposts
+                                                "feature_posts":logged_in_user_featureposts,
+                                                "bug_count": bug_count,
+                                                "feature_count": feature_count,
                                             }
     )
     

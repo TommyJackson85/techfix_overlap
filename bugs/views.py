@@ -90,7 +90,7 @@ def bug_post_detail(request, pk):
         form = BugCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.post= bug_post
+            comment.post = bug_post
             comment.user = request.user
             comment.save()
             

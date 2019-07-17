@@ -2,67 +2,112 @@
 {% block page_title %}{{ user }}'s{% endblock %} {% block page_heading %}{{ user }}'s Account{% endblock %} {% block content %}
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email: {{ profile.email }}</p>
-    </div>
-    <div class="col-md-8">
-        <a type="button" class="btn" href="{% url 'new_bug_post' %}">Create Bug Report</a>
-        <a type="button" class="btn" href="{% url 'new_feature_post' %}">Create Feature Suggestion</a>
     </div>
 </div>
 <hr>
-<h4>Bug Posts:</h4>
-<div class="row">
-{% for bug_post in bug_posts %}
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <p>{{ bug_post.title }}<p>
-                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }}  </p>
-            </div>
+
+
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    
+    
+    <button type="button" class="btn btn-primary" href="{% url 'new_bug_post' %}">Create Bug Report</button>
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Bugs <label class="badge badge-warning">{{ bug_count }}</label>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-                <p>{{ bug_post.content|truncatewords:30 }}</p>
-                    {% if bug_post.user == user %}
-                    <p><span class="boldtext">This is your post!</span></p>
-                        {% if bug_post.status == "To Do" %}
-                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                {% if bug_count > 0 %}
+                <div class="row">
+                {% for bug_post in bug_posts %}
+             
+                <div class="col-xs-12 col-sm-4 col-md-3 ticket">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <p>{{ bug_post.title|slice:":25" }}<p>
+                            <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
+                            <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{ bug_post.content|slice:":25" }}</p>
+                            {% if bug_post.user == user %}
+                            <p><span class="boldtext">This is your post!</span></p>
+                                {% if bug_post.status == "To Do" %}
+                                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
+                                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                                {% endif %}
+                            {% else %}
+                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                            {% endif %}
+                            <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                            <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                {% else %}
+                <p>No posts found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <button type="button" class="btn btn-primary" href="{% url 'new_feature_post' %}">Create Feature Suggestion</button>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Feature <label class="badge badge-warning">{{ feature_count }}</label>
+                </a>
+            </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+            {% if feature_count > 0 %}
+            <div class="row">
+            {% for feature_post in feature_posts %}
+            
+            <div class="col-xs-12 col-sm-4 col-md-3 ticket">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <p>{{ feature_post.title|slice:":25" }}<p>
+                        <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                        <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ feature_post.content|slice:":25" }}</p>
+                        {% if feature_post.user == user %}
+                        <p><span class="boldtext">This is your post!</span></p>
+                            {% if feature_post.status == "To Do" %}
+                            <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit</a>
+                            <a href="{% url 'delete_feature_post' feature_post.id %}" class="btn btn-default">Delete</a>
+                            {% endif %}
+                        {% else %}
+                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ feature_post.user|slice:":7" }}</p>
                         {% endif %}
-                    {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true">: {{ bug_post.user }}</p>
-                    {% endif %}
-                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
-                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
+                        <a href="{% url 'bug_feature_detail' feature_post.id %}"  class="btn btn-default">View</a>
+                        <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
+                    </div>
+                </div>
             </div>
+            {% endfor %}
+            </div>
+            {% else %}
+                <p>No posts found.</p>
+            {% endif %}
         </div>
     </div>
-{% endfor %}
-</div>
-<h4>Feature Posts:</h4>
-<div class="row">
-{% for feature_post in feature_posts %}
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <p>{{ feature_post.title }}<p>
-                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ( <span class="boldtext">Funds:</span> €{{ feature_post.votes_cost }} ) ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span>  {{ feature_post.comment_count }}  </p>
-            </div>
-            <div class="panel-body">
-                <p>{{ feature_post.content|truncatewords:30 }}</p>
-                    {% if feature_post.user == user %}
-                    <p><span class="boldtext">This is your post!</span></p>
-                    <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn btn-default">Edit</a>
-                    {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true">: {{ feature_post.user }}</p>
-                    {% endif %}
-                <a href="{% url 'feature_post_detail' feature_post.id %}"  class="btn btn-default">View</a>
-                <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
-            </div>
-        </div>
-    </div>
-{% endfor %}
 </div>
 
 {% endblock %}

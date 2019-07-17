@@ -4,21 +4,27 @@
 
 {% block page_heading %}
 <div class="row">
-    <div class="col-xs-12 col-md-3">
-        Bug Reports
+    <div class="col-xs-12 col-sm-6">
+        <h1>Bug Reports</h1>
     </div>
-    <div class="display col-xs-12 col-md-9">
-        <form class="navbar-form navbar-left" action="{% url 'search_bug_posts' %}" method="get">
-            <div class="form-group">
+    <div class="col-xs-12 col-sm-6">
+        <button type="button" class="btn btn-primary" href="{% url 'new_bug_post' %}">Create Bug Report</button>
+    </div>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 search_bar">
+        
+        <form action="{% url 'search_bug_posts' %}" method="get">
+            <div class="input-group">
                 <input type="text" class="form-control" placeholder="bug issue" name="q">
-            </div>
-            <button type="search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+                <span class="input-group-btn">
+                    <button type="search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+                </span>
+            </div><!-- /input-group -->
         </form>
     </div>
 </div>
-{% endblock page_heading %} 
-{% block content %}
+{% endblock page_heading %}
 
+{% block content %}
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
@@ -28,6 +34,7 @@
         </a>
       </h4>
     </div>
+    
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
         {% if done_count > 0 %}

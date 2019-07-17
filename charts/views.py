@@ -22,7 +22,10 @@ def get_most_voted(objects):
     }
     top_five_voted_titles = []
     for p in objects:
-        top_five_voted_titles.append(p.title)
+        if len(p.title) > 8:
+            top_five_voted_titles.append(p.title)
+        else:
+            top_five_voted_titles.append(p.title)
         top_five_voted['votes'].append(p.votes)
     top_five_voted['title'] = json.dumps(top_five_voted_titles)
     print('top_five_voted[titles]')
@@ -145,7 +148,7 @@ def get_charts(request):
         'daily': daily,
         'weekly': weekly,
         'monthly': monthly,
-        'most_voted_bugs': most_voted_bugs
+        'most_voted_bugs': most_voted_bugs,
     }
     
     return render(request, "charts.html", {'user': user, 'data': data})
