@@ -1,25 +1,199 @@
+/*---------------------------------base colors */
+/*
+Used this link to find variations of colors:
+http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJfJIfg9K9Ps#uid=3000u0k00vK00++00RE01pI0hk6*/
+/*--------------------------------color variations*/
+.black_background {
+  background: #242729;
+}
+.black_background button {
+  background: #44494D !important;
+}
+
+.dark_blue_background {
+  background: #0B4181;
+}
+.dark_blue_background .link, .dark_blue_background a {
+  border-radius: 5px 5px 5px 5px;
+}
+.dark_blue_background li {
+  color: #CDCDCD;
+}
+.dark_blue_background a {
+  color: #fdfdfd;
+}
+.dark_blue_background a:hover {
+  background: #366FB3 !important;
+  color: #FFC63D;
+}
+
+.green_text {
+  color: #52CE80;
+}
+
+.yellow_text {
+  color: #FFD266;
+}
+
+.red_text {
+  color: #F96371;
+}
+
+.panel_done {
+  border-color: #31CE44;
+  background-color: #A5DCAC;
+}
+.panel_done .panel-heading {
+  color: #242729;
+  background-color: #52CE80;
+  border-color: #31CE44;
+}
+.panel_done .panel-body a {
+  color: #fdfdfd;
+  background-color: #366FB3;
+}
+.panel_done .panel-body a:hover {
+  background-color: #5588C5;
+}
+
+.panel_doing {
+  border-color: #FFC63D;
+  background-color: #FFE5A7;
+}
+.panel_doing .panel-heading {
+  color: #242729;
+  background-color: #FFD266;
+  border-color: #FFC63D;
+}
+.panel_doing .panel-body a {
+  color: #fdfdfd;
+  background-color: #366FB3;
+}
+.panel_doing .panel-body a:hover {
+  background-color: #5588C5;
+}
+
+.panel_to_do {
+  border-color: #F83B4D;
+  background-color: #F2A5AC;
+}
+.panel_to_do .panel-heading {
+  color: #242729;
+  background-color: #F96371;
+  border-color: #F83B4D;
+}
+.panel_to_do .panel-body a {
+  color: #fdfdfd;
+  background-color: #366FB3;
+}
+.panel_to_do .panel-body a:hover {
+  background-color: #5588C5;
+}
+
+.panel-default .panel-collapse {
+  border-style: solid;
+  border-width: 0 2px 2px 2px;
+  border-color: #242729;
+}
+.panel-default .dark_blue_heading {
+  background-image: none;
+  color: #fdfdfd !important;
+  background-color: #1558A9 !important;
+  padding: 10px 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #242729;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel-default .dark_blue_heading .badge-positive {
+  background-color: green;
+}
+.panel-default .dark_blue_heading .badge-negative {
+  background-color: red;
+}
+.panel-default .dark_blue_heading:hover {
+  background-image: none;
+  background-color: #5588C5 !important;
+}
+
+.navbar-collapse {
+  background: #44494D;
+  /*changes to black-blue for wider screens*/
+}
+.navbar-collapse button:hover, .navbar-collapse a:hover {
+  background: #61686D;
+}
+.navbar-collapse ul li a {
+  color: #fdfdfd;
+}
+.navbar-collapse ul li a:hover {
+  background: #61686D;
+}
+
+.nav-stacked li:hover {
+  background: #7295BF;
+}
+
+.white_text {
+  color: #fdfdfd !important;
+}
+.white_text em {
+  color: #5588C5 !important;
+}
+
+.navbar-toggle span {
+  background: #fdfdfd;
+}
 
 .panel-group .panel {
-    margin-bottom: 30px !important;
+  margin-bottom: 30px !important;
 }
 
 .search_bar {
-    margin: 0 0 30px 0;
+  margin: 0 0 30px 0;
 }
 
+.new_bug_post_button {
+  margin: 20px 10px 20px 10px;
+  color: #fdfdfd;
+  background-color: #31CE44;
+}
+
+.new_bug_post_button:hover {
+  background-color: #52CE80;
+}
+
+.form-control {
+  border: 2px solid #5588C5;
+}
+
+.search_button {
+  color: #fdfdfd;
+  background-color: #5588C5;
+}
+
+.search_button:hover {
+  color: #FFC63D;
+  background-color: #7295BF;
+}
+
+.search_button:hover {
+  background-color: #7295BF;
+}
 
 .finished_bugs, .in_progress_bugs {
-    background-color: red;
+  background-color: red;
 }
 
 .ticket {
-    height: 390px;
-    padding-top: 10px;
+  height: 390px;
+  padding-top: 10px;
 }
 
 .ticket .panel-body a {
-    margin: 0 15px 15px 0;
-} 
+  margin: 0 15px 15px 0;
+}
 
 .comment_form {
   position: -webkit-sticky;
@@ -29,47 +203,93 @@
 }
 
 .edit_button, .delete_button, .vote_button {
-    margin: 0 15px 15px 0;
+  background-color: #366FB3;
+  color: #fdfdfd;
+  margin: 0 15px 15px 0;
 }
-.sticky_side_buttons{
-    position: -webkit-sticky;
-    position: sticky;
-    top: 10;
-    z-index: 10;
+
+.edit_button:hover, .delete_button:hover, .vote_button:hover {
+  background-color: #5588C5;
+  color: #FFC63D;
 }
-.sticky_side_buttons a {
-    margin: 0 0 15px 0;
+
+.sticky_buttons {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10;
+  z-index: 10;
 }
+
+.sticky_buttons a {
+  background-color: #F83B4D;
+  color: #fdfdfd;
+  margin: 0 0 15px 0;
+}
+
+.sticky_buttons a:hover {
+  background-color: #F96371;
+  color: #FFC63D;
+}
+
 .comment_form {
   top: 100;
   opacity: 1;
-  background-color: orange;
+  background-color: #1558A9;
   border-radius: 5px 5px 5px 5px;
 }
-.comments {
-    background-color: yellow;
-    border-radius: 0 0 5px 5px;
+
+.post_comment_form button {
+  background-color: #31CE44;
+  color: #fdfdfd;
+}
+
+.post_comment_form button:hover {
+  background-color: #52CE80;
+  color: #FFC63D;
 }
 
 .comment_form_toggle {
-    margin: 10px 5px 10px 10px;
+  background-color: #F96371;
+  color: #fdfdfd;
+  margin: 10px 5px 10px 10px;
 }
 
+.comment_form_toggle:hover {
+  background-color: #F2A5AC;
+  color: #FFC63D;
+}
+
+.comments {
+  background-color: yellow;
+  border-radius: 0 0 5px 5px;
+}
 
 /*-----------------------Charts CSS*/
 .average_graphs {
-    height: 490px
+  height: 490px;
 }
+
 .average_graphs .graph {
-    position: relative;
-    height: 300px;
-    /*height:60vh;
-    width:120vw;*/
+  position: relative;
+  height: 300px;
+  /*height:60vh;
+  width:120vw;*/
 }
+
 .vote_graphs {
-    height: 420px;
+  height: 420px;
 }
+
 .vote_graphs .graph {
-    position: relative;
-    height: 300px;   
+  position: relative;
+  height: 300px;
 }
+
+/*---------------------------------------------------------------media-queries*/
+@media only screen and (min-width: 768px) {
+  .navbar-collapse {
+    background: #242729;
+  }
+}
+
+/*# sourceMappingURL=custom.css.map */

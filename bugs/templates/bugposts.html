@@ -8,7 +8,7 @@
         <h1>Bug Reports</h1>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <button type="button" class="btn btn-primary" href="{% url 'new_bug_post' %}">Create Bug Report</button>
+        <button type="button" class="btn new_bug_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</button>
     </div>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 search_bar">
         
@@ -16,7 +16,7 @@
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="bug issue" name="q">
                 <span class="input-group-btn">
-                    <button type="search" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    <button type="search" class="btn search_button"><span class="glyphicon glyphicon-search"></span> Search</button>
                 </span>
             </div><!-- /input-group -->
         </form>
@@ -27,13 +27,18 @@
 {% block content %}
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Finished <label class="badge badge-warning">{{ done_count }}</label>
-        </a>
-      </h4>
-    </div>
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div class="dark_blue_heading" role="tab" id="headingOne">
+            <h4 class="green_text">
+                  Finished 
+                {% if done_count > 0 %}
+                    <label class="badge badge-positive">{{ done_count }}</label>
+                {% else %}
+                    <label class="badge badge-negative">{{ done_count }}</label>
+                {% endif %}
+            </h4>
+        </div>
+    </a>
     
     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body">
@@ -41,7 +46,7 @@
         {% for bug_post in bug_posts %}
         {% if bug_post.status == "Done"%}
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-            <div class="panel panel-success">
+            <div class="panel panel_done">
                 <div class="panel-heading">
                     <p>{{ bug_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
@@ -52,13 +57,13 @@
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
-                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn">Edit</a>
+                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                         {% endif %}
                     {% else %}
                     <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
-                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
                 </div>
             </div>
@@ -73,20 +78,25 @@
   </div>
 
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          In Progress <label class="badge badge-warning">{{ doing_count }}</label>
-        </a>
-      </h4>
-    </div>
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <div class="dark_blue_heading" role="tab" id="headingTwo">
+            <h4 class="yellow_text">
+                In Progress 
+                {% if doing_count > 0 %}
+                <label class="badge badge-positive">{{ doing_count }}</label>
+                {% else %}
+                <label class="badge badge-negative">{{ doing_count }}</label>
+                {% endif %}
+            </h4>
+        </div>
+    </a>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
       <div class="panel-body">
         {% if doing_count > 0 %}
         {% for bug_post in bug_posts %}
         {% if bug_post.status == "Doing"%}
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-            <div class="panel panel-info">
+            <div class="panel panel_doing">
                 <div class="panel-heading">
                     <p>{{ bug_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
@@ -97,13 +107,13 @@
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
-                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn">Edit</a>
+                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                         {% endif %}
                     {% else %}
                     <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
-                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
                 </div>
             </div>
@@ -116,21 +126,27 @@
       </div>
     </div>
   </div>
+  
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          To Do <label class="badge badge-warning">{{ to_do_count }}</label>
-        </a>
-      </h4>
-    </div>
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <div class="dark_blue_heading" role="tab" id="headingThree">
+            <h4 class="red_text">
+                To Do
+                {% if to_do_count > 0 %}
+                    <label class="badge badge-positive">{{ to_do_count }}</label>
+                {% else %}
+                    <label class="badge badge-negative">{{ to_do_count }}</label>
+                {% endif %}
+          </h4>
+        </div>
+    </a>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
             {% if to_do_count > 0 %}
             {% for bug_post in bug_posts %}
             {% if bug_post.status == "To Do"%}
             <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-                <div class="panel panel-danger">
+                <div class="panel panel_to_do">
                     <div class="panel-heading">
                         <p>{{ bug_post.title|slice:":25" }}<p>
                         <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
@@ -141,13 +157,13 @@
                         {% if bug_post.user == user %}
                         <p><span class="boldtext">This is your post!</span></p>
                             {% if bug_post.status == "To Do" %}
-                            <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                            <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
+                            <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn">Edit</a>
+                            <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                             {% endif %}
                         {% else %}
                         <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
                         {% endif %}
-                        <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
+                        <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                         <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
                     </div>
                 </div>

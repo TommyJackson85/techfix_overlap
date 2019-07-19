@@ -11,13 +11,13 @@
         {% if bug_post.user == user %}
             <p><span class="boldtext">This is your post!</span></p>
             {% if bug_post.status == "To Do" %}
-                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default edit_button">Edit</a>
-                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default delete_button">Delete</a>
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
+                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn delete_button">Delete</a>
             {% endif %}
         {% else %}
             <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
         {% endif %}
-        <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn btn-default vote_button">Vote Post</a>
+        <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
     </side>
     <div class="col-xs-12 col-md-9 post_details">
         <h1>{{ bug_post.title }}</h1>
@@ -25,19 +25,19 @@
         <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
         <p>Started: {{ bug_post.start_time.date }}</p>
         <p>{{ bug_post.content }}</p>
-        <div class="sticky_side_buttons">
-            <a href="{% url 'get_bug_posts' %}" class="btn btn-default"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
-            <a id="back_to_top" class="btn btn-default"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
+        <div class="sticky_buttons">
+            <a href="{% url 'get_bug_posts' %}" class="btn get_bug_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
+            <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
         </div>
         <div class="comment_form">
-            <a class="btn btn-primary comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
+            <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
                 Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
             </a>
             <div class="collapse" id="collapseCommentBox">
-                <form method="POST" enctype="multipart/form-data">
+                <form class="post_comment_form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | as_bootstrap }}
-                    <button type="submit" class="btn btn-info">Post Comment</button>
+                    <button type="submit" class="btn">Post Comment</button>
                 </form>
             </div>
         </div>
