@@ -27,6 +27,10 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   color: #FFC63D;
 }
 
+.dark_green_text {
+  color: #31CE44;
+}
+
 .green_text {
   color: #52CE80;
 }
@@ -37,6 +41,37 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 
 .red_text {
   color: #F96371;
+}
+
+.panel_cart_item {
+  background-color: #FFE5A7;
+}
+.panel_cart_item .panel-heading {
+  color: #242729;
+  background-color: #FFD266;
+}
+.panel_cart_item .panel-heading .badge-positive {
+  background-color: green;
+}
+.panel_cart_item .panel-heading .badge-negative {
+  background-color: red;
+}
+.panel_cart_item .panel-body form .input-group {
+  margin: 5px 5px 5px 0;
+}
+.panel_cart_item .panel-body form .purchase_ammend_button {
+  color: #fdfdfd;
+  background-color: #366FB3;
+}
+.panel_cart_item .panel-body form .purchase_ammend_button:hover {
+  color: #FFC63D;
+  background-color: #5588C5;
+}
+.panel_cart_item .panel-body form .input-group-addon {
+  color: #fdfdfd;
+  background-color: #1558A9;
+  border: 1px 1px 1px 1p;
+  border-color: #5588C5;
 }
 
 .panel_done {
@@ -53,6 +88,7 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   background-color: #366FB3;
 }
 .panel_done .panel-body a:hover {
+  color: #FFC63D;
   background-color: #5588C5;
 }
 
@@ -70,6 +106,7 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   background-color: #366FB3;
 }
 .panel_doing .panel-body a:hover {
+  color: #FFC63D;
   background-color: #5588C5;
 }
 
@@ -87,6 +124,7 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   background-color: #366FB3;
 }
 .panel_to_do .panel-body a:hover {
+  color: #FFC63D;
   background-color: #5588C5;
 }
 
@@ -154,14 +192,15 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   margin: 0 0 30px 0;
 }
 
-.new_bug_post_button {
+.new_post_button {
   margin: 20px 10px 20px 10px;
   color: #fdfdfd;
   background-color: #31CE44;
 }
 
-.new_bug_post_button:hover {
+.new_post_button:hover {
   background-color: #52CE80;
+  color: #FFC63D;
 }
 
 .form-control {
@@ -202,14 +241,24 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   padding: 10px 10px 10px 10px;
 }
 
-.edit_button, .delete_button, .vote_button {
+.edit_button, .delete_button, .vote_button, .purchase_button {
   background-color: #366FB3;
   color: #fdfdfd;
   margin: 0 15px 15px 0;
 }
 
-.edit_button:hover, .delete_button:hover, .vote_button:hover {
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover {
   background-color: #5588C5;
+  color: #FFC63D;
+}
+
+.submit_payment_button {
+  background-color: #31CE44;
+  color: #fdfdfd;
+}
+
+.submit_payment_button:hover {
+  background-color: #52CE80;
   color: #FFC63D;
 }
 

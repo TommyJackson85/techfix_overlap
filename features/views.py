@@ -18,16 +18,51 @@ def vote_feature_post(request, pk):
 def get_feature_posts(request):
     """
     Create a view that will return a list
-    of Feature Posts that were published prior to 'now'
-    and render them to the 'featureposts.html' template
+    of Bug Posts that were published prior to 'now'
+    and render them to the 'bugposts.html' template
     """
     user = request.user
-    if request.method == 'POST':
-        feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
-            ).order_by('-published_date')
-    else:
-        feature_posts = FeaturePost.objects.filter(title__icontains=request.GET['q'])
-    return render(request, "featureposts.html", {'feature_posts': feature_posts})
+    feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
+        ).order_by('-published_date')
+    
+    doing_count=0
+    to_do_count=0
+    done_count=0
+    
+    for post in list(feature_posts):
+        if post.status == 'Doing':
+            doing_count += 1
+        if post.status == 'To Do':
+            to_do_count += 1
+        if post.status == 'Done':
+            done_count += 1
+    
+    return render(request, "featureposts.html", {'feature_posts': feature_posts, 'doing_count': doing_count, 'to_do_count': to_do_count, 'done_count': done_count, 'user': user})
+   
+
+
+
+def search_feature_posts(request):
+    """
+    Create a view that will return a list
+    of Bug Posts that were published prior to 'now'
+    and render them to the 'bugposts.html' template
+    """
+    user = request.user
+    feature_posts = FeaturePost.objects.filter(title__icontains=request.GET['q'], published_date__lte=timezone.now())
+    doing_count = 0
+    to_do_count = 0
+    done_count = 0
+    for post in list(feature_posts):
+        if post.status == 'Doing':
+            doing_count += 1
+        if post.status == 'To Do':
+            to_do_count += 1
+        if post.status == 'Done':
+            done_count += 1
+    
+    return render(request, "featureposts.html", {'feature_posts': feature_posts, 'doing_count': doing_count, 'to_do_count': to_do_count, 'done_count': done_count, 'user': user})
+
 
 
 def feature_post_detail(request, pk):

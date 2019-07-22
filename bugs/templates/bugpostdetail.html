@@ -8,16 +8,20 @@
         <!--<a class="story-img" href="#">
             <img src="/media/img/profile.jpg" class="img-circle">
         </a>-->
-        {% if bug_post.user == user %}
-            <p><span class="boldtext">This is your post!</span></p>
-            {% if bug_post.status == "To Do" %}
-                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
-                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn delete_button">Delete</a>
-            {% endif %}
-        {% else %}
-            <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
+    {% if bug_post.user == user %}
+        <p><span class="boldtext">This is your post!</span></p>
+    {% else %}
+        <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
+    {% endif %}
+    {% if bug_post.status == "Done" %}
+        <p class="green_text">This issue has been resolved!</p>
+    {% else %}
+        {% if bug_post.status == "To Do" %}
+            <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
+            <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn delete_button">Delete</a>
         {% endif %}
         <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
+    {% endif %}
     </side>
     <div class="col-xs-12 col-md-9 post_details">
         <h1>{{ bug_post.title }}</h1>
@@ -29,7 +33,11 @@
             <a href="{% url 'get_bug_posts' %}" class="btn get_bug_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
             <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
         </div>
-        <div class="comment_form">
+        {% if bug_post.status == "Done" %}
+            <p class="red_text">Commenting has been disabled because the issue has been resolved!</p>
+            <hr />
+        {% else %}
+            <div class="comment_form">
             <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
                 Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
             </a>
@@ -41,6 +49,7 @@
                 </form>
             </div>
         </div>
+        {% endif %}
         
         <h2>Comments:</h2>
         <ul class="media-list">

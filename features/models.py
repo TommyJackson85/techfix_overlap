@@ -3,19 +3,18 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-STATUS_LABELS =  [
+STATUS_LABELS = [
     ('To Do', 'To Do'),
     ('Doing', 'Doing'), 
     ('Done', 'Done'),
-    ]
+]
 
 class FeaturePost(models.Model):
     """
     A single Blog post
-     on_delete=models.CASCADE,
     """
     user= models.ForeignKey(
-       User, default=None,  on_delete=models.CASCADE, related_name='features'
+       User, default=None, on_delete=models.CASCADE, related_name='features'
     )
     title = models.CharField(max_length=200)
     content = models.TextField()
@@ -24,18 +23,21 @@ class FeaturePost(models.Model):
     views = models.IntegerField(default=0)
     votes = models.IntegerField(default=0)
     votes_cost = models.IntegerField(default=0)
+    start_time = models.DateTimeField(blank=True, null=True)
+    end_time = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=50, choices=STATUS_LABELS, default='To Do')
     comment_count = models.IntegerField(default=0)
-
+    
     def __unicode__(self):
         return self.title
+
         
 class FeatureComment(models.Model):
     """
     A single Blog comment
     """
     post = models.ForeignKey(
-        FeaturePost, on_delete=models.CASCADE, related_name='bugs'
+        FeaturePost, on_delete=models.CASCADE, related_name='features'
     )    
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='featurescommentuser'

@@ -2,21 +2,34 @@
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
 
-{% block page_heading %}Cart Items{% endblock page_heading %} 
+{% block page_heading %}
+<h1>Feature Votes Cart:</h1>
+<p>Remember that for each 10 Euro donated by all users counts as 1 vote for the Feature Request. i.e 52 Euro counts as 5 votes only but if a user adds 18 euro it adds to 7 votes.</p>
+{% endblock page_heading %} 
+
 {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel-warning">
+        <div class="panel panel_cart_item">
             <div class="panel-heading">
                     
                 <h3>{{ item.feature_voted.title }}</h3>
+                <p>Collective user donations: <em>{{ item.feature_voted.votes_cost}} €
+                <!--label starts-->
+                {% if item.feature_voted.votes == 0 %}
+                    <label class="badge badge-negative">
+                {% else %}
+                    <label class="badge badge-positive">
+                {% endif %}
+                    {{ item.feature_voted.votes }} Votes so far!
+                    <!--label ends-->
+                    </label>
+                </p></em>
             </div>
             <div class="panel-body">
-                <p class="product-description">{{ item.product.description }}</p>
-                <p>{{ item.product.price }}</p>
+                <p><strong class="dark_green_text">You will add:</strong></p>
                 <p>
-                    
                     <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
                         {% csrf_token %}
                         <div class="form-group">
@@ -24,10 +37,10 @@
                             <div class="input-group">
                                 <div class="input-group-addon">Euro</div>
                                 <input name="quantity" type="number" min="0" max="999" class="form-control">
-                                <div class="input-group-addon">{{item.money_amount}} €</div>
+                                <div class="input-group-addon">{{ item.money_amount }} €</div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
+                        <button type="submit" class="btn purchase_ammend_button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
                     </form>
                 </p>
             </div>
@@ -38,7 +51,7 @@
 <div class="row text-center">
     <p>Total Cost</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total_cost }} €</p>
-    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+    <a href="{% url 'checkout' %}" class="btn purchase_button" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
 </div>
 
 {% endblock %}
