@@ -1,1 +1,110 @@
-{% extends 'base.html' %} {% block page_title %}Home Page{% endblock %} {% block page_heading %}Home{% endblock %}
+{% extends 'base.html' %} 
+{% block page_heading %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 mass_head">
+            <div class="col-xs-12 col-sm-6">
+                <h1 class="white_text">Techfix<em class="dark_blue_text">-Overlap<i class="fa fa-wrench"></i></em></h1>
+            </div>
+            <div class="col-xs-12">
+                <button type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</button>
+                <button type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="alert alert_introduction alert-dismissible" role="alert">
+    <button type="button" class="close col-md-1" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="row">
+        <div class="col-md-5">
+            <strong>Welcome to Techfix-Overlap!</strong> 
+            We are a group with a goal to help further develop the <em>Artifical Intelligence</em> building Python framework <em class="red_text">Techfix 3.9.5</em>. 
+            We work extensively with the Techfix open source community, in development of the Techfix Github repository. 
+            We help assist professionals who use the Framework at work and who require new features to be added or bugs to be fixed.
+            <em class="red_text">Techfix 4</em> coming soon!
+        </div>
+        <div class="col-md-5">
+            <strong>Bug Reports</strong> and <strong>Feature Requests</strong> in which garner the most votes, are focused on atleast 50% of the time by a team of two highely qualified Software Engineers! We have in total a team of 20 Engineers and we are growing all the time, meaning multiple bug reports and new features are worked on every day!
+            For further analyses please check out our <a href="{% url 'get_charts' %}"><i class="fa fa-pie-chart"></i> Charts</a> page!
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-md-8">
+        <h2>News</h2>
+        {% for blog_post in blog_posts %}
+        <div class="new_post_link">
+            <h3>
+            {% if blog_post.title|length > 25 %}
+                {{ blog_post.title|slice:":22" }}...
+            {% else %}
+                {{ blog_post.title }}
+            {% endif %}
+            </h3>
+            <p>
+                <em>
+                    <strong>Author:</strong> {{ blog_post.user }}
+                </em> ~ 
+                <em>
+                    <strong>Published:</strong> {{ blog_post.published_date }}
+                </em>
+            </p>
+            <p>{{ blog_post.content }}</p>
+        </div>
+        {% endfor %}
+        <a href="{% url 'get_blog_posts' %}" class="btn new_post_button">View Full News Blog</a>
+    </div>
+    <side class="col-xs-12 col-md-4 side_nav">
+        <h2>New Bug Reports!</h2>  
+        {% for bug_post in bug_posts %}
+        <a href="{% url 'bug_post_detail' bug_post.id %}" class="col-xs-12">        
+            <div class="new_post_link">
+                
+                <h3>
+                {% if bug_post.title|length > 25 %}
+                    {{ bug_post.title|slice:":22" }}...
+                {% else %}
+                    {{ bug_post.title }}
+                {% endif %}
+                </h3>
+                <p>
+                    <em>
+                        <strong>Author:</strong> {{ bug_post.user }}
+                    </em> ~ 
+                    <em>
+                        <strong>Published:</strong> {{ bug_post.published_date }}
+                    </em>
+                </p>
+               
+            </div>
+        </a>
+        {% endfor  %}
+        <h2>New Feature Requests!</h2> 
+        {% for feature_post in feature_posts %}
+        <a href="{% url 'feature_post_detail' feature_post.id %}" class="col-xs-12">        
+            <div class="new_post_link">
+                <h3>
+                {% if feature_post.title|length > 25 %}
+                    {{ feature_post.title|slice:":22" }}...
+                {% else %}
+                    {{ feature_post.title }}
+                {% endif %}
+                </h3>
+                <p>
+                    <em>
+                        <strong>Author:</strong> {{ feature_post.user }}
+                    </em> ~ 
+                    <em>
+                        <strong>Published:</strong> {{ feature_post.published_date }}
+                    </em>
+                </p>
+            </div>
+        </a>
+        {% endfor %}
+    </side>    
+</div>
+{% endblock content %}

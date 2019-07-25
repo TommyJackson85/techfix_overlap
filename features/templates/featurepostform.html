@@ -1,10 +1,23 @@
 {% extends "base.html" %}
 {% load bootstrap_tags %}
 {% block content %}
-    <h1>New Feature</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form | as_bootstrap }}
-        <button type="submit" class="btn btn-info">Save</button>
-    </form>
+    <div class="col-xs-12 col-md-offset-2 col-md-8">
+        {% if feature_post.id is None %}
+            <h1>New Feature Report</h1>
+        {% else %}
+            <h1>Edit Feature Report</h1>
+        {% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form | as_bootstrap }}
+            <button type="submit" class="btn btn-info">
+            {% if feature_post.id is None %}
+                Save New Post
+            {% else %}
+                Save Post Edit
+            {% endif %}
+                
+            </button>
+        </form>
+    </div>
 {% endblock %}

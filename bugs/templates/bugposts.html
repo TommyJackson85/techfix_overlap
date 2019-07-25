@@ -3,12 +3,13 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
-<div class="row">
+<div class="container">
+    <div class="row">
     <div class="col-xs-12 col-sm-6">
         <h1>Bug Reports</h1>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <button type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</button>
+        <a href="{% url 'new_bug_post' %}" class="btn new_post_button">Create Bug Report</a>
     </div>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 search_bar">
         
@@ -21,6 +22,7 @@
             </div><!-- /input-group -->
         </form>
     </div>
+</div>
 </div>
 {% endblock page_heading %}
 

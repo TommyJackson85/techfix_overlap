@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+
+{% block page_heading %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <h1>Techfix<em class="blue_text">-Overlap<i class="fa fa-wrench"></i></em> News Blog:</h1>
+        </div>
+    </div>
+</div>
+{% endblock page_heading %}
+
+{% block content %}
+
+        <div>
+            {% if blog_count > 0 %}
+                {% for blog_post in blog_posts %}
+                <h2>{{ blog_post.title }}</h2>
+                <p><em><strong>Author:</strong> {{ blog_post.user }}</em> ~ <em><strong>Published:</strong> {{ blog_post.published_date }}</em></p>
+                <p>{{ blog_post.content }}</p>
+                 <hr />
+                {% endfor %}
+            {% else %}
+                <h2>No blog posts have been posted.</h2>
+            {% endif %}
+        </div>
+
+{% endblock content %}

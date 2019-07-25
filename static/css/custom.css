@@ -39,6 +39,10 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   color: #FFD266;
 }
 
+.black_blue_text {
+  color: #242729;
+}
+
 .red_text {
   color: #F96371;
 }
@@ -176,8 +180,21 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 .white_text {
   color: #fdfdfd !important;
 }
-.white_text em {
+
+.light_blue_text {
   color: #5588C5 !important;
+}
+
+.blue_text {
+  color: #366FB3 !important;
+}
+
+.mass_head {
+  /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
+  background-image: url("../img/computer_circuit.jpg");
+  background-color: #5588C5;
+  background-blend-mode: multiply;
+  margin-bottom: 10px;
 }
 
 .navbar-toggle span {
@@ -250,6 +267,14 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 .edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover {
   background-color: #5588C5;
   color: #FFC63D;
+}
+
+.alert_introduction {
+  background-color: #52CE80;
+  border: 5px 5px 5px 5px;
+  border-color: #242729;
+  color: #242729;
+  padding: 0 5px 0 5px;
 }
 
 .submit_payment_button {
@@ -334,10 +359,20 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   height: 300px;
 }
 
+.side_nav {
+  background-color: #FFD266;
+}
+
 /*---------------------------------------------------------------media-queries*/
 @media only screen and (min-width: 768px) {
   .navbar-collapse {
     background: #242729;
+  }
+
+  .side_nav {
+    border-width: 5px;
+    border-radius: 5px 5px 5px 5px;
+    border-color: #242729;
   }
 }
 

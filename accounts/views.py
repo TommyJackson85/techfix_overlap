@@ -4,11 +4,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from bugs.models import BugPost
 from features.models import FeaturePost
+from blog.models import BlogPost
 from accounts.forms import UserLoginForm, UserRegistrationForm
 
 def index(request):
     """Return the index.html file"""
-    return render(request, 'index.html')
+    bug_posts = BugPost.objects.order_by('-published_date')[:5]
+    feature_posts = FeaturePost.objects.order_by('-published_date')[:5]
+    blog_posts = BlogPost.objects.order_by('-published_date')[:5]
+    return render(request, 'index.html', {'bug_posts': bug_posts, 'feature_posts': feature_posts, 'blog_posts': blog_posts})
 
 @login_required
 def logout(request):

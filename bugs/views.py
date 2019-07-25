@@ -124,7 +124,7 @@ def create_or_edit_bugpost(request, pk=None):
             return redirect(bug_post_detail, bug_post.pk)
     else:
         form = BugPostForm(instance=bug_post)
-    return render(request, 'bugpostform.html', {'form': form})
+    return render(request, 'bugpostform.html', {'form': form, 'bug_post': bug_post})
     
 def delete_bug_post(request, pk):
     """

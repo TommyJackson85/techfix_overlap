@@ -114,4 +114,5 @@ def create_or_edit_featurepost(request, pk=None):
             return redirect(feature_post_detail, feature_post.pk)
     else:
         form = FeaturePostForm(instance=feature_post)
-    return render(request, 'featurepostform.html', {'form': form})
+    return render(request, 'featurepostform.html', {'form': form, 'feature_post': feature_post})
+

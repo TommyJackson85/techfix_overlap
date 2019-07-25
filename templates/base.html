@@ -51,7 +51,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand white_text" href="{% url 'index' %}">Techfix<em>-Overlap<i class="fa fa-wrench"></i></em></a>
+      <a class="navbar-brand white_text" href="{% url 'index' %}">Techfix<em class="light_blue_text">-Overlap<i class="fa fa-wrench"></i></em></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,6 +59,7 @@
       <ul class="nav navbar-nav">
         <li><a href="{% url 'get_bug_posts' %}"><i class="fa fa-bug"></i>Bugs</a></li>
         <li><a href="{% url 'get_feature_posts' %}"><i class="fa fa-laptop"></i> Features</a></li>
+        <li><a href="{% url 'get_blog_posts' %}"><i class="fa fa-comment"></i> Blog</a></li>
         <li><a href="{% url 'get_charts' %}"><i class="fa fa-pie-chart"></i> Charts</a></li>
         
         {% if user.is_authenticated %}
@@ -82,8 +83,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+{% block page_heading %}{% endblock page_heading %}
+
 <div class="container">
-    {% block page_heading %}{% endblock %}
     {% if messages %}
     <div>
         {% for message in messages %} {{ message }} {% endfor %}
