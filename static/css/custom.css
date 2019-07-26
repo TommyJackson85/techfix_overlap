@@ -234,10 +234,6 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   background-color: #7295BF;
 }
 
-.search_button:hover {
-  background-color: #7295BF;
-}
-
 .finished_bugs, .in_progress_bugs {
   background-color: red;
 }
@@ -276,13 +272,18 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   color: #242729;
   padding: 0 5px 0 5px;
 }
+.alert_introduction .close, .alert_introduction .alert-dismissible .close {
+  top: 5px;
+  right: 5px;
+  color: #242729;
+}
 
-.submit_payment_button {
+.submit_payment_button, .login_button {
   background-color: #31CE44;
   color: #fdfdfd;
 }
 
-.submit_payment_button:hover {
+.submit_payment_button:hover, .login_button:hover {
   background-color: #52CE80;
   color: #FFC63D;
 }

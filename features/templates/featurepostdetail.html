@@ -58,24 +58,28 @@
         <div class="sticky_buttons">
             <a href="{% url 'get_feature_posts' %}" class="btn get_feature_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Feature Request List</a>
             <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
-        </div>
-        {% if feature_post.status == "Done" %}
-            <p class="red_text">Commenting has been disabled because the feature has been developed!</p>
-            <hr />
-        {% else %}
-            <div class="comment_form">
-            <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
-                Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
-            </a>
-            <div class="collapse" id="collapseCommentBox">
-                <form class="post_comment_form" method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ form | as_bootstrap }}
-                    <button type="submit" class="btn">Post Comment</button>
-                </form>
+            {% if feature_post.status == "Done" %}
+                <p class="red_text">Commenting has been disabled because the feature has been developed!</p>
+                <hr />
+            {% else %}
+                {% if user.is_authenticated %}
+                    <div class="comment_form">
+                <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
+                    Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <div class="collapse" id="collapseCommentBox">
+                    <form class="post_comment_form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | as_bootstrap }}
+                        <button type="submit" class="btn">Post Comment</button>
+                    </form>
+                </div>
             </div>
+                {% else %}
+                    <a class="btn login_button" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
+                {% endif %}
+            {% endif %}
         </div>
-        {% endif %}
         
         <h2>Comments:</h2>
         <ul class="media-list">

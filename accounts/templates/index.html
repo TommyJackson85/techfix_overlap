@@ -16,21 +16,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="alert alert_introduction alert-dismissible" role="alert">
-    <button type="button" class="close col-md-1" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <div class="row">
-        <div class="col-md-5">
-            <strong>Welcome to Techfix-Overlap!</strong> 
-            We are a group with a goal to help further develop the <em>Artifical Intelligence</em> building Python framework <em class="red_text">Techfix 3.9.5</em>. 
-            We work extensively with the Techfix open source community, in development of the Techfix Github repository. 
-            We help assist professionals who use the Framework at work and who require new features to be added or bugs to be fixed.
-            <em class="red_text">Techfix 4</em> coming soon!
-        </div>
-        <div class="col-md-5">
-            <strong>Bug Reports</strong> and <strong>Feature Requests</strong> in which garner the most votes, are focused on atleast 50% of the time by a team of two highely qualified Software Engineers! We have in total a team of 20 Engineers and we are growing all the time, meaning multiple bug reports and new features are worked on every day!
-            For further analyses please check out our <a href="{% url 'get_charts' %}"><i class="fa fa-pie-chart"></i> Charts</a> page!
-        </div>
-    </div>
+<div class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
+    <button type="button" class="close col-xs-2" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <p class="col-xs-10 col-md-5">
+        <strong>Welcome to Techfix-Overlap!</strong> 
+        We are a group with a goal to help further develop the <em>Artifical Intelligence</em> building Python framework <em class="red_text">Techfix 3.9.5</em>. 
+        We work extensively with the Techfix open source community, in development of the Techfix Github repository.
+        We help assist professionals who use the Framework at work and who require new features to be added or bugs to be fixed.
+        <em class="red_text">Techfix 4</em> coming soon!
+    </p>
+    <p class="col-xs-10 col-md-5">
+        <strong>Bug Reports</strong> and <strong>Feature Requests</strong> in which garner the most votes, are focused on atleast 50% of the time by a team of two highely qualified Software Engineers! We have in total a team of 20 Engineers and we are growing all the time, meaning multiple bug reports and new features are worked on every day!
+        For further analyses please check out our <a href="{% url 'get_charts' %}"><i class="fa fa-pie-chart"></i> Charts</a> page!
+    </p>
 </div>
 
 <div class="row">
