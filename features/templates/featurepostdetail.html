@@ -19,34 +19,36 @@
         {% if feature_post.status == "Done" %}
             <p class="green_text">This feature has been fully developed!</p>
         {% else %}
-            <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
-            <!--bootstrap model pop up-->
-            <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
-            </div>
-            <div class="modal-body">
-                <p>To vote a feature, you must pay a minimum of 10 euro to vote. Each 10 euro of total paid from all users, is counted as 1 vote.</p>
-                <form method="post" action="{% url 'add_to_cart' feature_post.id %}">
-                    {% csrf_token %}
-                    <div class="input-group">
-                        <input name="money_amount" type="number" min="10" max="1000" class="form-control" placeholder="Euro to pay">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit">Proceed to Chart</button>
-                        </span>
-                    </div>
-                </form>
-                    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            {% if user.is_authenticated %}
+                <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
+                <!--bootstrap model pop up-->
+                <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+                </div>
+                <div class="modal-body">
+                    <p>To vote a feature, you must pay a minimum of 10 euro to vote. Each 10 euro of total paid from all users, is counted as 1 vote.</p>
+                    <form method="post" action="{% url 'add_to_cart' feature_post.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="money_amount" type="number" min="10" max="1000" class="form-control" placeholder="Euro to pay">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Proceed to Chart</button>
+                            </span>
+                        </div>
+                    </form>
+                        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>    
+    </div>    
+            {% endif %}
         {% endif %}
     </side>
     <div class="col-xs-12 col-md-9 post_details">

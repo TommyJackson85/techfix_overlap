@@ -13,14 +13,17 @@
     {% else %}
         <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
     {% endif %}
+    
     {% if bug_post.status == "Done" %}
         <p class="green_text">This issue has been resolved!</p>
     {% else %}
-        {% if bug_post.status == "To Do" %}
-            <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
-            <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn delete_button">Delete</a>
+        {% if user.is_authenticated %}
+            {% if bug_post.status == "To Do" %}
+                <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
+                <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn delete_button">Delete</a>
+            {% endif %}
+            <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
         {% endif %}
-        <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
     {% endif %}
     </side>
     <div class="col-xs-12 col-md-9 post_details">

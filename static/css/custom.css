@@ -209,15 +209,33 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   margin: 0 0 30px 0;
 }
 
-.new_post_button {
+.new_post_button, .login_button, .registration_button, .reset_password_button {
   margin: 20px 10px 20px 10px;
   color: #fdfdfd;
   background-color: #31CE44;
 }
 
-.new_post_button:hover {
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover {
   background-color: #52CE80;
   color: #FFC63D;
+}
+
+.password_reset_form input {
+  /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 2px solid #5588C5;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  margin-bottom: 15px;
 }
 
 .form-control {
@@ -278,12 +296,12 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   color: #242729;
 }
 
-.submit_payment_button, .login_button {
+.submit_payment_button {
   background-color: #31CE44;
   color: #fdfdfd;
 }
 
-.submit_payment_button:hover, .login_button:hover {
+.submit_payment_button:hover {
   background-color: #52CE80;
   color: #FFC63D;
 }

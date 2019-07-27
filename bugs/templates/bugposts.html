@@ -9,7 +9,11 @@
         <h1>Bug Reports</h1>
     </div>
     <div class="col-xs-12 col-sm-6">
-        <a href="{% url 'new_bug_post' %}" class="btn new_post_button">Create Bug Report</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'new_bug_post' %}" class="btn new_post_button">Create Bug Report</a>
+        {% else %}
+            <a type="button" class="btn login_button" href="{% url 'login' %}">Login To Create A Report</a>
+        {% endif %}
     </div>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 search_bar">
         

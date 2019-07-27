@@ -7,8 +7,13 @@
                 <h1 class="white_text">Techfix<em class="dark_blue_text">-Overlap<i class="fa fa-wrench"></i></em></h1>
             </div>
             <div class="col-xs-12">
-                <button type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</button>
-                <button type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</button>
+                {% if user.is_authenticated %}
+                    <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
+                    <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+                {% else %}
+                    <a type="button" class="btn login_button" href="{% url 'login' %}">Login Account</a>
+                    <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
+                {% endif %}
             </div>
         </div>
     </div>
