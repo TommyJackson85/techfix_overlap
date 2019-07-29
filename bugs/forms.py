@@ -6,11 +6,11 @@ class BugPostForm(forms.ModelForm):
     
     class Meta:
         model = BugPost
-        fields = ('title', 'content', 'published_date')
+        fields = ('title', 'content')
 
 
 class BugCommentForm(forms.ModelForm):
     
     class Meta:
         model = BugComment
-        fields = ('content', 'published_date')
+        fields = ('content',)

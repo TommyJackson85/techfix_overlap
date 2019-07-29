@@ -3,6 +3,34 @@
 Used this link to find variations of colors:
 http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJfJIfg9K9Ps#uid=3000u0k00vK00++00RE01pI0hk6*/
 /*--------------------------------color variations*/
+/*-----------------------------------------layout*/
+body {
+  min-height: 100vh;
+}
+
+section {
+  margin-top: -151px;
+  padding-top: 151px;
+  padding-bottom: 420px;
+  min-height: inherit;
+  /*large lenghts at 100vm*/
+  width: auto;
+}
+
+header {
+  position: relative;
+  margin: 0 0;
+}
+
+footer {
+  position: relative;
+  margin-top: -390px;
+  /* negative value of footer height */
+  clear: both;
+}
+
+/**************/
+/**************/
 .black_background {
   background: #242729;
 }
@@ -316,7 +344,8 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 .sticky_buttons a {
   background-color: #F83B4D;
   color: #fdfdfd;
-  margin: 0 0 15px 0;
+  margin: 15px 0 0 0;
+  text-align: right;
 }
 
 .sticky_buttons a:hover {
@@ -325,10 +354,11 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 }
 
 .comment_form {
-  top: 100;
+  top: 0;
   opacity: 1;
   background-color: #1558A9;
   border-radius: 5px 5px 5px 5px;
+  color: #fdfdfd;
 }
 
 .post_comment_form button {
@@ -345,6 +375,9 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
   background-color: #F96371;
   color: #fdfdfd;
   margin: 10px 5px 10px 10px;
+}
+.comment_form_toggle .form_group label {
+  color: #fdfdfd;
 }
 
 .comment_form_toggle:hover {
@@ -392,6 +425,15 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
     border-width: 5px;
     border-radius: 5px 5px 5px 5px;
     border-color: #242729;
+  }
+}
+@media only screen and (min-width: 992px) {
+  section {
+    padding-bottom: 194px;
+  }
+
+  footer {
+    margin-top: -164px;
   }
 }
 

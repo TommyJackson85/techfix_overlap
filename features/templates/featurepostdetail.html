@@ -4,10 +4,12 @@
 
 {% block content %}
 <div class="row">
+    <!--
     <side class="col-xs-12 col-md-2 side_nav">
         <!--<a class="story-img" href="#">
             <img src="/media/img/profile.jpg" class="img-circle">
         </a>-->
+        <!--
         {% if feature_post.user == user %}
             <p><span class="boldtext">This is your post!</span></p>
             {% if feature_post.status == "To Do" %}
@@ -22,7 +24,7 @@
             {% if user.is_authenticated %}
                 <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
                 <!--bootstrap model pop up-->
-                <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <!--<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,19 +49,62 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
             {% endif %}
         {% endif %}
-    </side>
-    <div class="col-xs-12 col-md-9 post_details">
+    </side>-->
+    <div class="col-xs-12 post_details">
         <h1>{{ feature_post.title }}</h1>
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ feature_post.published_date }} </p>
         <p>Started: {{ feature_post.start_time.date }}</p>
+        {% if feature_post.user == user %}
+            <p><span class="boldtext">This is your post!</span></p>
+        {% else %}
+            <p><span class="boldtext">By Author:</span>{{ feature_post.user }}</p>
+        {% endif %}
         <p>{{ feature_post.content }}</p>
-        <div class="sticky_buttons">
-            <a href="{% url 'get_feature_posts' %}" class="btn get_feature_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Feature Request List</a>
-            <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
+        
+        {% if feature_post.status == "Done" %}
+            <p class="green_text">This feature has been fully developed!</p>
+        {% else %}
+            {% if user.is_authenticated %}
+            <div class="col-xs-12">
+                <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
+                <!--bootstrap model pop up-->
+                <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>To vote a feature, you must pay a minimum of 10 euro to vote. Each 10 euro of total paid from all users, is counted as 1 vote.</p>
+                                <form method="post" action="{% url 'add_to_cart' feature_post.id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input name="money_amount" type="number" min="10" max="1000" class="form-control" placeholder="Euro to pay">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success" type="submit">Proceed to Chart</button>
+                                        </span>
+                                    </div>
+                                </form>
+                                    
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                {% if feature_post.status == "To Do" and feature_post.user == user %}
+                    <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn edit_button">Edit</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endif %}
+        <div class="sticky_buttons col-md-8 col-md-offset-1">
             {% if feature_post.status == "Done" %}
                 <p class="red_text">Commenting has been disabled because the feature has been developed!</p>
                 <hr />
@@ -81,24 +126,28 @@
                     <a class="btn login_button" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
                 {% endif %}
             {% endif %}
+            <a href="{% url 'get_feature_posts' %}" class="btn get_feature_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Feature Request List</a>
+            <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
+            
         </div>
-        
-        <h2>Comments:</h2>
-        <ul class="media-list">
-            {% for feature_comment in feature_comments %}              
-            <li class="media">
-                <div class="media-left">
-                  <!--<a href="#">
-                    <img class="media-object" src="..." alt="...">
-                  </a>-->
-                </div>
-                <div class="media-body">
-                  <h4 class="media-heading">{{ feature_comment.user }} ~ {{ feature_comment.published_date }}</h4>
-                  {{ feature_comment.content }}
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
+        <div class="col-md-8 col-md-offset-1">
+            <h2>Comments:</h2>
+            <ul class="media-list">
+                {% for feature_comment in feature_comments %}              
+                <li class="media">
+                    <div class="media-left">
+                      <!--<a href="#">
+                        <img class="media-object" src="..." alt="...">
+                      </a>-->
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{ feature_comment.user }} ~ {{ feature_comment.published_date }}</h4>
+                      {{ feature_comment.content }}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}
