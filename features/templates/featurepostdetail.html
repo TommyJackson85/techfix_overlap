@@ -110,18 +110,18 @@
                 <hr />
             {% else %}
                 {% if user.is_authenticated %}
-                    <div class="comment_form">
-                <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
-                    Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
-                </a>
-                <div class="collapse" id="collapseCommentBox">
-                    <form class="post_comment_form" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ form | as_bootstrap }}
-                        <button type="submit" class="btn">Post Comment</button>
-                    </form>
+                <div class="comment_form">
+                    <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
+                        Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <div class="collapse" id="collapseCommentBox">
+                        <form class="post_comment_form" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form | as_bootstrap }}
+                            <button type="submit" class="btn">Post Comment</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
                 {% else %}
                     <a class="btn login_button" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
                 {% endif %}

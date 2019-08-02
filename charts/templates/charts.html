@@ -18,39 +18,39 @@
 
 <div class="col-xs-12 col-md-6">
     <div class="col-xs-12" role="group" aria-label="...">
-      <button id="daily_graph_toggle" type="button" class="btn btn-default">Daily</button>
-      <button id="weekly_graph_toggle" type="button" class="btn btn-default">Weekly</button>
-      <button id="monthly_graph_toggle" type="button" class="btn btn-default">Monthly</button>
+      <button id="daily_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Daily</button>
+      <button id="weekly_graph_toggle" type="button" class="btn graph_toggle_button">Weekly</button>
+      <button id="monthly_graph_toggle" type="button" class="btn graph_toggle_button">Monthly</button>
     </div>
 
-    <div class="col-xs-12 average_graphs">
+    <div id="average_graphs" class="col-xs-12 average_graphs">
         <div id="daily_graph" class="graph daily_graph">
-            <h2>Average amount of bugs/features worked on daily.</h2>
+            <h2>Average amount of bugs/features worked on <em class="green_text">daily</em>.</h2>
             <canvas id="dailyProgressChart"></canvas>
         </div>
         <div id="weekly_graph" class="graph weekly_graph">
-         <h2>Average amount of bugs/features worked on weekly.</h2>
+         <h2>Average amount of bugs/features worked on <em class="green_text">weekly</em>.</h2>
             <canvas id="weeklyProgressChart"></canvas>
         </div>
         <div id="monthly_graph" class="graph monthly_graph">
-            <h2>Average amount of bugs/features worked on monthly.</h2>
+            <h2>Average amount of bugs/features worked on <em class="green_text">monthly</em>.</h2>
             <canvas id="monthlyProgressChart"></canvas>
         </div>
     </div>
 </div>
 <div class="col-xs-12 col-md-6">
     <div class="col-xs-12" role="group" aria-label="...">
-      <button id="bugs_graph_toggle" type="button" class="btn btn-default">Bugs</button>
-      <button id="features_graph_toggle" type="button" class="btn btn-default">Features</button>
+      <button id="bugs_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Bugs</button>
+      <button id="features_graph_toggle" type="button" class="btn graph_toggle_button">Features</button>
     </div>
     <div class="col-xs-12">
-        <div class="vote_graphs">
+        <div id="vote_graphs" class="vote_graphs">
             <div id="bug_votes_graph" class="graph bug_votes_graph">
-                <h2>Highest Voted Bugs</h2>
+                <h2>Highest Voted <em class="green_text">Bugs</em></h2>
                 <canvas id="higestBugsVotedChart"></canvas>
             </div>
             <div id="feature_votes_graph" class="graph bug_votes_graph">
-                <h2>Highest Voted Features</h2>
+                <h2>Highest Voted <em class="green_text">Features</em></h2>
                 <canvas id="higestFeaturesVotedChart"></canvas>
             </div>
         </div>

@@ -300,15 +300,20 @@ footer {
   padding: 10px 10px 10px 10px;
 }
 
-.edit_button, .delete_button, .vote_button, .purchase_button {
+.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
   background-color: #366FB3;
   color: #fdfdfd;
   margin: 0 15px 15px 0;
 }
 
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover {
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
   background-color: #5588C5;
   color: #FFC63D;
+}
+
+.activated_button {
+  background-color: #FFC63D !important;
+  color: #31CE44 !important;
 }
 
 .alert_introduction {

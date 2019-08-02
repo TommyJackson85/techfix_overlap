@@ -1,6 +1,8 @@
 from django.db.models import Q
 from django.shortcuts import render
 from bugs.models import BugPost
+from features.models import FeaturePost
+
 from django.utils import timezone
 import pprint, json
 
@@ -106,6 +108,8 @@ def get_averages(objects, now, all_days, user):
     return [round(average_per_day, 2), round(average_per_week, 2), round(average_per_month, 2)]
         
         #return "nonsense"
+        
+        
 def get_charts(request):
     """
     Create a view that will return a list
@@ -139,16 +143,33 @@ def get_charts(request):
     else:
         most_voted_bugs = None
         
+    #takes bugposts started or finished
+    feature_posts_time = FeaturePost.objects.filter(Q(start_time__gte=three_months_past) | Q(end_time__gte=three_months_past))
+    #takesfeatureposts started or finished
+    
+    if feature_posts_time:
+        #calls the get averages function from above
+        feature_post_averages = get_averages(feature_posts_time, now, all_days, user)
+    else:
+        feature_post_averages = [0, 0, 0]
+        
+    feature_posts_votes = FeaturePost.objects.all().order_by('-votes')[:5]      
+    if feature_posts_votes:
+        most_voted_features = get_most_voted(feature_posts_votes)
+    else:
+        most_voted_features = None
+        
     # data.category: ['Bugs', 'Features']
-    daily = [bug_post_averages[0], 3]
-    weekly = [bug_post_averages[1], 3]
-    monthly = [bug_post_averages[2], 4]
+    daily = [bug_post_averages[0], feature_post_averages[0]]
+    weekly = [bug_post_averages[1], feature_post_averages[1]]
+    monthly = [bug_post_averages[2], feature_post_averages[2]]
 
     data = {
         'daily': daily,
         'weekly': weekly,
         'monthly': monthly,
         'most_voted_bugs': most_voted_bugs,
+        'most_voted_features': most_voted_features,
     }
     
     return render(request, "charts.html", {'user': user, 'data': data})
