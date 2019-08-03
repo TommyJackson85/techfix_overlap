@@ -4,5 +4,4 @@
 __pycahce__/
 env.py
 *.png
-static/
 media/

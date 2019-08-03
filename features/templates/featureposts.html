@@ -56,7 +56,15 @@
                 <div class="panel-heading">
                     <p>{{ feature_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} <label class="badge">{{ feature_post.votes_cost }} € donated</label> ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
+                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} 
+                    
+                    {% if feature_post.votes_cost > 0 %}
+                        <label class="badge badge-positive">{{ feature_post.votes_cost }} € donated</label>
+                    {% else %}
+                        <label class="badge badge-negative">{{ feature_post.votes_cost }} € donated</label>
+                    {% endif %}
+                    
+                     ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
                     <p>{{ feature_post.content|slice:":25" }}</p>
@@ -105,7 +113,15 @@
                 <div class="panel-heading">
                     <p>{{ feature_post.title|slice:":25" }}<p>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} <label class="badge">{{ feature_post.votes_cost }} € donated</label> ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
+                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} 
+                    
+                    {% if feature_post.votes_cost > 0 %}
+                        <label class="badge badge-positive">{{ feature_post.votes_cost }} € donated</label>
+                    {% else %}
+                        <label class="badge badge-negative">{{ feature_post.votes_cost }} € donated</label>
+                    {% endif %}
+                    
+                    ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
                     <p>{{ feature_post.content|slice:":25" }}</p>
@@ -153,8 +169,16 @@
                 <div class="panel panel_to_do">
                     <div class="panel-heading">
                         <p>{{ feature_post.title|slice:":25" }}<p>
-                        <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
-                        <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} <label class="badge">{{ feature_post.votes_cost }} € donated</label> ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
+                        <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span><span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                        <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} 
+                        
+                        {% if feature_post.votes_cost > 0 %}
+                            <label class="badge badge-positive">{{ feature_post.votes_cost }} € donated</label>
+                        {% else %}
+                            <label class="badge badge-negative">{{ feature_post.votes_cost }} € donated</label>
+                        {% endif %}
+                        
+                        ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
                     </div>
                     <div class="panel-body">
                         <p>{{ feature_post.content|slice:":25" }}</p>

@@ -1,0 +1,510 @@
+/*---------------------------------base colors */
+/*
+Used this link to find variations of colors:
+http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJfJIfg9K9Ps#uid=3000u0k00vK00++00RE01pI0hk6*/
+
+$black-blue: #242729;
+$white: #fdfdfd;
+$blue: #366FB3;
+
+$green: #31CE44;
+$yellow: #FFC63D;
+$red: #F83B4D;
+
+
+/*--------------------------------color variations*/
+$light-blue: #5588C5;
+$dark-blue: #1558A9;
+$xtr-dark-blue: #0B4181;
+
+$grey: #CDCDCD;
+
+$light-black-blue: #44494D;
+$xtr-light-black-blue: #61686D;
+
+$dark-green: #019914;
+$dark-red: #C20013;
+
+$light-green: #52CE80;
+$light-yellow: #FFD266;
+$light-red: #F96371;
+
+$xtr-light-green: #A5DCAC;
+$xtr-light-yellow: #FFE5A7;
+$xtr-light-red: #F2A5AC;
+
+$xtr-light-blue: #7295BF;
+/*-----------------------------------------layout*/
+body {
+    min-height: 100vh;
+}
+
+section {
+    margin-top: -151px;
+    padding-top: 151px;
+    padding-bottom: 420px;
+    min-height: inherit;  /*large lenghts at 100vm*/
+    width: auto;
+}
+
+header {
+    position: relative;
+    margin: 0 0;
+}
+
+footer {
+    position: relative;
+    margin-top: -390px;
+    /* negative value of footer height */
+    clear: both;
+}
+
+
+
+/**************/
+/**************/
+
+
+.black_background {
+    background: $black-blue;
+    button {
+        background: $light-black-blue !important;
+    }
+}
+
+/*
+$light-blue: #5588C5;
+$dark-blue: #1558A9;
+$xtr-dark-blue: #0B4181;
+*/
+
+.dark_blue_background {
+     background: $xtr-dark-blue;
+     .link, a { 
+         border-radius: 5px 5px 5px 5px;
+     }
+     li {
+         color: $grey;
+     }
+     a {
+         color: $white
+     }
+     a:hover {
+         background: $blue !important;
+         color: $yellow;
+     }  
+}
+
+.dark_green_text {
+    color: $dark-green;
+}
+.dark_red_text {
+    color: $dark-red;
+}
+
+.green_text {
+    color: $light-green ;
+}
+.yellow_text {
+    color: $light-yellow ;
+}
+.black_blue_text {
+    color: $black-blue;
+}
+.red_text {
+    color: $light-red ;
+}
+
+.panel_cart_item {
+    background-color: $xtr-light-yellow;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-yellow;
+        
+        .badge-positive {
+            background-color: green;
+        }
+        
+        .badge-negative {
+            background-color: red;
+        }
+    }
+    .panel-body form .input-group {
+        margin: 5px 5px 5px 0;
+    }
+    .panel-body form .purchase_ammend_button
+    {
+        color: $white;
+        background-color: $blue;        
+    }
+    .panel-body form .purchase_ammend_button:hover {
+        color: $yellow;
+        background-color: $light-blue;
+    }
+    .panel-body form .input-group-addon {
+        color: $white;
+        background-color: $dark-blue;
+        border: 1px 1px 1px 1p;
+        border-color: $light-blue;
+    }
+}
+
+.panel_done {
+    border-color: $green;
+    background-color: $xtr-light-green;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-green;
+        border-color: $green;
+    }
+    .panel-body a {
+        color: $white;
+        background-color: $blue;        
+    }
+    .panel-body a:hover {
+        color: $yellow;
+        background-color: $light-blue;
+    }
+}
+
+.panel_doing {
+    border-color: $yellow;
+    background-color: $xtr-light-yellow;
+    .panel-heading {
+        color: $black-blue;
+        background-color:$light-yellow;
+        border-color: $yellow;
+    }
+    .panel-body a {
+        color: $white;
+        background-color: $blue;        
+    }
+    .panel-body a:hover {
+        color: $yellow;
+        background-color: $light-blue;
+    }
+}
+
+.panel_to_do {
+    border-color: $red;
+    background-color: $xtr-light-red;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-red;
+        border-color: $red;
+    }
+    .panel-body a {
+        color: $white;
+        background-color: $blue;
+    }
+    .panel-body a:hover {
+        color: $yellow;
+        background-color: $light-blue;
+    }
+}
+
+
+.panel-default {
+    .panel-collapse {
+        border-style: solid;
+        border-width: 0 2px 2px 2px;
+        border-color: $black-blue;
+    }
+    .dark_blue_heading {
+        background-image: none;
+        color: $white !important;
+        background-color: $dark-blue !important;
+        padding: 10px 15px;
+        
+        border-style: solid;
+        border-width: 2px;
+        border-color: $black-blue;
+        
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .dark_blue_heading:hover {
+        background-image: none;
+        background-color: $light-blue !important;
+    }
+}
+
+
+.badge-positive {
+    background-color: $dark-green;
+}
+        
+.badge-negative {
+    background-color: $dark-red;
+}
+
+.badge-blue {
+    background-color: $dark-blue;
+}
+
+.navbar-collapse {
+    background: $light-black-blue; /*changes to black-blue for wider screens*/
+    button:hover, a:hover {
+        background: $xtr-light-black-blue;
+    }
+    
+    ul {
+        li {
+            a {
+                color: $white;
+            }
+            a:hover {
+                background: $xtr-light-black-blue;
+            }
+        }
+    }
+}
+.nav-stacked li:hover {
+    background: $xtr-light-blue;
+}
+.white_text {
+    color: $white !important;
+}
+.light_blue_text {
+    color: $light-blue !important;
+}
+.blue_text {
+    color: $blue !important;
+}
+.mass_head{
+    /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
+    background-image: url("../img/computer_circuit.jpg");
+    background-color: $light-blue;
+    background-blend-mode: multiply;
+    margin-bottom: 10px;
+}
+.navbar-toggle { 
+    span {
+        background: $white;
+    }
+}
+.panel-group .panel {
+    margin-bottom: 30px !important;
+}
+
+.search_bar {
+    margin: 0 0 30px 0;
+}
+
+/*alert introduction*/
+.close {
+    font-size: 31px;
+    font-weight: 800;
+    filter: alpha(opacity=20);
+    opacity: .5;
+}
+.close:hover {
+    opacity: .8;
+}
+
+
+.new_post_button, .login_button, .registration_button, .reset_password_button {
+    margin: 20px 10px 20px 10px;
+    color: $white;
+    background-color: $green;
+}
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover {
+    background-color: $light-green;
+    color: $yellow;
+}
+
+.password_reset_form input {
+    /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 2px solid #5588C5;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    margin-bottom: 15px;
+}
+
+
+.form-control {
+    border: 2px solid $light-blue;
+}
+
+.search_button {
+    color: $white;
+    background-color: $light-blue;
+}
+.search_button:hover {
+    color: $yellow;
+    background-color: $xtr-light-blue;
+}
+
+
+.finished_bugs, .in_progress_bugs {
+    background-color: red;
+}
+
+.ticket {
+    height: 390px;
+    padding-top: 10px;
+}
+
+.ticket .panel-body a {
+    margin: 0 15px 15px 0;
+} 
+
+.comment_form {
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 10;
+  padding: 10px 10px 10px 10px;
+}
+
+.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
+    background-color: $blue;
+    color: $white;
+    margin: 0 15px 15px 0;
+}
+
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
+    background-color: $light-blue;
+    color: $yellow;
+}
+
+.activated_button {
+    background-color: $yellow !important;
+    color: $dark-green !important;
+}
+
+
+
+.alert_introduction {
+    background-color: $light-green;
+    border: 5px 5px 5px 5px;
+    border-color: $black-blue;
+    color: $black-blue;
+    padding: 0 5px 0 5px;
+    
+    .close, .alert-dismissible .close {
+        top: 5px;
+        right: 5px;
+        color: $black-blue;
+    }
+    
+}
+
+.submit_payment_button {
+    background-color: $green;
+    color: $white;    
+}
+
+.submit_payment_button:hover {
+    background-color: $light-green;
+    color: $yellow;    
+}
+
+.sticky_buttons {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10;
+    z-index: 10;
+}
+.sticky_buttons a {
+    background-color: $red;
+    color: $white;
+    margin: 15px 0 0 0;
+    text-align: right;
+}
+.sticky_buttons a:hover {
+    background-color: $light-red;
+    color: $yellow;
+}
+.comment_form {
+  top: 0;
+  opacity: 1;
+  background-color: $dark-blue;
+  border-radius: 5px 5px 5px 5px;
+  color: $white;
+}
+.post_comment_form button {
+    background-color: $green;
+    color: $white;
+}
+.post_comment_form button:hover {
+    background-color: $light-green;
+    color: $yellow;
+}
+
+.comment_form_toggle {
+    background-color: $light-red;
+    color: $white;
+    margin: 10px 5px 10px 10px;
+    .form_group {
+        label {
+            color: $white;
+        }
+    }
+}
+.comment_form_toggle:hover {
+    background-color: $xtr-light-red;
+    color: $yellow;
+}
+.comments {
+    background-color: yellow;
+    border-radius: 0 0 5px 5px;
+}
+
+
+
+/*-----------------------Charts CSS*/
+.average_graphs {
+    height: 490px
+}
+.average_graphs .graph {
+    position: relative;
+    height: 300px;
+    /*height:60vh;
+    width:120vw;*/
+}
+.vote_graphs {
+    height: 420px;
+}
+.vote_graphs .graph {
+    position: relative;
+    height: 300px;   
+}
+
+.side_nav {
+    background-color: $light-yellow;
+}
+
+/*---------------------------------------------------------------media-queries*/
+ 
+@media only screen and (min-width: 768px) {
+    .navbar-collapse {
+        background: $black-blue;
+    }
+    .side_nav {
+        border-width: 5px;
+        border-radius: 5px 5px 5px 5px;
+        border-color: $black-blue;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    
+    section {
+        padding-bottom: 194px;
+    }
+    
+    footer {
+        margin-top: -164px;
+    }
+    
+}

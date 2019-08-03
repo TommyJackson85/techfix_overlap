@@ -38,6 +38,11 @@ footer {
   background: #44494D !important;
 }
 
+/*
+$light-blue: #5588C5;
+$dark-blue: #1558A9;
+$xtr-dark-blue: #0B4181;
+*/
 .dark_blue_background {
   background: #0B4181;
 }
@@ -56,7 +61,11 @@ footer {
 }
 
 .dark_green_text {
-  color: #31CE44;
+  color: #019914;
+}
+
+.dark_red_text {
+  color: #C20013;
 }
 
 .green_text {
@@ -176,15 +185,21 @@ footer {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.panel-default .dark_blue_heading .badge-positive {
-  background-color: green;
-}
-.panel-default .dark_blue_heading .badge-negative {
-  background-color: red;
-}
 .panel-default .dark_blue_heading:hover {
   background-image: none;
   background-color: #5588C5 !important;
+}
+
+.badge-positive {
+  background-color: #019914;
+}
+
+.badge-negative {
+  background-color: #C20013;
+}
+
+.badge-blue {
+  background-color: #1558A9;
 }
 
 .navbar-collapse {
@@ -235,6 +250,18 @@ footer {
 
 .search_bar {
   margin: 0 0 30px 0;
+}
+
+/*alert introduction*/
+.close {
+  font-size: 31px;
+  font-weight: 800;
+  filter: alpha(opacity=20);
+  opacity: 0.5;
+}
+
+.close:hover {
+  opacity: 0.8;
 }
 
 .new_post_button, .login_button, .registration_button, .reset_password_button {
@@ -313,7 +340,7 @@ footer {
 
 .activated_button {
   background-color: #FFC63D !important;
-  color: #31CE44 !important;
+  color: #019914 !important;
 }
 
 .alert_introduction {

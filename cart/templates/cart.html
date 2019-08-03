@@ -3,8 +3,10 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
-<h1>Feature Votes Cart:</h1>
-<p>Remember that for each 10 Euro donated by all users counts as 1 vote for the Feature Request. i.e 52 Euro counts as 5 votes only but if a user adds 18 euro it adds to 7 votes.</p>
+<div class="container">
+    <h1>Feature Votes Cart:</h1>
+    <p>Remember that for each 10 Euro donated by all users counts as 1 vote for the Feature Request. i.e 52 Euro counts as 5 votes only but if a user adds 18 euro it adds to 7 votes.</p>
+</div>
 {% endblock page_heading %} 
 
 {% block content %}
@@ -15,7 +17,14 @@
             <div class="panel-heading">
                     
                 <h3>{{ item.feature_voted.title }}</h3>
-                <p>Collective user donations: <em>{{ item.feature_voted.votes_cost}} €
+                <p>Collective user donations:</p> 
+                <p><em>
+                 
+                {% if item.feature_voted.votes_cost == 0 %} 
+                    <strong class="dark_red_text">{{ item.feature_voted.votes_cost}} €</strong>
+                {% else %}
+                    <strong class="dark_green_text">{{ item.feature_voted.votes_cost}} €</strong>
+                {% endif %}
                 <!--label starts-->
                 {% if item.feature_voted.votes == 0 %}
                     <label class="badge badge-negative">
@@ -49,9 +58,19 @@
     {% endfor %}
 </div>
 <div class="row text-center">
-    <p>Total Cost</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total_cost }} €</p>
-    <a href="{% url 'checkout' %}" class="btn purchase_button" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+    <strong class="dark_green_text">
+        <p>Total Cost</p>
+        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total_cost }} €</p>
+    </strong>
+    {% if user.is_authenticated %}
+        {% if total_cost > 0 %}
+        <a href="{% url 'checkout' %}" class="btn purchase_button" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        {% endif %}
+    {% else %}
+        <a type="button" class="btn login_button" href="{% url 'login' %}">Login To Purchase Feature Votes</a>
+        <p class="red_text">Don't have an account?</p>
+        <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
+    {% endif %}
 </div>
 
 {% endblock %}

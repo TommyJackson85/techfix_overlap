@@ -13,7 +13,12 @@
 {% endblock head_js %}
 
 
-{% block page_heading %}<h1>Checkout Feature Votes Cart</h1>{% endblock page_heading %} 
+{% block page_heading %}
+<div class="container">
+    <h1>Checkout Feature Votes Cart</h1>
+</div>
+{% endblock page_heading %} 
+
 {% block content %}
 <div class="row row-flex">
     {% for item in cart_items %}
@@ -22,7 +27,15 @@
             <div class="panel-heading">
                     
                 <h3>{{ item.feature_voted.title }}</h3>
-                <p>Collective user donations: <em>{{ item.feature_voted.votes_cost }} €
+                
+                <p>Collective user donations:</p> 
+                <p><em>
+                 
+                {% if item.feature_voted.votes_cost == 0 %} 
+                    <strong class="dark_red_text">{{ item.feature_voted.votes_cost}} €</strong>
+                {% else %}
+                    <strong class="dark_green_text">{{ item.feature_voted.votes_cost}} €</strong>
+                {% endif %}
                 <!--label starts-->
                 {% if item.feature_voted.votes == 0 %}
                     <label class="badge badge-negative">
@@ -32,7 +45,9 @@
                     {{ item.feature_voted.votes }} Votes so far!
                     <!--label ends-->
                     </label>
-                </p></em>
+                </em></p>
+                
+                
             </div>
             <div class="panel-body">
                 <p><strong class="dark_green_text">You will add:</strong></p>
@@ -43,8 +58,10 @@
     {% endfor %}
 </div>
 <div class="row text-center">
-    <p>Total Cost:</p>
-    <p>€{{ total_cost }}</p>
+    <strong class="dark_green_text">
+        <p>Total Cost:</p>
+        <p>€{{ total_cost }}</p>
+    </strong>
 </div>
 
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
