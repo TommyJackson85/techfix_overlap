@@ -3,48 +3,53 @@
 Used this link to find variations of colors:
 http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJfJIfg9K9Ps#uid=3000u0k00vK00++00RE01pI0hk6*/
 
+/*black blue*/
 $black-blue: #242729;
-$white: #fdfdfd;
-$blue: #366FB3;
-
-$green: #31CE44;
-$yellow: #FFC63D;
-$red: #F83B4D;
-
-
-/*--------------------------------color variations*/
-$light-blue: #5588C5;
-$dark-blue: #1558A9;
-$xtr-dark-blue: #0B4181;
-
-$grey: #CDCDCD;
-
 $light-black-blue: #44494D;
 $xtr-light-black-blue: #61686D;
 
+/*blue*/
+$blue: #366FB3;
+$light-blue: #5588C5;
+$dark-blue: #1558A9;
+$xtr-dark-blue: #0B4181;
+$xtr-light-blue: #7295BF;
+
+/*white*/
+$white: #fdfdfd;
+
+/*green*/
+$green: #31CE44;
 $dark-green: #019914;
-$dark-red: #C20013;
-
 $light-green: #52CE80;
-$light-yellow: #FFD266;
-$light-red: #F96371;
-
 $xtr-light-green: #A5DCAC;
+
+/*yellow*/
+$yellow: #FFC63D;
+$light-yellow: #FFD266;
 $xtr-light-yellow: #FFE5A7;
+
+/*red*/
+$red: #F83B4D;
+$dark-red: #C20013;
+$light-red: #F96371;
 $xtr-light-red: #F2A5AC;
 
-$xtr-light-blue: #7295BF;
+/*grey*/
+$grey: #CDCDCD;
+
+
 /*-----------------------------------------layout*/
-body {
-    min-height: 100vh;
+
+html {
+    height: 100%;
 }
 
-section {
-    margin-top: -151px;
-    padding-top: 151px;
-    padding-bottom: 420px;
-    min-height: inherit;  /*large lenghts at 100vm*/
-    width: auto;
+body {
+    min-height: 100vh;
+    padding: 0 0;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -52,39 +57,68 @@ header {
     margin: 0 0;
 }
 
+section {
+    margin-top: -50px;
+    padding: 50px 0 390px 0;
+    width: auto;
+    min-height: inherit;
+}
+
+nav {
+    position: relative;
+    margin: 0 0;
+}
+
 footer {
     position: relative;
-    margin-top: -390px;
+    margin: -390px 0 0 0;
     /* negative value of footer height */
     clear: both;
 }
 
 
+/*--------------------------------------------section colors and borders*/
 
-/**************/
-/**************/
+/*----------------------navbar*/
 
-
-.black_background {
+nav {
     background: $black-blue;
     button {
         background: $light-black-blue !important;
     }
 }
+.navbar-toggle { 
+    span {
+        background: $white;
+    }
+}
+.navbar-brand:hover {
+    background-color: $xtr-light-black-blue;
+}
+.navbar-collapse {
+    background: $light-black-blue; /*changes to black-blue for wider screens*/
+    button:hover, a:hover {
+        background: $xtr-light-black-blue;
+    }
+    ul {
+        li {
+            a {
+                color: $white;
+            }
+            a:hover {
+                background: $xtr-light-black-blue;
+            }
+        }
+    }
+}
+.nav-stacked li:hover, .nav-stacked li:active {
+    background: $xtr-light-black-blue;
+}
 
-/*
-$light-blue: #5588C5;
-$dark-blue: #1558A9;
-$xtr-dark-blue: #0B4181;
-*/
-
-.dark_blue_background {
+footer {
      background: $xtr-dark-blue;
      .link, a { 
          border-radius: 5px 5px 5px 5px;
-     }
-     li {
-         color: $grey;
      }
      a {
          color: $white
@@ -92,8 +126,88 @@ $xtr-dark-blue: #0B4181;
      a:hover {
          background: $blue !important;
          color: $yellow;
-     }  
+     }
+     p {
+         color: $grey;
+     }
 }
+
+
+/*---------------------buttons colors, borders and margins*/
+.current_page {
+    background: $xtr-light-black-blue;
+}
+
+.new_post_button, .login_button, .registration_button, .reset_password_button {
+    margin: 20px 10px 20px 10px;
+    color: $white;
+    background-color: $green;
+}
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover,
+.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active {
+    background-color: $light-green;
+    color: $yellow;
+}
+
+.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
+    background-color: $blue;
+    color: $white;
+    margin: 0 15px 15px 0;
+}
+
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
+    background-color: $light-blue;
+    color: $yellow;
+}
+
+.submit_payment_button {
+    background-color: $green;
+    color: $white;    
+}
+
+.submit_payment_button:hover {
+    background-color: $light-green;
+    color: $yellow;    
+}
+.post_comment_form button {
+    background-color: $green;
+    color: $white;
+}
+.post_comment_form button:hover {
+    background-color: $light-green;
+    color: $yellow;
+}
+
+
+.close {
+    /*changing bootstrap class*/
+    font-size: 31px;
+    font-weight: 800;
+    filter: alpha(opacity=20);
+    opacity: .5;
+}
+.close:hover {
+    opacity: .8;
+}
+
+
+
+.search_button {
+    color: $white;
+    background-color: $light-blue;
+}
+
+.search_button:hover {
+    color: $yellow;
+    background-color: $xtr-light-blue;
+}
+
+.activated_button {
+    background-color: $yellow !important;
+    color: $dark-green !important;
+}
+
+/*---------------------------------------text colors*/
 
 .dark_green_text {
     color: $dark-green;
@@ -114,6 +228,32 @@ $xtr-dark-blue: #0B4181;
 .red_text {
     color: $light-red ;
 }
+.white_text {
+    color: $white !important;
+}
+.light_blue_text {
+    color: $light-blue !important;
+}
+.blue_text {
+    color: $blue !important;
+}
+
+/*--------------------------------------------number display badge classes*/
+.badge-positive {
+    background-color: $dark-green;
+}
+        
+.badge-negative {
+    background-color: $dark-red;
+}
+
+.badge-blue {
+    /*for footer*/
+    background-color: $dark-blue;
+}
+
+/*-----------------------------ticket panels for bugs and features*/
+/*-------for cart and checkout pages*/
 
 .panel_cart_item {
     background-color: $xtr-light-yellow;
@@ -149,6 +289,7 @@ $xtr-dark-blue: #0B4181;
     }
 }
 
+/*-----for bugs, features, profile pages*/
 .panel_done {
     border-color: $green;
     background-color: $xtr-light-green;
@@ -204,6 +345,19 @@ $xtr-dark-blue: #0B4181;
 }
 
 
+/*------ticket class changes*/
+.ticket {
+    height: 390px;
+    padding-top: 10px;
+}
+
+.ticket .panel-body a {
+    margin: 0 15px 15px 0;
+} 
+
+
+/*--------------------------------------------------panel collapse*/
+//panel-default and panel-collapse are bootstrap classes
 .panel-default {
     .panel-collapse {
         border-style: solid;
@@ -229,48 +383,18 @@ $xtr-dark-blue: #0B4181;
     }
 }
 
-
-.badge-positive {
-    background-color: $dark-green;
-}
-        
-.badge-negative {
-    background-color: $dark-red;
+.panel-group .panel {
+    margin-bottom: 30px !important;
 }
 
-.badge-blue {
-    background-color: $dark-blue;
+/*-----------------------------------search bar for bugs and features*/
+.search_bar {
+    margin: 0 0 30px 0;
 }
 
-.navbar-collapse {
-    background: $light-black-blue; /*changes to black-blue for wider screens*/
-    button:hover, a:hover {
-        background: $xtr-light-black-blue;
-    }
-    
-    ul {
-        li {
-            a {
-                color: $white;
-            }
-            a:hover {
-                background: $xtr-light-black-blue;
-            }
-        }
-    }
-}
-.nav-stacked li:hover {
-    background: $xtr-light-blue;
-}
-.white_text {
-    color: $white !important;
-}
-.light_blue_text {
-    color: $light-blue !important;
-}
-.blue_text {
-    color: $blue !important;
-}
+
+/*----------------------------------------------------------------home page*/
+/*-----masshead*/
 .mass_head{
     /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
     background-image: url("../img/computer_circuit.jpg");
@@ -278,41 +402,34 @@ $xtr-dark-blue: #0B4181;
     background-blend-mode: multiply;
     margin-bottom: 10px;
 }
-.navbar-toggle { 
-    span {
-        background: $white;
+
+/*-----introduction alert*/
+.alert_introduction {
+    background-color: $light-green;
+    border: 5px 5px 5px 5px;
+    border-color: $black-blue;
+    color: $black-blue;
+    padding: 0 5px 0 5px;
+    
+    .close, .alert-dismissible .close {
+        top: 5px;
+        right: 5px;
+        color: $black-blue;
     }
 }
-.panel-group .panel {
-    margin-bottom: 30px !important;
+
+/*------display for all news and side nav*/
+.news_container {
+    padding: 10px 0 10px 0;
 }
 
-.search_bar {
-    margin: 0 0 30px 0;
-}
-
-/*alert introduction*/
-.close {
-    font-size: 31px;
-    font-weight: 800;
-    filter: alpha(opacity=20);
-    opacity: .5;
-}
-.close:hover {
-    opacity: .8;
+/*-side nav displaying latest bugs and features*/
+.side_nav {
+    background-color: $light-yellow;
 }
 
 
-.new_post_button, .login_button, .registration_button, .reset_password_button {
-    margin: 20px 10px 20px 10px;
-    color: $white;
-    background-color: $green;
-}
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover {
-    background-color: $light-green;
-    color: $yellow;
-}
-
+/*---------------------------------password reset page*/
 .password_reset_form input {
     /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
     display: block;
@@ -331,33 +448,9 @@ $xtr-dark-blue: #0B4181;
     margin-bottom: 15px;
 }
 
-
 .form-control {
     border: 2px solid $light-blue;
 }
-
-.search_button {
-    color: $white;
-    background-color: $light-blue;
-}
-.search_button:hover {
-    color: $yellow;
-    background-color: $xtr-light-blue;
-}
-
-
-.finished_bugs, .in_progress_bugs {
-    background-color: red;
-}
-
-.ticket {
-    height: 390px;
-    padding-top: 10px;
-}
-
-.ticket .panel-body a {
-    margin: 0 15px 15px 0;
-} 
 
 .comment_form {
   position: -webkit-sticky;
@@ -366,55 +459,13 @@ $xtr-dark-blue: #0B4181;
   padding: 10px 10px 10px 10px;
 }
 
-.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
-    background-color: $blue;
-    color: $white;
-    margin: 0 15px 15px 0;
-}
-
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
-    background-color: $light-blue;
-    color: $yellow;
-}
-
-.activated_button {
-    background-color: $yellow !important;
-    color: $dark-green !important;
-}
-
-
-
-.alert_introduction {
-    background-color: $light-green;
-    border: 5px 5px 5px 5px;
-    border-color: $black-blue;
-    color: $black-blue;
-    padding: 0 5px 0 5px;
-    
-    .close, .alert-dismissible .close {
-        top: 5px;
-        right: 5px;
-        color: $black-blue;
-    }
-    
-}
-
-.submit_payment_button {
-    background-color: $green;
-    color: $white;    
-}
-
-.submit_payment_button:hover {
-    background-color: $light-green;
-    color: $yellow;    
-}
-
 .sticky_buttons {
     position: -webkit-sticky;
     position: sticky;
     top: 10;
     z-index: 10;
 }
+
 .sticky_buttons a {
     background-color: $red;
     color: $white;
@@ -425,20 +476,13 @@ $xtr-dark-blue: #0B4181;
     background-color: $light-red;
     color: $yellow;
 }
+
 .comment_form {
   top: 0;
   opacity: 1;
   background-color: $dark-blue;
   border-radius: 5px 5px 5px 5px;
   color: $white;
-}
-.post_comment_form button {
-    background-color: $green;
-    color: $white;
-}
-.post_comment_form button:hover {
-    background-color: $light-green;
-    color: $yellow;
 }
 
 .comment_form_toggle {
@@ -455,14 +499,16 @@ $xtr-dark-blue: #0B4181;
     background-color: $xtr-light-red;
     color: $yellow;
 }
+
 .comments {
-    background-color: yellow;
+    background-color: $xtr-light-blue;
     border-radius: 0 0 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
-
-/*-----------------------Charts CSS*/
+/*----------------------------------------- charts for chart page*/
 .average_graphs {
     height: 490px
 }
@@ -480,13 +526,13 @@ $xtr-dark-blue: #0B4181;
     height: 300px;   
 }
 
-.side_nav {
-    background-color: $light-yellow;
-}
+/*-------------------------------------------------------media-queries*/
 
-/*---------------------------------------------------------------media-queries*/
- 
 @media only screen and (min-width: 768px) {
+    section {
+        margin-top: -100px;
+        padding: 100px 0 390px 0;
+    }
     .navbar-collapse {
         background: $black-blue;
     }
@@ -495,16 +541,25 @@ $xtr-dark-blue: #0B4181;
         border-radius: 5px 5px 5px 5px;
         border-color: $black-blue;
     }
+    
+}
+
+@media only screen and (min-width: 804px) {
+    section {
+        margin-top: -50px;
+        padding: 50px 0 390px 0;
+    }
 }
 
 @media only screen and (min-width: 992px) {
-    
+    /*nav {
+        margin: 0 0 -50px 0;
+    }*/
     section {
-        padding-bottom: 194px;
+        padding: 50px 0 164px 0;
     }
     
     footer {
-        margin-top: -164px;
+        margin: -164px 0 0 0;
     }
-    
 }

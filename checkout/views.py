@@ -61,7 +61,7 @@ def checkout(request):
                 messages.error(request, "Your card was declined!")
             
             if customer.paid:
-                messages.error(request, "You have successfully paid")
+                messages.success(request, "You have successfully paid for feature request votes!")
                 request.session['cart'] = {}
                 return redirect(reverse('get_feature_posts'))
             else:

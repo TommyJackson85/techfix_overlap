@@ -2,19 +2,23 @@
 /*
 Used this link to find variations of colors:
 http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJfJIfg9K9Ps#uid=3000u0k00vK00++00RE01pI0hk6*/
-/*--------------------------------color variations*/
+/*black blue*/
+/*blue*/
+/*white*/
+/*green*/
+/*yellow*/
+/*red*/
+/*grey*/
 /*-----------------------------------------layout*/
-body {
-  min-height: 100vh;
+html {
+  height: 100%;
 }
 
-section {
-  margin-top: -151px;
-  padding-top: 151px;
-  padding-bottom: 420px;
-  min-height: inherit;
-  /*large lenghts at 100vm*/
-  width: auto;
+body {
+  min-height: 100vh;
+  padding: 0 0;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -22,44 +26,153 @@ header {
   margin: 0 0;
 }
 
+section {
+  margin-top: -50px;
+  padding: 50px 0 390px 0;
+  width: auto;
+  min-height: inherit;
+}
+
+nav {
+  position: relative;
+  margin: 0 0;
+}
+
 footer {
   position: relative;
-  margin-top: -390px;
+  margin: -390px 0 0 0;
   /* negative value of footer height */
   clear: both;
 }
 
-/**************/
-/**************/
-.black_background {
+/*--------------------------------------------section colors and borders*/
+/*----------------------navbar*/
+nav {
   background: #242729;
 }
-.black_background button {
+nav button {
   background: #44494D !important;
 }
 
-/*
-$light-blue: #5588C5;
-$dark-blue: #1558A9;
-$xtr-dark-blue: #0B4181;
-*/
-.dark_blue_background {
-  background: #0B4181;
+.navbar-toggle span {
+  background: #fdfdfd;
 }
-.dark_blue_background .link, .dark_blue_background a {
-  border-radius: 5px 5px 5px 5px;
+
+.navbar-brand:hover {
+  background-color: #61686D;
 }
-.dark_blue_background li {
-  color: #CDCDCD;
+
+.navbar-collapse {
+  background: #44494D;
+  /*changes to black-blue for wider screens*/
 }
-.dark_blue_background a {
+.navbar-collapse button:hover, .navbar-collapse a:hover {
+  background: #61686D;
+}
+.navbar-collapse ul li a {
   color: #fdfdfd;
 }
-.dark_blue_background a:hover {
+.navbar-collapse ul li a:hover {
+  background: #61686D;
+}
+
+.nav-stacked li:hover, .nav-stacked li:active {
+  background: #61686D;
+}
+
+footer {
+  background: #0B4181;
+}
+footer .link, footer a {
+  border-radius: 5px 5px 5px 5px;
+}
+footer a {
+  color: #fdfdfd;
+}
+footer a:hover {
   background: #366FB3 !important;
   color: #FFC63D;
 }
+footer p {
+  color: #CDCDCD;
+}
 
+/*---------------------buttons colors, borders and margins*/
+.current_page {
+  background: #61686D;
+}
+
+.new_post_button, .login_button, .registration_button, .reset_password_button {
+  margin: 20px 10px 20px 10px;
+  color: #fdfdfd;
+  background-color: #31CE44;
+}
+
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover,
+.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active {
+  background-color: #52CE80;
+  color: #FFC63D;
+}
+
+.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
+  background-color: #366FB3;
+  color: #fdfdfd;
+  margin: 0 15px 15px 0;
+}
+
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
+  background-color: #5588C5;
+  color: #FFC63D;
+}
+
+.submit_payment_button {
+  background-color: #31CE44;
+  color: #fdfdfd;
+}
+
+.submit_payment_button:hover {
+  background-color: #52CE80;
+  color: #FFC63D;
+}
+
+.post_comment_form button {
+  background-color: #31CE44;
+  color: #fdfdfd;
+}
+
+.post_comment_form button:hover {
+  background-color: #52CE80;
+  color: #FFC63D;
+}
+
+.close {
+  /*changing bootstrap class*/
+  font-size: 31px;
+  font-weight: 800;
+  filter: alpha(opacity=20);
+  opacity: 0.5;
+}
+
+.close:hover {
+  opacity: 0.8;
+}
+
+.search_button {
+  color: #fdfdfd;
+  background-color: #5588C5;
+}
+
+.search_button:hover {
+  color: #FFC63D;
+  background-color: #7295BF;
+}
+
+.activated_button {
+  background-color: #FFC63D !important;
+  color: #019914 !important;
+}
+
+/*---------------------------------------text colors*/
 .dark_green_text {
   color: #019914;
 }
@@ -84,6 +197,34 @@ $xtr-dark-blue: #0B4181;
   color: #F96371;
 }
 
+.white_text {
+  color: #fdfdfd !important;
+}
+
+.light_blue_text {
+  color: #5588C5 !important;
+}
+
+.blue_text {
+  color: #366FB3 !important;
+}
+
+/*--------------------------------------------number display badge classes*/
+.badge-positive {
+  background-color: #019914;
+}
+
+.badge-negative {
+  background-color: #C20013;
+}
+
+.badge-blue {
+  /*for footer*/
+  background-color: #1558A9;
+}
+
+/*-----------------------------ticket panels for bugs and features*/
+/*-------for cart and checkout pages*/
 .panel_cart_item {
   background-color: #FFE5A7;
 }
@@ -115,6 +256,7 @@ $xtr-dark-blue: #0B4181;
   border-color: #5588C5;
 }
 
+/*-----for bugs, features, profile pages*/
 .panel_done {
   border-color: #31CE44;
   background-color: #A5DCAC;
@@ -169,6 +311,17 @@ $xtr-dark-blue: #0B4181;
   background-color: #5588C5;
 }
 
+/*------ticket class changes*/
+.ticket {
+  height: 390px;
+  padding-top: 10px;
+}
+
+.ticket .panel-body a {
+  margin: 0 15px 15px 0;
+}
+
+/*--------------------------------------------------panel collapse*/
 .panel-default .panel-collapse {
   border-style: solid;
   border-width: 0 2px 2px 2px;
@@ -190,48 +343,17 @@ $xtr-dark-blue: #0B4181;
   background-color: #5588C5 !important;
 }
 
-.badge-positive {
-  background-color: #019914;
+.panel-group .panel {
+  margin-bottom: 30px !important;
 }
 
-.badge-negative {
-  background-color: #C20013;
+/*-----------------------------------search bar for bugs and features*/
+.search_bar {
+  margin: 0 0 30px 0;
 }
 
-.badge-blue {
-  background-color: #1558A9;
-}
-
-.navbar-collapse {
-  background: #44494D;
-  /*changes to black-blue for wider screens*/
-}
-.navbar-collapse button:hover, .navbar-collapse a:hover {
-  background: #61686D;
-}
-.navbar-collapse ul li a {
-  color: #fdfdfd;
-}
-.navbar-collapse ul li a:hover {
-  background: #61686D;
-}
-
-.nav-stacked li:hover {
-  background: #7295BF;
-}
-
-.white_text {
-  color: #fdfdfd !important;
-}
-
-.light_blue_text {
-  color: #5588C5 !important;
-}
-
-.blue_text {
-  color: #366FB3 !important;
-}
-
+/*----------------------------------------------------------------home page*/
+/*-----masshead*/
 .mass_head {
   /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
   background-image: url("../img/computer_circuit.jpg");
@@ -240,41 +362,31 @@ $xtr-dark-blue: #0B4181;
   margin-bottom: 10px;
 }
 
-.navbar-toggle span {
-  background: #fdfdfd;
-}
-
-.panel-group .panel {
-  margin-bottom: 30px !important;
-}
-
-.search_bar {
-  margin: 0 0 30px 0;
-}
-
-/*alert introduction*/
-.close {
-  font-size: 31px;
-  font-weight: 800;
-  filter: alpha(opacity=20);
-  opacity: 0.5;
-}
-
-.close:hover {
-  opacity: 0.8;
-}
-
-.new_post_button, .login_button, .registration_button, .reset_password_button {
-  margin: 20px 10px 20px 10px;
-  color: #fdfdfd;
-  background-color: #31CE44;
-}
-
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover {
+/*-----introduction alert*/
+.alert_introduction {
   background-color: #52CE80;
-  color: #FFC63D;
+  border: 5px 5px 5px 5px;
+  border-color: #242729;
+  color: #242729;
+  padding: 0 5px 0 5px;
+}
+.alert_introduction .close, .alert_introduction .alert-dismissible .close {
+  top: 5px;
+  right: 5px;
+  color: #242729;
 }
 
+/*------display for all news and side nav*/
+.news_container {
+  padding: 10px 0 10px 0;
+}
+
+/*-side nav displaying latest bugs and features*/
+.side_nav {
+  background-color: #FFD266;
+}
+
+/*---------------------------------password reset page*/
 .password_reset_form input {
   /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
   display: block;
@@ -297,73 +409,11 @@ $xtr-dark-blue: #0B4181;
   border: 2px solid #5588C5;
 }
 
-.search_button {
-  color: #fdfdfd;
-  background-color: #5588C5;
-}
-
-.search_button:hover {
-  color: #FFC63D;
-  background-color: #7295BF;
-}
-
-.finished_bugs, .in_progress_bugs {
-  background-color: red;
-}
-
-.ticket {
-  height: 390px;
-  padding-top: 10px;
-}
-
-.ticket .panel-body a {
-  margin: 0 15px 15px 0;
-}
-
 .comment_form {
   position: -webkit-sticky;
   position: sticky;
   z-index: 10;
   padding: 10px 10px 10px 10px;
-}
-
-.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
-  background-color: #366FB3;
-  color: #fdfdfd;
-  margin: 0 15px 15px 0;
-}
-
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
-  background-color: #5588C5;
-  color: #FFC63D;
-}
-
-.activated_button {
-  background-color: #FFC63D !important;
-  color: #019914 !important;
-}
-
-.alert_introduction {
-  background-color: #52CE80;
-  border: 5px 5px 5px 5px;
-  border-color: #242729;
-  color: #242729;
-  padding: 0 5px 0 5px;
-}
-.alert_introduction .close, .alert_introduction .alert-dismissible .close {
-  top: 5px;
-  right: 5px;
-  color: #242729;
-}
-
-.submit_payment_button {
-  background-color: #31CE44;
-  color: #fdfdfd;
-}
-
-.submit_payment_button:hover {
-  background-color: #52CE80;
-  color: #FFC63D;
 }
 
 .sticky_buttons {
@@ -393,16 +443,6 @@ $xtr-dark-blue: #0B4181;
   color: #fdfdfd;
 }
 
-.post_comment_form button {
-  background-color: #31CE44;
-  color: #fdfdfd;
-}
-
-.post_comment_form button:hover {
-  background-color: #52CE80;
-  color: #FFC63D;
-}
-
 .comment_form_toggle {
   background-color: #F96371;
   color: #fdfdfd;
@@ -418,11 +458,13 @@ $xtr-dark-blue: #0B4181;
 }
 
 .comments {
-  background-color: yellow;
+  background-color: #7295BF;
   border-radius: 0 0 5px 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-/*-----------------------Charts CSS*/
+/*----------------------------------------- charts for chart page*/
 .average_graphs {
   height: 490px;
 }
@@ -443,12 +485,13 @@ $xtr-dark-blue: #0B4181;
   height: 300px;
 }
 
-.side_nav {
-  background-color: #FFD266;
-}
-
-/*---------------------------------------------------------------media-queries*/
+/*-------------------------------------------------------media-queries*/
 @media only screen and (min-width: 768px) {
+  section {
+    margin-top: -100px;
+    padding: 100px 0 390px 0;
+  }
+
   .navbar-collapse {
     background: #242729;
   }
@@ -459,13 +502,22 @@ $xtr-dark-blue: #0B4181;
     border-color: #242729;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 804px) {
   section {
-    padding-bottom: 194px;
+    margin-top: -50px;
+    padding: 50px 0 390px 0;
+  }
+}
+@media only screen and (min-width: 992px) {
+  /*nav {
+      margin: 0 0 -50px 0;
+  }*/
+  section {
+    padding: 50px 0 164px 0;
   }
 
   footer {
-    margin-top: -164px;
+    margin: -164px 0 0 0;
   }
 }
 

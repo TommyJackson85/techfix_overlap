@@ -1,5 +1,6 @@
 from django.db import models
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.models import User
 from .models import BugPost, BugComment
@@ -14,6 +15,7 @@ def vote_bug_post(request, pk):
     bug_post.save()
     bug_posts = BugPost.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
+    messages.success(request, "You have successfully voted for the bug report and have been directed to the listings!")
     return redirect(get_bug_posts)
 
     
@@ -61,7 +63,7 @@ def search_bug_posts(request):
             to_do_count += 1
         if post.status == 'Done':
             done_count += 1
-    
+    messages.success(request, "Search results can be seen below!")
     return render(request, "bugposts.html", {'bug_posts': bug_posts, 'doing_count': doing_count, 'to_do_count': to_do_count, 'done_count': done_count, 'user': user})
 
 def bug_post_detail(request, pk):
@@ -96,6 +98,7 @@ def bug_post_detail(request, pk):
             
             bug_post.comment_count = bug_comments.count()
             bug_post.save()
+            messages.success(request, "You have successfully commented on this bug report!")
     else:
         form = BugCommentForm()
         
@@ -120,7 +123,7 @@ def create_or_edit_bugpost(request, pk=None):
 
             print("My Time")
 
-            
+            messages.success(request, "You have successfully created / edited this bug report!")
             return redirect(bug_post_detail, bug_post.pk)
     else:
         form = BugPostForm(instance=bug_post)
@@ -136,5 +139,6 @@ def delete_bug_post(request, pk):
     """
     post = get_object_or_404(BugPost, pk=pk)
     post.delete()
+    messages.success(request, "You have successfully deleted the bug report and have been directed to the listings!")
     return redirect(get_bug_posts)
  
