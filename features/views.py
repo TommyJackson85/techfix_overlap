@@ -7,8 +7,8 @@ from .forms import FeaturePostForm, FeatureCommentForm
 def get_feature_posts(request):
     """
     Create a view that will return a list
-    of Bug Posts that were published prior to 'now'
-    and render them to the 'bugposts.html' template
+    of feature Posts that were published prior to 'now'
+    and render them to the 'featureposts.html' template
     """
     user = request.user
     feature_posts = FeaturePost.objects.filter(published_date__lte=timezone.now()
@@ -34,7 +34,7 @@ def get_feature_posts(request):
 def search_feature_posts(request):
     """
     Create a view that will return a list
-    of Bug Posts that were published prior to 'now'
+    of Feature Posts that were published prior to 'now'
     and render them to the 'bugposts.html' template
     """
     user = request.user

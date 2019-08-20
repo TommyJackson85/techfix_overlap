@@ -5,9 +5,11 @@ Registration Page
 {% endblock %}
 {% block page_heading %}
 <div class="container">
-    <h1>Registration Page</h1>
-    <p>If you have an account already, just login..</p>
-    <a type="button" class="btn login_button" href="{% url 'login' %}">Login Page</a>
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+        <h1>Registration Page</h1>
+        <p>If you have an account already, just login..</p>
+        <a type="button" class="btn login_button" href="{% url 'login' %}">Login Page</a>
+    </div>
 </div>  
 {% endblock %}
 {% block content %}

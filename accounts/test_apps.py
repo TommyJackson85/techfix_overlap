@@ -3,7 +3,7 @@ from django.test import TestCase
 from .apps import AccountsConfig
 
 
-class TestAccountConfig(TestCase):
+class TestAccountsConfig(TestCase):
 
     def test_account_app(self):
         self.assertEqual("accounts", AccountsConfig.name)

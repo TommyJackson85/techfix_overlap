@@ -7,7 +7,9 @@
 <div class="container">
     <div class="col-md-12">
         <h1>{{ user }}'s Account</h1>
-        <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email: {{ profile.email }}</p>
+        {% if profile.email %}
+            <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email: {{ profile.email }}</p>
+        {% endif %}
     </div>
     <hr />
 </div>
@@ -18,8 +20,8 @@
 
 
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <button type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</button>
-
+    <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
+                    
     <div class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <div class="dark_blue_heading" role="tab" id="headingOne">
@@ -79,9 +81,8 @@
         </div>
     </div>
     
-    <button type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Suggestion</button>
-
-
+    <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+                    
     <div class="panel panel-default">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div class="dark_blue_heading" role="tab" id="headingTwo">

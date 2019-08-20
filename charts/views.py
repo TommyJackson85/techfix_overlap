@@ -12,6 +12,14 @@ import time, datetime
 """
 gaphs showing how many bugs or features are tended to on a daily, weekly and monthly basis
 """
+
+"""
+chunks function
+taken from:
+https://chrisalbon.com/python/data_wrangling/break_list_into_chunks_of_equal_size/
+originally from:
+https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
+"""
 def chunks(l, n):
     # For item i in a range that is a length of l,
     for i in range(0, len(l), n):
@@ -24,10 +32,13 @@ def get_most_voted(objects):
     }
     top_five_voted_titles = []
     for p in objects:
+        """
         if len(p.title) > 8:
             top_five_voted_titles.append(p.title)
         else:
             top_five_voted_titles.append(p.title)
+        """
+        top_five_voted_titles.append(p.title)
         top_five_voted['votes'].append(p.votes)
     top_five_voted['title'] = json.dumps(top_five_voted_titles)
     print('top_five_voted[titles]')
@@ -38,6 +49,9 @@ def get_averages(objects, now, all_days, user):
     dates = []
     for p in objects:
         if p.end_time is None:
+            print("None")
+            print(now)
+            print(p.start_time)
             delta = now - p.start_time
         else:
             delta = p.end_time - p.start_time
@@ -116,7 +130,8 @@ def get_charts(request):
     of Bug Posts that were published prior to 'now'
     and render them to the 'bugposts.html' template
     """
-
+    print("time example")
+    print( datetime.date.today() )
     three_months_past = datetime.date.today() - datetime.timedelta(3*365/12)
     all_days = []
     user = request.user

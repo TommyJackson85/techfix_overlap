@@ -6,13 +6,15 @@
             <div class="col-xs-12 col-sm-6">
                 <h1 class="white_text">Techfix<em class="dark_blue_text">-Overlap<i class="fa fa-wrench"></i></em></h1>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-6">
                 {% if user.is_authenticated %}
                     <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
                     <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+                    <p class="white_text"><strong>Welcome back {{ user }}!</strong></p>
                 {% else %}
                     <a type="button" class="btn login_button" href="{% url 'login' %}">Login Account</a>
                     <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
+                    <p class="white_text"><strong>Register and/or login to create posts.</strong></p>
                 {% endif %}
             </div>
         </div>

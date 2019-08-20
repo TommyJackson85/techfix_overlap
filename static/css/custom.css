@@ -102,25 +102,25 @@ footer p {
   background: #61686D;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button {
+.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .submit_button {
   margin: 20px 10px 20px 10px;
   color: #fdfdfd;
   background-color: #31CE44;
 }
 
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover,
-.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active {
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover, .submit_button:hover,
+.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active, .submit_button:active {
   background-color: #52CE80;
   color: #FFC63D;
 }
 
-.edit_button, .delete_button, .vote_button, .purchase_button, .graph_toggle_button {
+.edit_button, .delete_button, .vote_button, .graph_toggle_button {
   background-color: #366FB3;
   color: #fdfdfd;
   margin: 0 15px 15px 0;
 }
 
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .purchase_button:hover, .graph_toggle_button:hover {
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .graph_toggle_button:hover {
   background-color: #5588C5;
   color: #FFC63D;
 }

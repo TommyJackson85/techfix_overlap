@@ -28,14 +28,14 @@ def login(request):
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
-            messages.success(request, "You have successfully logged in!")
-
             if user:
                 #switched!
                 auth.login(request, user)
+                messages.success(request, "You have successfully logged in!")
                 return redirect('profile')
             else:
-                login_form.add_error(None, "Your username or password is incorrect")
+                messages.error(request, "Your username or password is incorrect!")
+                
     else:
         login_form = UserLoginForm()
     if request.user.is_authenticated:

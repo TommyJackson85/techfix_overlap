@@ -40,6 +40,30 @@ class TestAccountsViews(TestCase):
         self.assertRedirects(response, '/accounts/profile/', status_code=302, 
         target_status_code=200, fetch_redirect_response=True)
         
+        
+    def test_user_cant_open_login_if_already_logged_in(self):
+
+        #https://stackoverflow.com/questions/7502116/how-to-use-session-in-testcase-in-django
+        test_user =User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
+        page = self.client.get("/accounts/login/")
+        
+        self.assertRedirects(page, '/accounts/profile/', status_code=302, 
+        target_status_code=200, fetch_redirect_response=True)       
+    
+    def test_user_logout(self):
+        #https://stackoverflow.com/questions/7502116/how-to-use-session-in-testcase-in-django
+        test_user =User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
+        page = self.client.get("/accounts/logout/")
+        
+        self.assertRedirects(page, '/', status_code=302, 
+        target_status_code=200, fetch_redirect_response=True)  
+    
     def test_error_on_login(self):
         response = self.client.post("/accounts/login/", {
             'username': 'test',

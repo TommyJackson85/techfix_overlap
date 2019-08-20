@@ -17,6 +17,8 @@
         {% csrf_token %} {{ login_form | as_bootstrap }}
         <button type="submit" class="btn login_button">Login</button>
     </form>
-    <p><a href="{% url 'password_reset' %}">Reset Password</a></p>
+    
+    <!-- password reset link to be added here once it is fixed. -->
+    
 </div>
 {% endblock %}

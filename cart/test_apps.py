@@ -5,6 +5,6 @@ from .apps import CartConfig
 
 class TestCartConfig(TestCase):
 
-    def test_account_app(self):
+    def test_cart_app(self):
         self.assertEqual("cart", CartConfig.name)
         self.assertEqual("cart", apps.get_app_config("cart").name)

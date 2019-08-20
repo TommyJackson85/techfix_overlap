@@ -27,7 +27,27 @@ class TestViews(TestCase):
         page = self.client.get("/bugs/{0}/".format(bug_post.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "bugpostdetail.html")
-
+       
+    def test_comment_post_on_bug_post (self):
+        
+        #https://stackoverflow.com/questions/7502116/how-to-use-session-in-testcase-in-django
+        user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
+        bug_post = BugPost(user_id=5, title="Create a Test", content="ggggg", views=0)
+        bug_post.save()
+        
+        bug_comments = BugComment.objects.filter(post=bug_post).order_by('published_date')
+    
+        page = self.client.post("/bugs/{0}/".format(bug_post.id), {'content': 'testing'})
+ 
+        bug_post.comment_count = bug_comments.count() 
+        bug_post.save() 
+        
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "bugpostdetail.html")
+    
     def test_failed_view_of_nonexisting_bug_post_detail (self):
         page = self.client.get("/bugs/1/")
         self.assertEqual(page.status_code, 404)
@@ -39,19 +59,16 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "bugpostform.html")
         
-    def test_post_create_an_item(self):
-        user = User.objects.create(username='testuser')
-        user.set_password('12345')
-        user.save()
-        c = Client()
-        logged_in = c.login(username='testuser', password='12345')
+    def test_bug_post_create_an_item(self):
+        user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
         
-        response = self.client.post("/bugs/new/", {"title": "Create a Test", "content": "ggggg"})
-        
-        bug_post = get_object_or_404(BugPost, pk=1)
-        bug_post.user = User.objects.create_user(username='Ems_1', password='generic')
-        bug_post.save()
-        self.assertEqual(bug_post.user, 'test_user')
+        bug_post = self.client.post("/bugs/new/", {"title": "Create a Test", "content": "ggggg"})
+
+        self.assertEqual(bug_post.status_code, 302)
+        self.assertRedirects(bug_post, '/bugs/1/', status_code=302, 
+        target_status_code=200, fetch_redirect_response=True)
         
     def test_get_edit_page_for_nonexisting_bug_post(self):
         page = self.client.get("/bugs/1/edit/")
@@ -78,45 +95,3 @@ class TestViews(TestCase):
     def test_vote_bug_post_fail(self):
         page = self.client.get("/bugs/1/vote/")
         self.assertEqual(page.status_code, 404)
-        
-
-        
-    """
-    def vote_bug_post(request, pk):
-        
-        Upvotes bug post redirects to list of bug posts
-        
-        bug_post = get_object_or_404(BugPost, pk=pk)
-        bug_post.votes += 1
-        bug_post.save()
-        bug_posts = BugPost.objects.filter(published_date__lte=timezone.now()
-            ).order_by('-published_date')
-        return redirect(get_bug_posts)
-       
-     
-    def test_get_bug_posts(self):
-        page = self.client.get("/bugs/search/?q=")
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, "bugposts.html")
-    """
-    
-    
-    
-    """
-    def test_get_add_item_page(self):
-        page = self.client.get("/add")
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, "item_form.html")
-    
-    def test_get_edit_item_page(self):
-        item = Item(name="Create a Test")
-        item.save()
-
-        page = self.client.get("/edit/{0}".format(item.id))
-        self.assertEqual(page.status_code, 200)
-        self.assertTemplateUsed(page, "item_form.html")
-    
-    def test_get_edit_page_for_item_that_does_not_exist(self):
-        page = self.client.get("/edit/1")
-        self.assertEqual(page.status_code, 404)
-    """    

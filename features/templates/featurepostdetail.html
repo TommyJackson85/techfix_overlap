@@ -31,11 +31,11 @@
                                     <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>To vote a feature, you must pay a minimum of 10 euro to vote. Each 10 euro of total paid from all users, is counted as 1 vote.</p>
+                                    <p>To vote a feature, you must give enough money to add a vote or add to a vote. Each 10 euro of total paid from all users, is counted as 1 vote, i.e. if current total is 32 euro (totaling 3 votes) and you add 18 euro, you will be adding two votes.</p>
                                     <form method="post" action="{% url 'add_to_cart' feature_post.id %}">
                                         {% csrf_token %}
                                         <div class="input-group">
-                                            <input name="money_amount" type="number" min="10" max="1000" class="form-control" placeholder="Euro to pay">
+                                            <input name="money_amount" type="number" min="1" max="1000" class="form-control" placeholder="Euro to pay">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-success" type="submit">Proceed to Chart</button>
                                             </span>
