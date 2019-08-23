@@ -14,9 +14,16 @@
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel_cart_item">
-            <div class="panel-heading">
-                    
-                <h3>{{ item.feature_voted.title }}</h3>
+            <div class="panel-heading panel_post_head">
+                <h3>
+                <strong>
+                {% if item.feature_voted.title|length >= 20 %}
+                    {{ item.feature_voted.title|slice:":18" }}..
+                {% else %}
+                    {{ item.feature_voted.title }}
+                {% endif %}
+                </strong>
+                </h3>
                 <p>Collective user donations:</p> 
                 <p><em>
                  

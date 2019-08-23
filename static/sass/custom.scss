@@ -17,6 +17,7 @@ $xtr-light-blue: #7295BF;
 
 /*white*/
 $white: #fdfdfd;
+$dark-white: #E4DBDB;
 
 /*green*/
 $green: #31CE44;
@@ -43,13 +44,15 @@ $grey: #CDCDCD;
 
 html {
     height: 100%;
+    font-size: 16px !important;
 }
 
 body {
     min-height: 100vh;
     padding: 0 0;
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif !important;
+    background-color: $dark-white;
 }
 
 header {
@@ -238,6 +241,46 @@ footer {
     color: $blue !important;
 }
 
+/*------------------------------------------------------Text adjusts*/
+/*home page and blog page*/
+.mast_head {
+    .page_heading {
+        h1 {
+            font-size: 2em !important;
+        }
+    }
+}
+.news_sub_title, .side_nav h2 {
+    font-size: 2em;
+}
+
+.blog_posts {
+    h2, h3 {
+        font-size: 1.6em;
+    }
+}
+
+.dark_blue_bar {
+    h2 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 1.4em !important;
+        .badge {font-size: .7em !important;}
+    }
+}
+
+.panel_post_head {
+    h3 {
+        font-size: 1.2em !important;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+}
+
+.comments h2 {
+    font-size: 1.8em;
+}
+
 /*--------------------------------------------number display badge classes*/
 .badge-positive {
     background-color: $dark-green;
@@ -364,7 +407,7 @@ footer {
         border-width: 0 2px 2px 2px;
         border-color: $black-blue;
     }
-    .dark_blue_heading {
+    .dark_blue_bar {
         background-image: none;
         color: $white !important;
         background-color: $dark-blue !important;
@@ -377,7 +420,7 @@ footer {
         border-top-left-radius: 3px;
         border-top-right-radius: 3px;
     }
-    .dark_blue_heading:hover {
+    .dark_blue_bar:hover {
         background-image: none;
         background-color: $light-blue !important;
     }
@@ -395,7 +438,7 @@ footer {
 
 /*----------------------------------------------------------------home page*/
 /*-----masshead*/
-.mass_head{
+.mast_head{
     /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
     background-image: url("../img/computer_circuit.jpg");
     background-color: $light-blue;
@@ -409,7 +452,11 @@ footer {
     border: 5px 5px 5px 5px;
     border-color: $black-blue;
     color: $black-blue;
-    padding: 0 5px 0 5px;
+    padding: 10px 5px 10px 5px;
+    
+    .alert>p+p {
+        margin-top: 0 !important;
+    }
     
     .close, .alert-dismissible .close {
         top: 5px;
@@ -527,8 +574,25 @@ footer {
 }
 
 /*-------------------------------------------------------media-queries*/
-
+@media only screen and (min-width: 517px) {
+    .mast_head {
+        .page_heading {
+            h1 {
+                font-size: 4em !important;
+            }
+        }
+    }
+}
 @media only screen and (min-width: 768px) {
+
+    .mast_head {
+        .page_heading {
+            h1 {
+                font-size: 3em !important;
+            }
+        }
+    }
+    
     section {
         margin-top: -100px;
         padding: 100px 0 390px 0;
@@ -545,6 +609,16 @@ footer {
 }
 
 @media only screen and (min-width: 804px) {
+    
+    .dark_blue_bar {
+        h2 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            font-size: 1.6em !important;
+            .badge {font-size: .8em !important;}
+        }
+    }
+    
     section {
         margin-top: -50px;
         padding: 50px 0 390px 0;
@@ -555,6 +629,15 @@ footer {
     /*nav {
         margin: 0 0 -50px 0;
     }*/
+    
+    .mast_head {
+        .page_heading {
+            h1 {
+                font-size: 4em !important;
+            }
+        }
+    }
+    
     section {
         padding: 50px 0 164px 0;
     }

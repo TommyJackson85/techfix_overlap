@@ -69,7 +69,10 @@ class TestAccountsViews(TestCase):
             'username': 'test',
             'password': 'Madetotest'
         })
-        self.assertFormError(response, 'form', None, "Your username or password is incorrect")
+        
+        messages = list(response.context['messages'])
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Your username or password is incorrect!')
         
     def test_user_can_register(self):
         response = self.client.post("/accounts/register/", {

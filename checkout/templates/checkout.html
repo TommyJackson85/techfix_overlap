@@ -5,7 +5,6 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
     //<![CDATA[
-        console.log('{{ publishable }}');
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
@@ -24,9 +23,16 @@
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel_cart_item">
-            <div class="panel-heading">
-                    
-                <h3>{{ item.feature_voted.title }}</h3>
+            <div class="panel-heading panel_post_head">
+                <h3>
+                <strong>
+                {% if item.feature_voted.title|length >= 20 %}
+                    {{ item.feature_voted.title|slice:":18" }}..
+                {% else %}
+                    {{ item.feature_voted.title }}
+                {% endif %}
+                </strong>
+                </h3>
                 
                 <p>Collective user donations:</p> 
                 <p><em>
@@ -64,11 +70,9 @@
 
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
     <legend>Payment Details</legend>
-
     <div id="credit-card-errors" style="display: none;">
         <div id="alert-message block-message error" id="stripe-error-message"></div>
     </div>
-
     <div class="form-group col-md-6">
         {{ order_form | as_bootstrap }}
     </div>

@@ -5,7 +5,7 @@
 {% block page_heading %}
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12">
             <h1>Techfix<em class="blue_text">-Overlap<i class="fa fa-wrench"></i></em> News Blog:</h1>
         </div>
     </div>
@@ -14,7 +14,7 @@
 
 {% block content %}
 
-        <div>
+        <div class="blog_posts">
             {% if blog_count > 0 %}
                 {% for blog_post in blog_posts %}
                 <h2>{{ blog_post.title }}</h2>

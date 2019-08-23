@@ -2,13 +2,39 @@
 {% load bootstrap_tags %}
 {% load static from staticfiles %}
 
+{% block page_heading %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+            <form action="{% url 'search_bug_posts' %}" method="get">
+                <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="other bug issue" name="q">
+                    <span class="input-group-btn">
+                        <button type="search" class="btn search_button"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
+    <hr />
+</div>
+{% endblock page_heading %}
+
 {% block content %}
 <div class="row">
     <div class="post_details col-md-8 col-md-offset-1">
+        <p><em class="dark_green_text"><strong>Bug Report Details:</strong></em></p>
         <h1>{{ bug_post.title }}</h1>
+        
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
-        <p>Started: {{ bug_post.start_time.date }}</p>
+        {% if feature_post.status == "Doing" %}
+            <p>Started: {{ feature_post.start_time.date }}</p>
+        {% elif feature_post.status == "Done" %}
+            <p>Started: {{ feature_post.start_time.date }}</p>
+            <p>Finished: {{ feature_post.end_time.date }}</p>
+        {% endif %}
         {% if bug_post.user == user %}
             <p><span class="boldtext">This is your post!</span></p>
         {% else %}
@@ -32,7 +58,6 @@
                 <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
             {% endif %}
         {% endif %}
-        
     </div>
     <div class="sticky_buttons col-md-8 col-md-offset-1">
             {% if bug_post.status == "Done" %}

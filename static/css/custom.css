@@ -12,13 +12,15 @@ http://paletton.com/?fbclid=IwAR2Zl09ucUxIJgPOQWO06EgyD4266xHb-S0gvsxDa66Pq0QKJf
 /*-----------------------------------------layout*/
 html {
   height: 100%;
+  font-size: 16px !important;
 }
 
 body {
   min-height: 100vh;
   padding: 0 0;
   position: relative;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif !important;
+  background-color: #E4DBDB;
 }
 
 header {
@@ -209,6 +211,39 @@ footer p {
   color: #366FB3 !important;
 }
 
+/*------------------------------------------------------Text adjusts*/
+/*home page and blog page*/
+.mast_head .page_heading h1 {
+  font-size: 2em !important;
+}
+
+.news_sub_title, .side_nav h2 {
+  font-size: 2em;
+}
+
+.blog_posts h2, .blog_posts h3 {
+  font-size: 1.6em;
+}
+
+.dark_blue_bar h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 1.4em !important;
+}
+.dark_blue_bar h2 .badge {
+  font-size: 0.7em !important;
+}
+
+.panel_post_head h3 {
+  font-size: 1.2em !important;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.comments h2 {
+  font-size: 1.8em;
+}
+
 /*--------------------------------------------number display badge classes*/
 .badge-positive {
   background-color: #019914;
@@ -327,7 +362,7 @@ footer p {
   border-width: 0 2px 2px 2px;
   border-color: #242729;
 }
-.panel-default .dark_blue_heading {
+.panel-default .dark_blue_bar {
   background-image: none;
   color: #fdfdfd !important;
   background-color: #1558A9 !important;
@@ -338,7 +373,7 @@ footer p {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
-.panel-default .dark_blue_heading:hover {
+.panel-default .dark_blue_bar:hover {
   background-image: none;
   background-color: #5588C5 !important;
 }
@@ -354,7 +389,7 @@ footer p {
 
 /*----------------------------------------------------------------home page*/
 /*-----masshead*/
-.mass_head {
+.mast_head {
   /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
   background-image: url("../img/computer_circuit.jpg");
   background-color: #5588C5;
@@ -368,7 +403,10 @@ footer p {
   border: 5px 5px 5px 5px;
   border-color: #242729;
   color: #242729;
-  padding: 0 5px 0 5px;
+  padding: 10px 5px 10px 5px;
+}
+.alert_introduction .alert > p + p {
+  margin-top: 0 !important;
 }
 .alert_introduction .close, .alert_introduction .alert-dismissible .close {
   top: 5px;
@@ -486,7 +524,16 @@ footer p {
 }
 
 /*-------------------------------------------------------media-queries*/
+@media only screen and (min-width: 517px) {
+  .mast_head .page_heading h1 {
+    font-size: 4em !important;
+  }
+}
 @media only screen and (min-width: 768px) {
+  .mast_head .page_heading h1 {
+    font-size: 3em !important;
+  }
+
   section {
     margin-top: -100px;
     padding: 100px 0 390px 0;
@@ -503,6 +550,15 @@ footer p {
   }
 }
 @media only screen and (min-width: 804px) {
+  .dark_blue_bar h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 1.6em !important;
+  }
+  .dark_blue_bar h2 .badge {
+    font-size: 0.8em !important;
+  }
+
   section {
     margin-top: -50px;
     padding: 50px 0 390px 0;
@@ -512,6 +568,10 @@ footer p {
   /*nav {
       margin: 0 0 -50px 0;
   }*/
+  .mast_head .page_heading h1 {
+    font-size: 4em !important;
+  }
+
   section {
     padding: 50px 0 164px 0;
   }

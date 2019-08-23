@@ -16,7 +16,6 @@
         {% endif %}
     </div>
     <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 search_bar">
-        
         <form action="{% url 'search_bug_posts' %}" method="get">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="bug issue" name="q">
@@ -34,15 +33,15 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <div class="dark_blue_heading" role="tab" id="headingOne">
-            <h4 class="green_text">
+        <div class="dark_blue_bar" role="tab" id="headingOne">
+            <h2 class="green_text">
                   Finished 
                 {% if done_count > 0 %}
                     <label class="badge badge-positive">{{ done_count }}</label>
                 {% else %}
                     <label class="badge badge-negative">{{ done_count }}</label>
                 {% endif %}
-            </h4>
+            </h2>
         </div>
     </a>
     
@@ -53,13 +52,21 @@
         {% if bug_post.status == "Done"%}
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
             <div class="panel panel_done">
-                <div class="panel-heading">
-                    <p>{{ bug_post.title|slice:":25" }}<p>
+                <div class="panel-heading panel_post_head">
+                    <h3>
+                    <strong>
+                    {% if bug_post.title|length >= 20 %}
+                        {{ bug_post.title|slice:":18" }}..
+                    {% else %}
+                        {{ bug_post.title }}
+                    {% endif %}
+                    </strong>
+                    </h3>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
-                    <p>{{ bug_post.content|slice:":25" }}</p>
+                    <p>'{{ bug_post.content|slice:":25" }}'</p>
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
@@ -85,15 +92,15 @@
 
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        <div class="dark_blue_heading" role="tab" id="headingTwo">
-            <h4 class="yellow_text">
+        <div class="dark_blue_bar" role="tab" id="headingTwo">
+            <h2 class="yellow_text">
                 In Progress 
                 {% if doing_count > 0 %}
                 <label class="badge badge-positive">{{ doing_count }}</label>
                 {% else %}
                 <label class="badge badge-negative">{{ doing_count }}</label>
                 {% endif %}
-            </h4>
+            </h2>
         </div>
     </a>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -103,13 +110,21 @@
         {% if bug_post.status == "Doing"%}
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
             <div class="panel panel_doing">
-                <div class="panel-heading">
-                    <p>{{ bug_post.title|slice:":25" }}<p>
+                <div class="panel-heading panel_post_head">
+                    <h3>
+                    <strong>
+                    {% if bug_post.title|length >= 20 %}
+                        {{ bug_post.title|slice:":18" }}..
+                    {% else %}
+                        {{ bug_post.title }}
+                    {% endif %}
+                    </strong>
+                    </h3>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
                 <div class="panel-body">
-                    <p>{{ bug_post.content|slice:":25" }}</p>
+                    <p>'{{ bug_post.content|slice:":25" }}'</p>
                     {% if bug_post.user == user %}
                     <p><span class="boldtext">This is your post!</span></p>
                         {% if bug_post.status == "To Do" %}
@@ -135,15 +150,15 @@
   
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        <div class="dark_blue_heading" role="tab" id="headingThree">
-            <h4 class="red_text">
+        <div class="dark_blue_bar" role="tab" id="headingThree">
+            <h2 class="red_text">
                 To Do
                 {% if to_do_count > 0 %}
                     <label class="badge badge-positive">{{ to_do_count }}</label>
                 {% else %}
                     <label class="badge badge-negative">{{ to_do_count }}</label>
                 {% endif %}
-          </h4>
+            </h2>
         </div>
     </a>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -153,13 +168,21 @@
             {% if bug_post.status == "To Do"%}
             <div class="col-xs-12 col-sm-4 col-md-3 ticket">
                 <div class="panel panel_to_do">
-                    <div class="panel-heading">
-                        <p>{{ bug_post.title|slice:":25" }}<p>
+                    <div class="panel-heading panel_post_head">
+                        <h3>
+                        <strong>
+                        {% if bug_post.title|length >= 20 %}
+                            {{ bug_post.title|slice:":18" }}..
+                        {% else %}
+                            {{ bug_post.title }}
+                        {% endif %}
+                        </strong>
+                        </h3>
                         <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
                         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                     </div>
                     <div class="panel-body">
-                        <p>{{ bug_post.content|slice:":25" }}</p>
+                        <p>'{{ bug_post.content|slice:":25" }}'</p>
                         {% if bug_post.user == user %}
                         <p><span class="boldtext">This is your post!</span></p>
                             {% if bug_post.status == "To Do" %}

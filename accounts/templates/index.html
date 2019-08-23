@@ -2,8 +2,8 @@
 {% block page_heading %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12 mass_head">
-            <div class="col-xs-12 col-sm-6">
+        <div class="col-xs-12 mast_head">
+            <div class="col-xs-12 col-sm-6 page_heading">
                 <h1 class="white_text">Techfix<em class="dark_blue_text">-Overlap<i class="fa fa-wrench"></i></em></h1>
             </div>
             <div class="col-xs-12 col-sm-6">
@@ -40,9 +40,9 @@
 
 <div class="row news_container">
     <div class="col-xs-12 col-md-8">
-        <h2>News</h2>
+        <h2 class="news_sub_title"><em class="dark_green_text">News</em></h2>
         {% for blog_post in blog_posts %}
-        <div class="new_post_link">
+        <div class="new_post_link blog_posts">
             <h3>
             {% if blog_post.title|length > 25 %}
                 {{ blog_post.title|slice:":22" }}...
@@ -64,7 +64,7 @@
         <a href="{% url 'get_blog_posts' %}" class="btn new_post_button">View Full News Blog</a>
     </div>
     <side class="col-xs-12 col-md-4 side_nav">
-        <h2>New Bug Reports!</h2>  
+        <h2><em class="dark_green_text">New Bug Reports!</em></h2>  
         {% for bug_post in bug_posts %}
         <a href="{% url 'bug_post_detail' bug_post.id %}" class="col-xs-12">        
             <div class="new_post_link">
@@ -88,7 +88,7 @@
             </div>
         </a>
         {% endfor  %}
-        <h2>New Feature Requests!</h2> 
+        <h2><em class="dark_green_text">New Feature Requests!</em></h2> 
         {% for feature_post in feature_posts %}
         <a href="{% url 'feature_post_detail' feature_post.id %}" class="col-xs-12">        
             <div class="new_post_link">

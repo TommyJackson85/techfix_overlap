@@ -155,3 +155,8 @@ FINISH HOW THE NUMBERS ARE DISPLAYED.
 - For testing the majority of the postings.
 
 ## Occured bugs
+
+- Stripe Post requests.
+    - Received 402 error in JavaScript console. Attempted to catch this error on static/js/stripe.js through try and catch JavaScript, but it turns out its an error from Stripes end on their own JS file.
+
+

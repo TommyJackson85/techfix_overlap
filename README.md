@@ -14,6 +14,9 @@ We are always seeking new innovated ways provide the best user experience as pos
 We are a new organsistion, but already have a strong active user database due to our progress in responding to user requests.
 We provide constant updates from our home, charts and blog pages. These pages are also usfull in attracting new developers to use the Techfix framework.
 
+Travis Testing Build Status:
+[![Build Status](https://travis-ci.org/TommyJackson85/techfix_overlap.svg?branch=master)](https://travis-ci.org/TommyJackson85/techfix_overlap)
+
 ## UX
  
 Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.

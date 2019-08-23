@@ -2,13 +2,38 @@
 {% load bootstrap_tags %}
 {% load static from staticfiles %}
 
+{% block page_heading %}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+            <form action="{% url 'search_feature_posts' %}" method="get">
+                <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="other feature request" name="q">
+                    <span class="input-group-btn">
+                        <button type="search" class="btn search_button"><span class="glyphicon glyphicon-search"></span> Search</button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
+        </div>
+    </div>
+    <hr />
+</div>
+{% endblock page_heading %}
+
 {% block content %}
 <div class="row">
     <div class="post_details col-md-8 col-md-offset-1">
+        <p><em class="dark_green_text"><strong>Feature Request Details:</strong></em></p>
         <h1>{{ feature_post.title }}</h1>
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ feature_post.published_date }} </p>
-        <p>Started: {{ feature_post.start_time.date }}</p>
+        {% if feature_post.status == "Doing" %}
+            <p>Started: {{ feature_post.start_time.date }}</p>
+        {% elif feature_post.status == "Done" %}
+            <p>Started: {{ feature_post.start_time.date }}</p>
+            <p>Finished: {{ feature_post.end_time.date }}</p>
+        {% endif %}
         {% if feature_post.user == user %}
             <p><span class="boldtext">This is your post!</span></p>
         {% else %}
@@ -20,10 +45,9 @@
             <p class="green_text">This feature has been fully developed!</p>
         {% else %}
             {% if user.is_authenticated %}
-            <div class="col-xs-12">
-                    <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
-                    <!--bootstrap model pop up-->
-                    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                <a href="#" class="btn vote_button" data-toggle="modal" data-target="#basicModal">Vote Post</a>
+                <!--bootstrap model pop up-->
+                <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -49,9 +73,9 @@
                             </div>
                         </div>
                     </div>  
-                    {% if feature_post.status == "To Do" and feature_post.user == user %}
-                        <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn edit_button">Edit</a>
-                    {% endif %}
+                {% if feature_post.status == "To Do" and feature_post.user == user %}
+                <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn edit_button">Edit</a>
+                {% endif %}
                 </div>
             {% endif %}
         {% endif %}
@@ -80,10 +104,10 @@
             {% endif %}
             <a href="{% url 'get_feature_posts' %}" class="btn get_feature_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Feature Request List</a>
             <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
-            
         </div>
     <div class="comments col-md-8 col-md-offset-1">
             <h2>Comments:</h2>
+            
             <ul class="media-list">
                 {% for feature_comment in feature_comments %}              
                 <li class="media">

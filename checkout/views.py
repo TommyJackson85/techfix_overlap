@@ -11,22 +11,22 @@ import stripe
 # Create your views here.
 stripe.api_key = settings.STRIPE_SECRET
 
-
 @login_required()
 def checkout(request):
     try:
-        if request.method == "POST":
-            print("try post")
+        if request.method=="POST":
             order_form = OrderForm(request.POST)
             payment_form = MakePaymentForm(request.POST)
+            
+            
             if order_form.is_valid() and payment_form.is_valid():
                 order = order_form.save(commit=False)
                 order.date = timezone.now()
                 order.save()
-        
+            
                 cart = request.session.get('cart', {})
                 total_cost = 0
-        
+            
                 for id, money_amount in cart.items():
                     feature_voted = get_object_or_404(FeatureVoted, pk=id)
                     total_cost += int(money_amount)
@@ -36,50 +36,46 @@ def checkout(request):
                         money_amount=money_amount
                     )
                     order_line_item.save()
-                        
+                            
                     feature_voted.votes_cost += int(money_amount)
-                        
+                            
                     remainder_euro = int(feature_voted.votes_cost)%10
-                    print("remainder_euro:")
-                    print(remainder_euro)
                     euro_for_votes = feature_voted.votes_cost - remainder_euro
                     total_votes = int(euro_for_votes)/10 
-                    print("total_votes:")
-                    print(total_votes)
+            
                     feature_voted.votes = total_votes
                     feature_voted.save()
-                    
-                try:
-                    print('it is trying')
-                    print(total_cost)
+                        
+                
+     
                     customer = stripe.Charge.create(
                         amount=total_cost * 100,
                         currency="EUR",
                         description=request.user.email,
                         card=payment_form.cleaned_data['stripe_id']
                     )
-                    print('it tried')
-                except stripe.error.CardError:
-                    messages.error(request, "Your card was declined!")
-                    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-            
-                    
+                        
                 if customer.paid:
                     messages.success(request, "You have successfully paid for feature request votes!")
                     request.session['cart'] = {}
                     return redirect(reverse('get_feature_posts'))
                 else:
                     messages.error(request, "Unable to take payment")
-                    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-            
             else:
-                print(payment_form.errors)
                 messages.error(request, "We were unable to take a payment with that card!")
-                return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
         else:
             payment_form = MakePaymentForm()
             order_form = OrderForm()
-    
+    except stripe.error.CardError:
+        print("error occured")
+        messages.error(request, "Your card was declined!")
+        #return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
+            
+    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
+
+
+
+    """
     except Exception as e:
         print("e:")
         print(e)
@@ -87,10 +83,4 @@ def checkout(request):
         payment_form = MakePaymentForm()
         order_form = OrderForm()
         return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-    
-    
-    print(settings.STRIPE_PUBLISHABLE)
-    return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-
-
-
+    """
