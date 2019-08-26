@@ -3,9 +3,12 @@
 {% load bootstrap_tags %}
 
 {% block head_js %}
+<!--chart.js library-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 {% endblock head_js %}
+
 {% block page_heading %}
+<!--bootrap classes-->
 <div class="container">
     <div class="col-xs-12">
         <h1>Techfix Charts</h1>
@@ -14,7 +17,9 @@
     </div>
 </div>
 {% endblock page_heading %} 
+
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes. Button and graph ids link to charts.js code. Canvas link to chart js library.-->
 
 <div class="col-xs-12 col-md-6">
     <div class="col-xs-12" role="group" aria-label="...">
@@ -61,6 +66,7 @@
 {% endblock content %}
 
 {% block body_js %}
+<!--custom js that rechieves python 'data'-->
 <script type="text/javascript">
     var retrieveData = function(d) {
         return {
@@ -101,153 +107,6 @@
     var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'));
     var feature_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_features.votes  }}'), JSON.parse('{{ data.most_voted_features.title|safe }}'));
 </script>
+<!--custom js-->
 <script src="{% static 'js/charts.js' %}"></script>
-
-<!--<script>
-
-    var options = {}
-    
-    var retrieveData = function(d) {
-        return {
-            datasets: [{
-                data: d,
-                backgroundColor:[
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                ],
-            }],
-            labels: ['Bugs', 'Features']
-        };
-    }
-    
-    var rechieveVotesData = function(votes, titles) {
-        return {
-            datasets: [{
-                data: votes,
-                backgroundColor:[
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(230, 99, 132, 1)',
-                    'rgba(20, 162, 235, 1)',
-                    'rgba(100, 162, 235, 1)'
-                ],
-            }],
-            labels: titles
-        }
-    }
-    
-    var daily_data = retrieveData(JSON.parse('{{ data.daily }}'))
-    var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'))
-    var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'))
-    var vote_data_titles = retrieveData('{{ data.most_voted_bugs.title }}')
-    var vote_data_votes = retrieveData(JSON.parse('{{ data.most_voted_bugs.votes }}'))
-    console.log(JSON.stringify("{{ data.most_voted_bugs.title }}"))
-    var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'))
-
-</script>
-
-<script>
-    
-var options = {}
-
-var retrieveData = function(d) {
-    return {
-        datasets: [{
-            data: d,
-            backgroundColor:[
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-            ],
-        }],
-        labels: ['Bugs', 'Features']
-    };
-}
-
-var daily_data = retrieveData(JSON.parse('{{ data.daily }}'))
-var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'))
-var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'))
-
-//var vote_data_titles = retrieveData('{{ data.most_voted_bugs.title }}')
-
-//var vote_data_votes = retrieveData(JSON.parse('{{ data.most_voted_bugs.votes }}'))
-
-
-/*top_five_voted['title'].append(p.title)
-top_five_voted['votes'].append(p.votes)*/
-
-//doughnut chart
-var ctx = function(id) { 
-    return document.getElementById(id).getContext('2d'); 
-}
-
-var ctxDaily = ctx('dailyProgressChart');
-var ctxWeekly = ctx('weeklyProgressChart');
-var ctxMonthly = ctx('monthlyProgressChart');
-
-var daily_progress_chart = new Chart(ctxDaily, {
-    type: 'doughnut',
-    data: daily_data,
-    options: options
-});
-var weekly_progress_chart = new Chart(ctxWeekly, {
-    type: 'doughnut',
-    data: weekly_data,
-    options: options
-});
-var monthly_progress_chart = new Chart(ctxMonthly, {
-    type: 'doughnut',
-    data: monthly_data,
-    options: options
-});
-
-
-$('#monthly_graph').show();
-$('#weekly_graph').hide();
-$('#monthly_graph').hide();
-
-$("#monthly_graph_toggle").click(function () {
-    $("#monthly_graph").show();
-    $("#weekly_graph").hide();
-    $("#daily_graph").hide();
-});
-$("#weekly_graph_toggle").click(function () {
-    $("#monthly_graph").hide();
-    $("#weekly_graph").show();
-    $("#daily_graph").hide();
-});
-$('#daily_graph_toggle').on('click', function(){
-    $("#monthly_graph").hide();
-    $("#weekly_graph").hide();
-    $("#daily_graph").show();
-})
-
-var rechieveVotesData = function(votes, titles) {
-    return {
-        datasets: [{
-            data: votes,
-            backgroundColor:[
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(230, 99, 132, 1)',
-                'rgba(20, 162, 235, 1)',
-                'rgba(100, 162, 235, 1)'
-            ],
-        }],
-        labels: titles
-    }
-}
-console.log(JSON.stringify("{{ data.most_voted_bugs.title }}"))
-var bug_votes_data = rechieveVotesData(JSON.parse('{{ data.most_voted_bugs.votes  }}'), JSON.parse('{{ data.most_voted_bugs.title|safe }}'))
-
-var ctxBugVotes = ctx('higestBugsVotedChart');
-
-var most_voted_bugs = new Chart(ctxBugVotes, {
-    type: 'doughnut',
-    data: bug_votes_data,
-    options: options
-});
-console.log(bug_votes_data.datasets.data)
-console.log(bug_votes_data.labels)
-
-</script>-->
 {% endblock body_js %}

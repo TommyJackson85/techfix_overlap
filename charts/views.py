@@ -21,6 +21,7 @@ originally from:
 https://stackoverflow.com/questions/312443/how-do-you-split-a-list-into-evenly-sized-chunks
 """
 def chunks(l, n):
+    """ used to split list of individual dates into sets of 7 or 30. Called from get averages."""
     # For item i in a range that is a length of l,
     for i in range(0, len(l), n):
         # Create an index range for l of n items:
@@ -32,26 +33,17 @@ def get_most_voted(objects):
     }
     top_five_voted_titles = []
     for p in objects:
-        """
-        if len(p.title) > 8:
-            top_five_voted_titles.append(p.title)
-        else:
-            top_five_voted_titles.append(p.title)
-        """
         top_five_voted_titles.append(p.title)
         top_five_voted['votes'].append(p.votes)
     top_five_voted['title'] = json.dumps(top_five_voted_titles)
-    print('top_five_voted[titles]')
-    print(top_five_voted['title'][0])
     return top_five_voted
 
 def get_averages(objects, now, all_days, user):
     dates = []
+    """first collect dates over specific time periods, in this case , posts progress dates between start time and end time/now"""
     for p in objects:
         if p.end_time is None:
-            print("None")
-            print(now)
-            print(p.start_time)
+       
             delta = now - p.start_time
         else:
             delta = p.end_time - p.start_time
@@ -61,11 +53,13 @@ def get_averages(objects, now, all_days, user):
             each = p.start_time + datetime.timedelta(days=i)
             object_dates.append(each.date())
         dates.append(object_dates)
-            
+        
+    """sets variables to collect amount of posts worked on per day, week and month"""     
     amount_per_day = []
     amount_per_week = []
     amount_per_month = []
     
+    """ secondly sees which dates overlaps with all days( last 3 months ), then adds them to amount per day array"""
     for a in all_days:
         num = 0
         for b in dates:
@@ -73,17 +67,18 @@ def get_averages(objects, now, all_days, user):
                 num += 1
                 
         amount_per_day.append(num)
+    """fourtly, gets the average per day"""
     average_per_day = sum(amount_per_day) / len(amount_per_day)
-            
+    
+    """splits all days into sets of 7 and 30 to create all weeks and all months data."""
     all_weeks = list(chunks(all_days[::-1], 7))
     all_months = list(chunks(all_days[::-1], 30))
     #chunks is global variable above, using array in descending order
-    #per_week_day_averages = list(chunks(amount_per_day[::-1], 7))
-    #per_month_day_averages = list(chunks(amount_per_day[::-1], 30))
-    #print(all_weeks)
-    #print(all_months)
-        
+    
+    """sets weekly summary array for next analysis"""
     weekly_summary = []
+    
+    """fiftly, calculates weekly summary using a simular process to getting daily summaries"""
     for w in all_weeks:
         if len(w) == 7:
             num = 0
@@ -95,10 +90,8 @@ def get_averages(objects, now, all_days, user):
                 
             amount_per_week.append(num)
     weekly_summary.append(sum(amount_per_week) / len(amount_per_week))
-        #weekly_summary.append(sum(w) / len(w))
-    print('weekly_summary')
-    print(weekly_summary)
-   
+
+    """sixthly, calculates monthly summary using a simular process to getting daily summaries"""   
     monthly_summary = []
     for m in all_months:
         if len(m) == 30:
@@ -111,33 +104,30 @@ def get_averages(objects, now, all_days, user):
                         
             amount_per_month.append(num)
     monthly_summary.append(sum(amount_per_month) / len(amount_per_month))
-    #weekly_summary.append(sum(w) / len(w))
-    print('monthly_summary')
-    print(monthly_summary)
-        
-        
+    
+    """gets overall overages for weekly and monthly summaries"""    
     average_per_week = sum(weekly_summary) / len(weekly_summary)
     average_per_month = sum(monthly_summary) / len(monthly_summary)
-    
+    """returns averages rounded down to 2"""    
     return [round(average_per_day, 2), round(average_per_week, 2), round(average_per_month, 2)]
-        
-        #return "nonsense"
+
         
         
 def get_charts(request):
     """
-    Create a view that will return a list
-    of Bug Posts that were published prior to 'now'
-    and render them to the 'bugposts.html' template
+    Create a view that will returns and renders 'charts.html' template, using the above functions to return the correct data.
+    charts.js is used on the charts.html page to generate the charts with data.
     """
-    print("time example")
-    print( datetime.date.today() )
+    """gets date 3 months ago"""
     three_months_past = datetime.date.today() - datetime.timedelta(3*365/12)
+    
     all_days = []
+    
     user = request.user
     now = timezone.now()
 
     d = three_months_past
+    """returns all dates from 3 months ago till today"""
     while d <=  datetime.date.today():
 
         all_days.append(d)
@@ -145,7 +135,7 @@ def get_charts(request):
     
     #takes bugposts started or finished
     bug_posts_time = BugPost.objects.filter(Q(start_time__gte=three_months_past) | Q(end_time__gte=three_months_past))
-    #takes bugposts started or finished
+    
     
     if bug_posts_time:
         #calls the get averages function from above
@@ -158,9 +148,8 @@ def get_charts(request):
     else:
         most_voted_bugs = None
         
-    #takes bugposts started or finished
-    feature_posts_time = FeaturePost.objects.filter(Q(start_time__gte=three_months_past) | Q(end_time__gte=three_months_past))
     #takesfeatureposts started or finished
+    feature_posts_time = FeaturePost.objects.filter(Q(start_time__gte=three_months_past) | Q(end_time__gte=three_months_past))
     
     if feature_posts_time:
         #calls the get averages function from above

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import time, datetime
 
+"""" used  for toggling post statuses """
 STATUS_LABELS = [
     ('To Do', 'To Do'),
     ('Doing', 'Doing'), 
@@ -11,7 +12,7 @@ STATUS_LABELS = [
 
 class BugPost(models.Model):
     """
-    A single Blog post
+    A single Bug post
     """
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='bugs'
@@ -30,15 +31,10 @@ class BugPost(models.Model):
     def __unicode__(self):
         return self.title
 
-#start = models.IntegerField(default=0)
-#end = models.DateTimeField(blank=True, null=True, default=timezone.now)
-#1999-06-18 14:47:42
-#2012-12-31 23:30 +0430
-#datetime.datetime(1999, 12, 3, 14, 57, 11, 703055, tzinfo=<UTC>)
+
 class BugComment(models.Model):
     """
-    A single Blog comment
-     on_delete=models.CASCADE,
+    A single Bug comment
     """
     post = models.ForeignKey(
         BugPost, on_delete=models.CASCADE, related_name='bugs'

@@ -136,26 +136,41 @@ footer {
 }
 
 
-/*---------------------buttons colors, borders and margins*/
+
+/*---------------------buttons colors, borders and margins, sizes*/
 .current_page {
     background: $xtr-light-black-blue;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .submit_button {
-    margin: 20px 10px 20px 10px;
+.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button {
+    margin: 20px 20px 20px 10px;
+    min-width: 250px;
     color: $white;
     background-color: $green;
 }
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover, .submit_button:hover,
-.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active, .submit_button:active,  {
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
+.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active  {
     background-color: $light-green;
     color: $yellow;
+}
+
+.submit_button {
+    margin: 20px 20px 20px 10px;
+    min-width: 250px;
+    color: $white;
+    background-color: $light-blue
+}
+
+.submit_button:active,  .submit_button:hover {
+    background-color: $xtr-light-blue;
+    color: $yellow;    
 }
 
 .edit_button, .delete_button, .vote_button, .graph_toggle_button {
     background-color: $blue;
     color: $white;
-    margin: 0 15px 15px 0;
+    margin: 0 20px 20px 0;
+    min-width: 190px;
 }
 
 .edit_button:hover, .delete_button:hover, .vote_button:hover, .graph_toggle_button:hover {
@@ -192,8 +207,6 @@ footer {
 .close:hover {
     opacity: .8;
 }
-
-
 
 .search_button {
     color: $white;
@@ -315,6 +328,13 @@ footer {
     .panel-body form .input-group {
         margin: 5px 5px 5px 0;
     }
+    .panel-body form .form-group {
+        max-width: 200px ;
+    }
+    .panel-body form .purchase_ammend_button, .panel-body form .form-group {
+        margin: 10px 0 10px 0;
+    }
+    
     .panel-body form .purchase_ammend_button
     {
         color: $white;
@@ -431,8 +451,13 @@ footer {
 }
 
 /*-----------------------------------search bar for bugs and features*/
+/*for listings page*/
 .search_bar {
     margin: 0 0 30px 0;
+}
+/*for post detail page, as an option for users to be redirected to another topic*/
+.secondary_search_bar {
+    margin: 10px 0 0 0;
 }
 
 
@@ -494,7 +519,7 @@ footer {
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     margin-bottom: 15px;
 }
-
+/*------------------------forms*/
 .form-control {
     border: 2px solid $light-blue;
 }
@@ -513,11 +538,22 @@ footer {
     z-index: 10;
 }
 
+
+.sticky_buttons {
+    text-align: center;
+}
 .sticky_buttons a {
     background-color: $red;
     color: $white;
-    margin: 15px 0 0 0;
-    text-align: right;
+    min-width: 190px;
+    margin: 10px auto 10px auto;
+    
+    .comment_form {
+        text-align: center;
+        a {
+            margin: 10px 20px 10px 0;
+        }
+    }
 }
 .sticky_buttons a:hover {
     background-color: $light-red;
@@ -574,6 +610,32 @@ footer {
 }
 
 /*-------------------------------------------------------media-queries*/
+
+    
+@media only screen and (min-width: 415px) {
+    .sticky_buttons {
+        text-align: left;
+    }
+    .sticky_buttons a {
+
+        margin: 10px 15px 10px 15px;
+        
+        .comment_form {
+            text-align: left;
+            margin: 10px 10px 10px 10px;
+            a {
+                margin: 10px 20px 10px 0;
+            }
+        }
+    }
+    
+}
+@media only screen and (min-width: 444px) {
+    .edit_button, .delete_button, .vote_button, .graph_toggle_button {
+        margin: 0 15px 20px 0;
+    }
+}
+
 @media only screen and (min-width: 517px) {
     .mast_head {
         .page_heading {

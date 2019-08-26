@@ -40,6 +40,24 @@ CHANGE TEXT SIZES!
 - Upon attempting to register OR login,
     - If required inputs are missing, It alerts me without reloading the page.
     - If its a failed attempt, the page reloads with a message telling me what happened.
+    
+- If logged in, 
+    - but login and register links/buttons are available on an already loaded page
+        - clicking the login and register buttons will redirect me to the profile page, telling me to logout first.
+    
+- If logged out, 
+    - but profile links/buttons are available on an already loaded page
+        - clicking the profile button will redirect me to the login page, telling me to login first. 
+    - and bug report detail page is already open with links to vote, delete, comment
+        - activating these links redirects me to the login page, telling me to login.
+    - and feature request detail page is already open with a link to comment, modal pop up to vote (with money in input)
+        - activating these links redirects me to the login page, telling me to login.
+    - and bug report/feature request edit or new form is open,
+        - upon posting I am redirected to the login page, telling me to login.
+    - and cart page is open, with items and their adjust buttons available, aswell as the checkout button.
+        - upon adjusting or checking out, I am redirected to login page, telling me to login first (message excluded from clicking checkout.)
+    - and checkout page is open, with the form filled in correctly and the confirm checkout button available,
+        - upon confirming the payment, I am redirected to the login page without a message.
 
 - Upon opening the bug reports and feature requests pages,
     - I am provided with a search form and three drop down panels, with the first open.
@@ -72,6 +90,10 @@ CHANGE TEXT SIZES!
     - bug reports, I am brought back to the bugs listings page.
     - feature requests, 
         - I am prompted with a pop up money form, telling to submit money to vote, while also telling me how it works (i.e. 10 euro equals 1 vote). Upon suggesting amount to give, in order to vote, I am brought to the checkout page.
+
+- in cart page, Upon amending cart items' euro adding
+    - to 0 or leaving the input field empty, the item is removed after clicking amend.
+    - to a number greater than 0, the page is reloaded showing the changes.
 
 - For posts in all drop down panels,
     - they are further destinguished by their status cateogories through different background colors (Red for To Do, Yellow for Doing, and Green for Done), in which is particularly useful for the profile page where they are all mixed together.

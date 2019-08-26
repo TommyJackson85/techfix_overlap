@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load bootstrap_tags %}
 {% block content %}
+    <!--Mix of bootrap classes and custom.css classes-->
     <div class="col-xs-12 col-md-offset-2 col-md-8">
         {% if bug_post.id is None %}
-        <h1>New Bug Report</h1>
+            <h1>New Bug Report</h1>
         {% else %}
-        <h1>Edit Bug Report</h1>
+            <h1>Edit Bug Report</h1>
         {% endif %}
         
         <form method="POST" enctype="multipart/form-data">

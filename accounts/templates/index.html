@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% block page_heading %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12 mast_head">
@@ -23,6 +24,7 @@
 {% endblock %}
 
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
     <button type="button" class="close col-xs-2" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <p class="col-xs-10 col-md-5">
@@ -63,6 +65,7 @@
         {% endfor %}
         <a href="{% url 'get_blog_posts' %}" class="btn new_post_button">View Full News Blog</a>
     </div>
+    
     <side class="col-xs-12 col-md-4 side_nav">
         <h2><em class="dark_green_text">New Bug Reports!</em></h2>  
         {% for bug_post in bug_posts %}

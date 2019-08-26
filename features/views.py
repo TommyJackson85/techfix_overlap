@@ -35,7 +35,7 @@ def search_feature_posts(request):
     """
     Create a view that will return a list
     of Feature Posts that were published prior to 'now'
-    and render them to the 'bugposts.html' template
+    and render them to the 'featureposts.html' template
     """
     user = request.user
     feature_posts = FeaturePost.objects.filter(title__icontains=request.GET['q'], published_date__lte=timezone.now())
@@ -74,6 +74,11 @@ def feature_post_detail(request, pk):
     feature_comments = FeatureComment.objects.filter(post=feature_post).order_by('published_date')
     
     if request.method == 'POST':
+        
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login first before posting comments!")
+            return redirect('login')
+        
         form = FeatureCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -97,6 +102,11 @@ def create_or_edit_featurepost(request, pk=None):
     """
     feature_post = get_object_or_404(FeaturePost, pk=pk) if pk else None
     if request.method == "POST":
+        
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login first before posting/editing feature requests!")
+            return redirect('login')
+            
         form = FeaturePostForm(request.POST, request.FILES, instance=feature_post)
         if form.is_valid():
             feature_post = form.save(commit=False)

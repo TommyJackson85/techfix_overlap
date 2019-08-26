@@ -16,6 +16,7 @@ def index(request):
 
 @login_required
 def logout(request):
+        
     """Log the user out"""
     auth.logout(request)
     messages.success(request, "You have successfully been logged out")
@@ -23,8 +24,15 @@ def logout(request):
 
 """Return a login page"""
 def login(request):
+    
+    if request.user.is_authenticated:
+        messages.error(request, "Please logout of current account first!")
+        return redirect('profile')
+        
     if request.method == "POST":
+        
         login_form = UserLoginForm(request.POST)
+        
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
                                      password=request.POST['password'])
@@ -38,15 +46,18 @@ def login(request):
                 
     else:
         login_form = UserLoginForm()
-    if request.user.is_authenticated:
-        return redirect('profile')
     return render(request, 'login.html', {'login_form': login_form})
 
 
 def registration(request):
     """Render the registration page"""
-
+    
+    if request.user.is_authenticated:
+        messages.error(request, "Please logout of current account first!")
+        return redirect('profile')
+    
     if request.method == "POST":
+        
         registration_form = UserRegistrationForm(request.POST)
 
         if registration_form.is_valid():
@@ -61,13 +72,17 @@ def registration(request):
                 messages.error(request, "Unable to register your account at this time")
     else:
         registration_form = UserRegistrationForm()
-    if request.user.is_authenticated:
-        return redirect('profile')
+
     return render(request, 'registration.html', {
         "registration_form": registration_form})
 
 
 def user_profile(request):
+    
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login first!")
+        return redirect('login')
+    
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
     logged_in_user_bugposts = BugPost.objects.filter(user=request.user)

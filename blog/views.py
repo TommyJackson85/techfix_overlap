@@ -2,8 +2,9 @@ from django.shortcuts import render
 from .models import BlogPost
 from django.utils import timezone
 
-# Create your views here.
+
 def get_blog_posts(request):
+    """Render the blog posts page"""
     user = request.user
     blog_posts = BlogPost.objects.filter(
         published_date__lte=timezone.now()

@@ -23,7 +23,6 @@ from cart import urls as cart_urls
 from charts import urls as charts_urls
 from checkout import urls as urls_checkout
 
-#maybe replace with url(r'^$', RedirectView.as_view(url='posts/')),
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="index"),

@@ -3,9 +3,10 @@
 {% load static from staticfiles %}
 
 {% block page_heading %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 secondary_search_bar">
             <form action="{% url 'search_bug_posts' %}" method="get">
                 <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
                 <div class="input-group">
@@ -22,7 +23,9 @@
 {% endblock page_heading %}
 
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="row">
+    <!--post details-->
     <div class="post_details col-md-8 col-md-offset-1">
         <p><em class="dark_green_text"><strong>Bug Report Details:</strong></em></p>
         <h1>{{ bug_post.title }}</h1>
@@ -45,9 +48,8 @@
         {% endif %}
         
         <p>{{ bug_post.content }}</p>
-        
-        
-        {% if feature_post.status == "Done" %}
+    
+        {% if bug_post.status == "Done" %}
             <p class="green_text">This feature has been fully developed!</p>
         {% else %}
             {% if user.is_authenticated %}
@@ -58,7 +60,9 @@
                 <a href="{% url 'vote_bug_post' bug_post.id %}" class="btn vote_button">Vote Post</a>
             {% endif %}
         {% endif %}
+
     </div>
+    <!--sticky buttons-->
     <div class="sticky_buttons col-md-8 col-md-offset-1">
             {% if bug_post.status == "Done" %}
                 <p class="red_text">Commenting has been disabled because the issue has been resolved!</p>
@@ -84,7 +88,8 @@
             <a href="{% url 'get_bug_posts' %}" class="btn get_bug_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
             <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
         </div>
-    <div class="comments col-md-8 col-md-offset-1">
+        <!--comments-->
+        <div class="comments col-md-8 col-md-offset-1">
             <h2>Comments:</h2>
             <ul class="media-list">
                 {% for bug_comment in bug_comments %}              

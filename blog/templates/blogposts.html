@@ -3,6 +3,7 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
@@ -13,18 +14,17 @@
 {% endblock page_heading %}
 
 {% block content %}
-
-        <div class="blog_posts">
-            {% if blog_count > 0 %}
-                {% for blog_post in blog_posts %}
-                <h2>{{ blog_post.title }}</h2>
-                <p><em><strong>Author:</strong> {{ blog_post.user }}</em> ~ <em><strong>Published:</strong> {{ blog_post.published_date }}</em></p>
-                <p>{{ blog_post.content }}</p>
-                 <hr />
-                {% endfor %}
-            {% else %}
-                <h2>No blog posts have been posted.</h2>
-            {% endif %}
-        </div>
-
+<!--custom.css class-->
+<div class="blog_posts">
+    {% if blog_count > 0 %}
+        {% for blog_post in blog_posts %}
+        <h2>{{ blog_post.title }}</h2>
+        <p><em><strong>Author:</strong> {{ blog_post.user }}</em> ~ <em><strong>Published:</strong> {{ blog_post.published_date }}</em></p>
+        <p>{{ blog_post.content }}</p>
+        <hr />
+        {% endfor %}
+    {% else %}
+        <h2>No blog posts have been posted.</h2>
+    {% endif %}
+</div>
 {% endblock content %}

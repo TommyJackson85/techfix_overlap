@@ -3,7 +3,7 @@
 {{ user }}'s
 {% endblock %} 
 {% block page_heading %}
-
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="col-md-12">
         <h1><em class="dark_green_text">{{ user }}</em>'s Account</h1>
@@ -14,14 +14,15 @@
     <hr />
 </div>
 
-{% endblock %} 
+{% endblock page_heading %} 
 
 {% block content %}
-
-
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    <!--Create Bug Post button and Bug Post Panel-->
     <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
-                    
+              
     <div class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <div class="dark_blue_bar" role="tab" id="headingOne">
@@ -35,14 +36,13 @@
                 </h2>
             </div>
         </a>
+       
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
                 {% if bug_count > 0 %}
                 <div class="row">
                 {% for bug_post in bug_posts %}
-             
                 <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-                    
                     {% if bug_post.status == "Done" %}
                     <div class="panel panel_done">
                     {% elif bug_post.status == "Doing" %}
@@ -89,8 +89,10 @@
         </div>
     </div>
     
+    <!--Create Feature Post button and Feature Post Panel-->
+    
     <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
-                    
+    
     <div class="panel panel-default">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div class="dark_blue_bar" role="tab" id="headingTwo">

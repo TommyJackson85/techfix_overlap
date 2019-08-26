@@ -3,13 +3,18 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
+<!--Mix of bootrap classe-->}
 <div class="container">
     <h1>Feature Votes Cart:</h1>
     <p>Remember that for each 10 Euro donated by all users counts as 1 vote for the Feature Request. i.e 52 Euro counts as 5 votes only but if a user adds 18 euro it adds to 7 votes.</p>
+    <p><strong>Cart items can be removed</strong> on clicking amend, if amends input is <strong>empty</strong> or <strong>0</strong>.</p>
 </div>
 {% endblock page_heading %} 
 
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes-->
+
+<!--list if cart items-->
 <div class="row row-flex">
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
@@ -45,6 +50,7 @@
             </div>
             <div class="panel-body">
                 <p><strong class="dark_green_text">You will add:</strong></p>
+                <!--form to adjust item donations-->
                 <p>
                     <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
                         {% csrf_token %}
@@ -64,6 +70,9 @@
     </div>
     {% endfor %}
 </div>
+
+
+<!--summary-->
 <div class="row text-center">
     <strong class="dark_green_text">
         <p>Total Cost</p>

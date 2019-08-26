@@ -3,6 +3,7 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="row">
     <div class="col-xs-12 col-sm-6">
@@ -31,7 +32,10 @@
 {% endblock page_heading %}
 
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    
+<!--Finished Panel dropdown-->
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         <div class="dark_blue_bar" role="tab" id="headingOne">
@@ -98,6 +102,7 @@
     </div>
   </div>
 
+<!--In Progress Panel dropdown-->
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         <div class="dark_blue_bar" role="tab" id="headingTwo">
@@ -163,6 +168,7 @@
     </div>
   </div>
   
+<!--To Do Panel dropdown-->
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         <div class="dark_blue_bar" role="tab" id="headingThree">
@@ -229,104 +235,7 @@
   </div>
 </div>
 
-<!--
-  <side id="in_progress_bugs" class="col-xs-12 col-md-4 col-md-push-8 in_progress_bugs">
-        <button type="button" class="btn btn-primary toggle_bug_data">Finished Tickets</button>
-        <h4>In Progress:</h4>
-        {% for bug_post in bug_posts %}
-        {% if bug_post.status == "Doing"%}
-        <div class="col-xs-12 col-sm-4 col-md-12">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <p>{{ bug_post.title|slice:":25" }}<p>
-                    <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
-                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
-                </div>
-                <div class="panel-body">
-                    <p>{{ bug_post.content|slice:":25" }}</p>
-                    {% if bug_post.user == user %}
-                    <p><span class="boldtext">This is your post!</span></p>
-                        {% if bug_post.status == "To Do" %}
-                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
-                        {% endif %}
-                    {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
-                    {% endif %}
-                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
-                    <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
-                </div>
-            </div>
-        </div>
-    {% endif %}
-    {% endfor %}
-    </side>
-    <side id="finished_bugs" class="col-xs-12 col-md-4 col-md-push-8 finished_bugs">
-        <button type="button" class="btn btn-primary toggle_bug_data">In Progress Tickets</button>
-        <h4>Done!</h4>
-        {% for bug_post in bug_posts %}
-        {% if bug_post.status == "Done"%}
-        <div class="col-xs-12 col-sm-4 col-md-12">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <p>{{ bug_post.title|slice:":25" }}<p>
-                    <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
-                    <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
-                </div>
-                <div class="panel-body">
-                    <p>{{ bug_post.content|slice:":25" }}</p>
-                    {% if bug_post.user == user %}
-                    <p><span class="boldtext">This is your post!</span></p>
-                        {% if bug_post.status == "To Do" %}
-                        <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                        <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
-                        {% endif %}
-                    {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
-                    {% endif %}
-                    <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
-                    <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
-                </div>
-            </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-    </side>
-    
-<div class="col-xs-12 col-md-8 col-md-pull-4">
-    <h4>On Waiting List:</h4>
-    {% for bug_post in bug_posts %}
-    {% if bug_post.status == "To Do"%}
-    <div class="col-xs-12 col-sm-4 col-md-6 col-lg-4">
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <p>{{ bug_post.title|slice:":25" }}<p>
-                <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
-                <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
-            </div>
-            <div class="panel-body">
-                <p>{{ bug_post.content|slice:":25" }}</p>
-                {% if bug_post.user == user %}
-                <p><span class="boldtext">This is your post!</span></p>
-                    {% if bug_post.status == "To Do" %}
-                    <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn btn-default">Edit</a>
-                    <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn btn-default">Delete</a>
-                    {% endif %}
-                {% else %}
-                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
-                {% endif %}
-                <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn btn-default">View</a>
-                <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-    </div>
-</div>
--->
 {% endblock content %}
 
-{% block body_js %}
-<script src="{% static 'js/bugs_and_features.js' %}"></script>
-{% endblock body_js %}
+
+<!--bug and features script tag has been removed as it is not required anymore-->

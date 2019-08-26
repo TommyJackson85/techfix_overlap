@@ -72,7 +72,6 @@ In particular, as part of this section we recommend that you provide a list of U
     - provided with a 'Create Bug Report' button above bug listings, and a 'Create Feature Request' button above feature listings.
 
 - When clicking logout, I want to be returned to the home page as a logged out user.
-
 - When opeing the login page, I want to be provided with a login form, and two alternative links/buttons for registration and password reset, and any helpful guides.
 - When opening the password reset page, I want to provided with the necessary input fields for this procdedure.
 - When opening the registration page, I want to be provided with a registration form to input my name, email and password of choice. 
@@ -116,8 +115,8 @@ In particular, as part of this section we recommend that you provide a list of U
 - Buttons
     - Links on nav bar and footer blend in with the background but change color on hover. 
     - Most of the other buttons are blue or green with white text.
-        - Green is usually to represent a significant button, like to precede with a post, but is often used to destinguish it from other buttons or panels (in which are usually blue).
-    - On hover or click they change do a different tone of its color with usually yellow text. This is t
+        - Green is usually to represent a significant button, like to change to another page, but is often used to destinguish it from other buttons or panels (in which are usually blue).
+    - On hover or click they change to a different tone of its color with usually yellow text. This is to show they are interactive.
 
 - Index / home page structure
     - Designed to 

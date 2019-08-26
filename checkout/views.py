@@ -13,9 +13,25 @@ stripe.api_key = settings.STRIPE_SECRET
 
 @login_required()
 def checkout(request):
+    
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login first before proceeding with checkout!")
+        return redirect('login')
+    
+    """opens and renders checkout.html page."""
     try:
         if request.method=="POST":
-            order_form = OrderForm(request.POST)
+            
+            if not request.user.is_authenticated:
+                messages.error(request, "Please login first before proceeding with checkout!")
+                return redirect('login')
+            
+            """
+            makes a post request, using order and payment forms.
+            Should alert user of errors without reloading page.
+            On a succesfull payment, it redirects user to featureposts.html, rendering the page.
+            """
+            order_form = OrderForm(request.POST) 
             payment_form = MakePaymentForm(request.POST)
             
             
@@ -45,8 +61,6 @@ def checkout(request):
             
                     feature_voted.votes = total_votes
                     feature_voted.save()
-                        
-                
      
                     customer = stripe.Charge.create(
                         amount=total_cost * 100,
@@ -69,18 +83,7 @@ def checkout(request):
     except stripe.error.CardError:
         print("error occured")
         messages.error(request, "Your card was declined!")
-        #return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-            
+      
     return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
 
 
-
-    """
-    except Exception as e:
-        print("e:")
-        print(e)
-        messages.error(request, "Something wrong with your payment details")
-        payment_form = MakePaymentForm()
-        order_form = OrderForm()
-        return render(request, "checkout.html", {"order_form": order_form, "payment_form": payment_form, "publishable": settings.STRIPE_PUBLISHABLE})
-    """

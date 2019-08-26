@@ -2,24 +2,29 @@
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
 {% block head_js %}
+<!--stripes javascript-->
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<!--reveives python vals on checkout page load-->
 <script type="text/javascript">
     //<![CDATA[
         Stripe.publishableKey = '{{ publishable }}';
     //]]>
 </script>
+<!--custome javascript-->
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 {% endblock head_js %}
 
-
 {% block page_heading %}
+<!--bootrap class-->
 <div class="container">
     <h1>Checkout Feature Votes Cart</h1>
 </div>
 {% endblock page_heading %} 
 
 {% block content %}
+<!--Mix of bootrap classes and custom.css classes-->
 <div class="row row-flex">
+    <!--list cart times-->
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel_cart_item">
@@ -61,6 +66,7 @@
     </div>
     {% endfor %}
 </div>
+<!--checkout summary-->
 <div class="row text-center">
     <strong class="dark_green_text">
         <p>Total Cost:</p>
@@ -68,7 +74,9 @@
     </strong>
 </div>
 
+<!--checkout form-->
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+    <!--uses Stripe JavaScript-->
     <legend>Payment Details</legend>
     <div id="credit-card-errors" style="display: none;">
         <div id="alert-message block-message error" id="stripe-error-message"></div>
@@ -83,7 +91,7 @@
 
     {% csrf_token %}
     <div class="form-group col-md-12">
-        <input class="btn submit_payment_button" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
+        <input class="btn submit_button" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
     </div>
 </form>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+"""" used  for toggling post statuses """
 STATUS_LABELS = [
     ('To Do', 'To Do'),
     ('Doing', 'Doing'), 
@@ -10,7 +11,7 @@ STATUS_LABELS = [
 
 class FeaturePost(models.Model):
     """
-    A single Blog post
+    A single Feature post
     """
     user= models.ForeignKey(
        User, default=None, on_delete=models.CASCADE, related_name='features'
@@ -33,7 +34,7 @@ class FeaturePost(models.Model):
         
 class FeatureComment(models.Model):
     """
-    A single Blog comment
+    A single Feature comment
     """
     post = models.ForeignKey(
         FeaturePost, on_delete=models.CASCADE, related_name='features'

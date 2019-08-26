@@ -99,27 +99,41 @@ footer p {
   color: #CDCDCD;
 }
 
-/*---------------------buttons colors, borders and margins*/
+/*---------------------buttons colors, borders and margins, sizes*/
 .current_page {
   background: #61686D;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .submit_button {
-  margin: 20px 10px 20px 10px;
+.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button {
+  margin: 20px 20px 20px 10px;
+  min-width: 250px;
   color: #fdfdfd;
   background-color: #31CE44;
 }
 
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover, .submit_button:hover,
-.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active, .submit_button:active {
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
+.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active {
   background-color: #52CE80;
+  color: #FFC63D;
+}
+
+.submit_button {
+  margin: 20px 20px 20px 10px;
+  min-width: 250px;
+  color: #fdfdfd;
+  background-color: #5588C5;
+}
+
+.submit_button:active, .submit_button:hover {
+  background-color: #7295BF;
   color: #FFC63D;
 }
 
 .edit_button, .delete_button, .vote_button, .graph_toggle_button {
   background-color: #366FB3;
   color: #fdfdfd;
-  margin: 0 15px 15px 0;
+  margin: 0 20px 20px 0;
+  min-width: 190px;
 }
 
 .edit_button:hover, .delete_button:hover, .vote_button:hover, .graph_toggle_button:hover {
@@ -276,6 +290,12 @@ footer p {
 .panel_cart_item .panel-body form .input-group {
   margin: 5px 5px 5px 0;
 }
+.panel_cart_item .panel-body form .form-group {
+  max-width: 200px;
+}
+.panel_cart_item .panel-body form .purchase_ammend_button, .panel_cart_item .panel-body form .form-group {
+  margin: 10px 0 10px 0;
+}
 .panel_cart_item .panel-body form .purchase_ammend_button {
   color: #fdfdfd;
   background-color: #366FB3;
@@ -383,8 +403,14 @@ footer p {
 }
 
 /*-----------------------------------search bar for bugs and features*/
+/*for listings page*/
 .search_bar {
   margin: 0 0 30px 0;
+}
+
+/*for post detail page, as an option for users to be redirected to another topic*/
+.secondary_search_bar {
+  margin: 10px 0 0 0;
 }
 
 /*----------------------------------------------------------------home page*/
@@ -443,6 +469,7 @@ footer p {
   margin-bottom: 15px;
 }
 
+/*------------------------forms*/
 .form-control {
   border: 2px solid #5588C5;
 }
@@ -461,11 +488,21 @@ footer p {
   z-index: 10;
 }
 
+.sticky_buttons {
+  text-align: center;
+}
+
 .sticky_buttons a {
   background-color: #F83B4D;
   color: #fdfdfd;
-  margin: 15px 0 0 0;
-  text-align: right;
+  min-width: 190px;
+  margin: 10px auto 10px auto;
+}
+.sticky_buttons a .comment_form {
+  text-align: center;
+}
+.sticky_buttons a .comment_form a {
+  margin: 10px 20px 10px 0;
 }
 
 .sticky_buttons a:hover {
@@ -524,6 +561,27 @@ footer p {
 }
 
 /*-------------------------------------------------------media-queries*/
+@media only screen and (min-width: 415px) {
+  .sticky_buttons {
+    text-align: left;
+  }
+
+  .sticky_buttons a {
+    margin: 10px 15px 10px 15px;
+  }
+  .sticky_buttons a .comment_form {
+    text-align: left;
+    margin: 10px 10px 10px 10px;
+  }
+  .sticky_buttons a .comment_form a {
+    margin: 10px 20px 10px 0;
+  }
+}
+@media only screen and (min-width: 444px) {
+  .edit_button, .delete_button, .vote_button, .graph_toggle_button {
+    margin: 0 15px 20px 0;
+  }
+}
 @media only screen and (min-width: 517px) {
   .mast_head .page_heading h1 {
     font-size: 4em !important;

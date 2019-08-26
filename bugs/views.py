@@ -10,6 +10,11 @@ def vote_bug_post(request, pk):
     """
     Upvotes bug post redirects to list of bug posts
     """
+   
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login before voting for bug reports!")
+        return redirect('login')
+    
     bug_post = get_object_or_404(BugPost, pk=pk)
     bug_post.votes += 1
     bug_post.save()
@@ -89,6 +94,11 @@ def bug_post_detail(request, pk):
     bug_comments = BugComment.objects.filter(post=bug_post).order_by('published_date')
     
     if request.method == 'POST':
+        
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login first before posting comments!")
+            return redirect('login')
+        
         form = BugCommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -112,6 +122,11 @@ def create_or_edit_bugpost(request, pk=None):
     """
     bug_post = get_object_or_404(BugPost, pk=pk) if pk else None
     if request.method == "POST":
+        
+        if not request.user.is_authenticated:
+            messages.error(request, "Please login first before posting or editing bug reports!")
+            return redirect('login')
+        
         #receive form
         form = BugPostForm(request.POST, request.FILES, instance=bug_post)
         #receive user name
@@ -137,6 +152,11 @@ def delete_bug_post(request, pk):
     Or return a 404 error if the post is
     not found
     """
+    
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login first before deleting bug reports!")
+        return redirect('login')
+    
     post = get_object_or_404(BugPost, pk=pk)
     post.delete()
     messages.success(request, "You have successfully deleted the bug report and have been directed to the listings!")
