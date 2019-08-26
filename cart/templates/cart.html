@@ -18,7 +18,7 @@
 <div class="row row-flex">
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="panel panel_cart_item">
+        <div class="panel panel_item">
             <div class="panel-heading panel_post_head">
                 <h3>
                 <strong>
@@ -33,9 +33,9 @@
                 <p><em>
                  
                 {% if item.feature_voted.votes_cost == 0 %} 
-                    <strong class="dark_red_text">{{ item.feature_voted.votes_cost}} €</strong>
+                    <strong class="light_red_text">{{ item.feature_voted.votes_cost}} €</strong>
                 {% else %}
-                    <strong class="dark_green_text">{{ item.feature_voted.votes_cost}} €</strong>
+                    <strong class="light_green_text">{{ item.feature_voted.votes_cost}} €</strong>
                 {% endif %}
                 <!--label starts-->
                 {% if item.feature_voted.votes == 0 %}
@@ -49,7 +49,7 @@
                 </p></em>
             </div>
             <div class="panel-body">
-                <p><strong class="dark_green_text">You will add:</strong></p>
+                <p><strong class="light_green_text">You will add:</strong></p>
                 <!--form to adjust item donations-->
                 <p>
                     <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">

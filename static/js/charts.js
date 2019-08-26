@@ -1,10 +1,10 @@
 //Charts page
 //https://stackoverflow.com/questions/44396737/how-to-shorten-chart-js-label
 //https://jsfiddle.net/6bexkyd9/
-var progress_options = {
+/*var progress_options = {
     maintainAspectRatio: false
-};
-var votes_options = {
+};*/
+var options = {
         maintainAspectRatio: false,
         legend: {
             labels: {
@@ -62,17 +62,17 @@ var ctxMonthly = ctx('monthlyProgressChart');
 var daily_progress_chart = new Chart(ctxDaily, {
     type: 'doughnut',
     data: daily_data,
-    options: progress_options
+    options: options
 });
 var weekly_progress_chart = new Chart(ctxWeekly, {
     type: 'doughnut',
     data: weekly_data,
-    options: progress_options
+    options: options
 });
 var monthly_progress_chart = new Chart(ctxMonthly, {
     type: 'doughnut',
     data: monthly_data,
-    options: progress_options
+    options: options
 });
 
 
@@ -155,13 +155,13 @@ var ctxFeatureVotes = ctx('higestFeaturesVotedChart');
 var most_voted_bugs = new Chart(ctxBugVotes, {
     type: 'doughnut',
     data: bug_votes_data,
-    options: votes_options,
+    options: options,
 });
 
 var most_voted_features = new Chart(ctxFeatureVotes, {
     type: 'doughnut',
     data: feature_votes_data,
-    options: votes_options,
+    options: options,
 });
 
 $("#bug_votes_graph").show();

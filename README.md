@@ -114,8 +114,12 @@ In particular, as part of this section we recommend that you provide a list of U
 
 - Buttons
     - Links on nav bar and footer blend in with the background but change color on hover. 
-    - Most of the other buttons are blue or green with white text.
-        - Green is usually to represent a significant button, like to change to another page, but is often used to destinguish it from other buttons or panels (in which are usually blue).
+    - Most of the other buttons are green with white text.
+        - Green is the primary button color, usually will lead user to another page. 
+        - Blue is the secondary button color. I used it for buttons that dont render the page, but interact with the dom (charts page). Also used for panel drop downs keeping it consistent. 
+        - Light Blue is the third color choice, used for form submit buttons.
+        - Red is the forth, used as sticky buttons, (in which mover when user scrolls.)
+        - Yellow, is to represent a disabled inactive button, like on the charts page.
     - On hover or click they change to a different tone of its color with usually yellow text. This is to show they are interactive.
 
 - Index / home page structure
@@ -126,7 +130,7 @@ In particular, as part of this section we recommend that you provide a list of U
             - recently posted bugs and features (5 of each section), in the form of links (to each full post detail).
    
 - Bug Reports / Feature Requests listing pages layout.
-    -  Having a search bar in the header allows users to break down results, returning only posts with titles containing the search term. Searching an empty string returns all results.
+    - Having a search bar in the header allows users to break down results, returning only posts with titles containing the search term. Searching an empty string returns all results.
     - Splitting found results by their statuses (Done, Doing, To Do) into toggle drop down boxes was a priority for these pages.
         - To show how much work our team puts into delivering what the customers want (from the Done and Doing boxes).
         - To give better navigation for the user and to break down search results. i.e. returning users might prefer to find recently posted posts.
@@ -142,13 +146,14 @@ In particular, as part of this section we recommend that you provide a list of U
             - Also contains 
                 - view button.
                 - euro donations for votes number tag for features.
-            - have associated color backgrounds for their current status, i.e. 'Done' posts have a green background.
+            - have associated color tags for their current status, i.e. 'Done' posts have a green status tag.
 
 - create and edit post forms (for both bugs and feature posts).
     - both forms inherit the same structure, but the edit form inherits the post details available for edit.
 
-- post details pages for bor bugs and features.
+- post details pages for bugs and features.
     - each are accessable from panel post view buttons, and links in the home page.
+    - Intitally shows an optional search bar if user wants to find another topic (kept above page header to make it feel separate.).
     - Gives the full comprehensive details and updates (views, likes, and comment count) of posts, comments list, and comment form with some further navigation buttons.
 
 - comment form and extra navigation buttons (from details pages).
@@ -161,18 +166,18 @@ In particular, as part of this section we recommend that you provide a list of U
 - cart page layout
     - rules are provided at the start. 
     - Checkout button available if logged in and if you have added money to items. If logged out, a loging button is available.
-    - Cart items tell you how much has already been added to each item. They allow you adjust the the money donations, and you can remove items by adjusting to 0.
+    - Cart items tell you how much has already been added to each item. They allow you to adjust the the money donations, and you can remove items by adjusting to 0 or adjusting from a blank input.
 
 - checkout page layout
     - checkout times are consistent in design with the cart page items but donations cant be adjusted here.
-    - the checkout form works with the user of the fake stripe credit card number 4242424242424242 and a later expirary date.
+    - the checkout form works with the fake stripe credit card number 4242424242424242 and a later expirary date.
 
 - charts page layout
     - designed to advertise the website and provide further information on our teams progress and user involvement.
-    - contains a brief description, and two base charts in which.
-    - users can toggle between different data sets from pressing buttons.
-        - First chart demonstrates average amount of posts worked on by developers (user toggles data between daily, weekly and monthly averages).
-        - Second chart demonstrates top 5 highest voted posts (user toggles data between bugs and features).
+    - contains a brief description, and two base charts in which,
+        - users can toggle between different data sets from pressing buttons.
+    - First chart demonstrates average amount of posts worked on by developers (user toggles data between daily, weekly and monthly averages).
+    - Second chart demonstrates top 5 highest voted posts (user toggles data between bugs and features).
 
 - blog page layout
     - designed to advertise the website and show recent news on the Techfix framework.
@@ -292,7 +297,7 @@ If this section grows too long, you may want to split it off into a separate fil
         - stored Stripe keys, AWS bucket name and keys, and the database URL into Heroku's config logs.
         - encountered issues due to false packages, had to delete some from the requirements file, re commit to GitHub. 
         - set up automatic deploy on Heroku, so that each GitHub commit re deploys the website automatically.
-        - [Deployed here.](https://techfix-overlap.herokuapp.com/  )
+        - [Deployed here.](https://techfix-overlap.herokuapp.com/)
         - attached Postgres database in Heroku Resources.      
 
 - For development version of the site, AWS C9 uses an env.py file to hold Stripe keys, and AWS bucket name and keys and the database URL.

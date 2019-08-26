@@ -26,7 +26,7 @@
     <div class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <div class="dark_blue_bar" role="tab" id="headingOne">
-                <h2 class="red_text">
+                <h2 class="light_red_text">
                       Your Bug Reports 
                     {% if bug_count > 0 %}
                         <label class="badge badge-positive">{{ bug_count }}</label>
@@ -43,14 +43,7 @@
                 <div class="row">
                 {% for bug_post in bug_posts %}
                 <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-                    {% if bug_post.status == "Done" %}
-                    <div class="panel panel_done">
-                    {% elif bug_post.status == "Doing" %}
-                    <div class="panel panel_doing">
-                    {% else %}
-                    <div class="panel panel_to_do">
-                    {% endif %}
-                    
+                    <div class="panel panel_item">
                         <div class="panel-heading panel_post_head">
                             <h3>
                                 <strong>
@@ -61,7 +54,15 @@
                                 {% endif %}
                                 </strong>
                             </h3>
-                            <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ bug_post.status }}</p>
+                            <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                                {% if bug_post.status == "Done" %}
+                                <label class="badge badge-positive">{{ bug_post.status }}</label>
+                                {% elif bug_post.status == "Doing" %}
+                                <label class="badge badge-yellow">{{ bug_post.status }}</label>
+                                {% else %}
+                                <label class="badge badge-negative">{{ bug_post.status }}</label>
+                                {% endif %}
+                            </p>
                             <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                         </div>
                         <div class="panel-body">
@@ -112,14 +113,7 @@
             <div class="row">
                 {% for feature_post in feature_posts %}
                 <div class="col-xs-12 col-sm-4 col-md-3 ticket">
-                    
-                    {% if feature_post.status == "Done" %}
-                    <div class="panel panel_done">
-                    {% elif feature_post.status == "Doing" %}
-                    <div class="panel panel_doing">
-                    {% else %}
-                    <div class="panel panel_to_do">
-                    {% endif %}
+                    <div class="panel panel_item">
                         <div class="panel-heading panel_post_head">
                             <h3>
                             <strong>
@@ -130,7 +124,15 @@
                             {% endif %}
                             </strong>
                             </h3>
-                            <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <span class="boldtext">Status:</span> {{ feature_post.status }}</p>
+                            <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> 
+                                  {% if feature_post.status == "Done" %}
+                                  <label class="badge badge-positive">{{ feature_post.status }}</label>
+                                  {% elif feature_post.status == "Doing" %}
+                                  <label class="badge badge-yellow">{{ feature_post.status }}</label>
+                                  {% else %}
+                                  <label class="badge badge-negative">{{ feature_post.status }}</label>
+                                  {% endif %}
+                            </p>
                             <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} 
                             
                             {% if feature_post.votes_cost > 0 %}

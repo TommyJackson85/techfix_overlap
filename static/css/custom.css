@@ -104,7 +104,7 @@ footer p {
   background: #61686D;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button {
+.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .edit_button, .delete_button, .vote_button {
   margin: 20px 20px 20px 10px;
   min-width: 250px;
   color: #fdfdfd;
@@ -112,7 +112,8 @@ footer p {
 }
 
 .new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
-.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active {
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .new_post_button:active, .login_button:active, .registration_button:active,
+.reset_password_button:active, .purchase_button:active, .edit_button:active, .delete_button:active, .vote_button:active {
   background-color: #52CE80;
   color: #FFC63D;
 }
@@ -129,14 +130,14 @@ footer p {
   color: #FFC63D;
 }
 
-.edit_button, .delete_button, .vote_button, .graph_toggle_button {
+.graph_toggle_button {
   background-color: #366FB3;
   color: #fdfdfd;
   margin: 0 20px 20px 0;
   min-width: 190px;
 }
 
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .graph_toggle_button:hover {
+.graph_toggle_button:hover, .graph_toggle_button:active {
   background-color: #5588C5;
   color: #FFC63D;
 }
@@ -146,7 +147,7 @@ footer p {
   color: #fdfdfd;
 }
 
-.submit_payment_button:hover {
+.submit_payment_button:hover, .submit_payment_button:active {
   background-color: #52CE80;
   color: #FFC63D;
 }
@@ -201,6 +202,10 @@ footer p {
   color: #52CE80;
 }
 
+.light_green_text {
+  color: #A5DCAC;
+}
+
 .yellow_text {
   color: #FFD266;
 }
@@ -211,6 +216,10 @@ footer p {
 
 .red_text {
   color: #F96371;
+}
+
+.light_red_text {
+  color: #F2A5AC;
 }
 
 .white_text {
@@ -267,9 +276,42 @@ footer p {
   background-color: #C20013;
 }
 
+.badge-yellow {
+  background-color: #B78204;
+}
+
 .badge-blue {
   /*for footer*/
   background-color: #1558A9;
+}
+
+/*--------------------------------------------------panel collapse*/
+.panel-default .panel-collapse {
+  border-style: solid;
+  border-width: 0 2px 2px 2px;
+  border-color: #242729;
+}
+.panel-default .panel-collapse .panel-body {
+  background-color: #BDAEAE;
+}
+.panel-default .dark_blue_bar {
+  background-image: none;
+  color: #fdfdfd !important;
+  background-color: #1558A9 !important;
+  padding: 10px 15px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #242729;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel-default .dark_blue_bar:hover {
+  background-image: none;
+  background-color: #5588C5 !important;
+}
+
+.panel-group .panel {
+  margin-bottom: 30px !important;
 }
 
 /*-----------------------------ticket panels for bugs and features*/
@@ -312,38 +354,88 @@ footer p {
 }
 
 /*-----for bugs, features, profile pages*/
+.panel_item {
+  border-color: #366FB3;
+  background-color: #7295BF !important;
+}
+.panel_item .panel-heading {
+  color: #242729;
+  background-color: #5588C5;
+  border-color: #366FB3;
+}
+.panel_item .panel-body {
+  background-color: #7295BF !important;
+}
+.panel_item .panel-body a {
+  color: #fdfdfd;
+  background-color: #31CE44;
+}
+.panel_item .panel-body a:hover, .panel_item .panel-body a:active {
+  color: #FFC63D;
+  background-color: #52CE80;
+}
+.panel_item .panel-body form .input-group {
+  margin: 5px 5px 5px 0;
+}
+.panel_item .panel-body form .form-group {
+  max-width: 200px;
+}
+.panel_item .panel-body form .purchase_ammend_button, .panel_item .panel-body form form .form-group {
+  margin: 10px 0 10px 0;
+}
+.panel_item .panel-body form .purchase_ammend_button {
+  color: #fdfdfd;
+  background-color: #31CE44;
+}
+.panel_item .panel-body form .purchase_ammend_button:hover {
+  color: #FFC63D;
+  background-color: #52CE80;
+}
+.panel_item .panel-body form .input-group-addon {
+  color: #fdfdfd;
+  background-color: #1558A9;
+  border: 1px 1px 1px 1p;
+  border-color: #5588C5;
+}
+
 .panel_done {
   border-color: #31CE44;
-  background-color: #A5DCAC;
+  background-color: #A5DCAC !important;
 }
 .panel_done .panel-heading {
   color: #242729;
   background-color: #52CE80;
   border-color: #31CE44;
 }
+.panel_done .panel-body {
+  background-color: #A5DCAC !important;
+}
 .panel_done .panel-body a {
   color: #fdfdfd;
   background-color: #366FB3;
 }
-.panel_done .panel-body a:hover {
+.panel_done .panel-body a:hover, .panel_done .panel-body a:active {
   color: #FFC63D;
   background-color: #5588C5;
 }
 
 .panel_doing {
   border-color: #FFC63D;
-  background-color: #FFE5A7;
+  background-color: #FFE5A7 !important;
 }
 .panel_doing .panel-heading {
   color: #242729;
   background-color: #FFD266;
   border-color: #FFC63D;
 }
+.panel_doing .panel-body {
+  background-color: #FFE5A7 !important;
+}
 .panel_doing .panel-body a {
   color: #fdfdfd;
   background-color: #366FB3;
 }
-.panel_doing .panel-body a:hover {
+.panel_doing .panel-body a:hover, .panel_doing .panel-body a:active {
   color: #FFC63D;
   background-color: #5588C5;
 }
@@ -357,11 +449,14 @@ footer p {
   background-color: #F96371;
   border-color: #F83B4D;
 }
+.panel_to_do .panel-body {
+  background-color: #F2A5AC !important;
+}
 .panel_to_do .panel-body a {
   color: #fdfdfd;
   background-color: #366FB3;
 }
-.panel_to_do .panel-body a:hover {
+.panel_to_do .panel-body a:hover, .panel_to_do .panel-body a:active {
   color: #FFC63D;
   background-color: #5588C5;
 }
@@ -374,32 +469,6 @@ footer p {
 
 .ticket .panel-body a {
   margin: 0 15px 15px 0;
-}
-
-/*--------------------------------------------------panel collapse*/
-.panel-default .panel-collapse {
-  border-style: solid;
-  border-width: 0 2px 2px 2px;
-  border-color: #242729;
-}
-.panel-default .dark_blue_bar {
-  background-image: none;
-  color: #fdfdfd !important;
-  background-color: #1558A9 !important;
-  padding: 10px 15px;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #242729;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-}
-.panel-default .dark_blue_bar:hover {
-  background-image: none;
-  background-color: #5588C5 !important;
-}
-
-.panel-group .panel {
-  margin-bottom: 30px !important;
 }
 
 /*-----------------------------------search bar for bugs and features*/
@@ -425,11 +494,17 @@ footer p {
 
 /*-----introduction alert*/
 .alert_introduction {
-  background-color: #52CE80;
+  background-color: #7295BF;
   border: 5px 5px 5px 5px;
   border-color: #242729;
   color: #242729;
   padding: 10px 5px 10px 5px;
+}
+.alert_introduction p a {
+  color: #fdfdfd !important;
+}
+.alert_introduction p a:hover, .alert_introduction p a:active {
+  color: #52CE80 !important;
 }
 .alert_introduction .alert > p + p {
   margin-top: 0 !important;
@@ -447,7 +522,13 @@ footer p {
 
 /*-side nav displaying latest bugs and features*/
 .side_nav {
-  background-color: #FFD266;
+  background-color: #BDAEAE;
+}
+.side_nav a {
+  color: #fdfdfd;
+}
+.side_nav a:hover, .side_nav a:active {
+  color: #52CE80;
 }
 
 /*---------------------------------password reset page*/
@@ -541,14 +622,16 @@ footer p {
 
 /*----------------------------------------- charts for chart page*/
 .average_graphs {
-  height: 490px;
+  height: 450px;
+  margin-bottom: 70px;
 }
 
-.average_graphs .graph {
+.average_graphs .graph, .vote_graphs .graph {
   position: relative;
   height: 300px;
-  /*height:60vh;
-  width:120vw;*/
+}
+.average_graphs .graph h2, .vote_graphs .graph h2 {
+  font-size: 1.5em;
 }
 
 .vote_graphs {

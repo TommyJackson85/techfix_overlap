@@ -17,7 +17,8 @@ $xtr-light-blue: #7295BF;
 
 /*white*/
 $white: #fdfdfd;
-$dark-white: #E4DBDB;
+$red-white: #E4DBDB;
+$dark-red-white: #BDAEAE;
 
 /*green*/
 $green: #31CE44;
@@ -26,6 +27,7 @@ $light-green: #52CE80;
 $xtr-light-green: #A5DCAC;
 
 /*yellow*/
+$dark-yellow: #B78204;
 $yellow: #FFC63D;
 $light-yellow: #FFD266;
 $xtr-light-yellow: #FFE5A7;
@@ -52,7 +54,7 @@ body {
     padding: 0 0;
     position: relative;
     font-family: Arial, Helvetica, sans-serif !important;
-    background-color: $dark-white;
+    background-color: $red-white;
 }
 
 header {
@@ -142,14 +144,15 @@ footer {
     background: $xtr-light-black-blue;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button {
+.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .edit_button, .delete_button, .vote_button {
     margin: 20px 20px 20px 10px;
     min-width: 250px;
     color: $white;
     background-color: $green;
 }
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
-.new_post_button:active, .login_button:active, .registration_button:active, .reset_password_button:active, .purchase_button:active  {
+.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover, 
+.edit_button:hover, .delete_button:hover, .vote_button:hover, .new_post_button:active, .login_button:active, .registration_button:active, 
+.reset_password_button:active, .purchase_button:active, .edit_button:active, .delete_button:active, .vote_button:active {
     background-color: $light-green;
     color: $yellow;
 }
@@ -166,14 +169,14 @@ footer {
     color: $yellow;    
 }
 
-.edit_button, .delete_button, .vote_button, .graph_toggle_button {
+.graph_toggle_button {
     background-color: $blue;
     color: $white;
     margin: 0 20px 20px 0;
     min-width: 190px;
 }
 
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .graph_toggle_button:hover {
+.graph_toggle_button:hover, .graph_toggle_button:active {
     background-color: $light-blue;
     color: $yellow;
 }
@@ -183,7 +186,7 @@ footer {
     color: $white;    
 }
 
-.submit_payment_button:hover {
+.submit_payment_button:hover, .submit_payment_button:active {
     background-color: $light-green;
     color: $yellow;    
 }
@@ -195,7 +198,6 @@ footer {
     background-color: $light-green;
     color: $yellow;
 }
-
 
 .close {
     /*changing bootstrap class*/
@@ -235,6 +237,9 @@ footer {
 .green_text {
     color: $light-green ;
 }
+.light_green_text {
+    color: $xtr-light-green ;
+}
 .yellow_text {
     color: $light-yellow ;
 }
@@ -244,6 +249,10 @@ footer {
 .red_text {
     color: $light-red ;
 }
+.light_red_text {
+    color: $xtr-light-red ;
+}
+
 .white_text {
     color: $white !important;
 }
@@ -303,9 +312,49 @@ footer {
     background-color: $dark-red;
 }
 
+.badge-yellow {
+    background-color: $dark-yellow;
+}
+
 .badge-blue {
     /*for footer*/
     background-color: $dark-blue;
+}
+
+
+/*--------------------------------------------------panel collapse*/
+//panel-default and panel-collapse are bootstrap classes
+.panel-default {
+    .panel-collapse {
+        border-style: solid;
+        border-width: 0 2px 2px 2px;
+        border-color: $black-blue;
+        
+        .panel-body {
+            background-color: $dark-red-white;   
+        }
+    }
+    .dark_blue_bar {
+        background-image: none;
+        color: $white !important;
+        background-color: $dark-blue !important;
+        padding: 10px 15px;
+        
+        border-style: solid;
+        border-width: 2px;
+        border-color: $black-blue;
+        
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+    .dark_blue_bar:hover {
+        background-image: none;
+        background-color: $light-blue !important;
+    }
+}
+
+.panel-group .panel {
+    margin-bottom: 30px !important;
 }
 
 /*-----------------------------ticket panels for bugs and features*/
@@ -353,39 +402,97 @@ footer {
 }
 
 /*-----for bugs, features, profile pages*/
+
+.panel_item {
+    border-color: $blue;
+    background-color: $xtr-light-blue !important;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-blue;
+        border-color: $blue;
+    }
+    .panel-body {
+        background-color: $xtr-light-blue !important;
+        //for panel drop down items
+        a {
+            color: $white;
+            background-color: $green;        
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-green;
+        }
+        
+        //for cart items
+        form {
+            .input-group {
+                margin: 5px 5px 5px 0;
+            }
+            .form-group {
+                max-width: 200px ;
+            }
+            .purchase_ammend_button, form .form-group {
+                margin: 10px 0 10px 0;
+            }
+            
+            .purchase_ammend_button{
+                color: $white;
+                background-color: $green;        
+            }
+            .purchase_ammend_button:hover {
+                color: $yellow;
+                background-color: $light-green;
+            }
+            .input-group-addon {
+                color: $white;
+                background-color: $dark-blue;
+                border: 1px 1px 1px 1p;
+                border-color: $light-blue;
+            }
+        }
+    }
+    
+}
+
 .panel_done {
     border-color: $green;
-    background-color: $xtr-light-green;
+    background-color: $xtr-light-green !important;
     .panel-heading {
         color: $black-blue;
         background-color: $light-green;
         border-color: $green;
     }
-    .panel-body a {
-        color: $white;
-        background-color: $blue;        
-    }
-    .panel-body a:hover {
-        color: $yellow;
-        background-color: $light-blue;
+    .panel-body {
+        background-color: $xtr-light-green !important;
+        a {
+            color: $white;
+            background-color: $blue;        
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
     }
 }
 
 .panel_doing {
     border-color: $yellow;
-    background-color: $xtr-light-yellow;
+    background-color: $xtr-light-yellow !important;
     .panel-heading {
         color: $black-blue;
         background-color:$light-yellow;
         border-color: $yellow;
     }
-    .panel-body a {
-        color: $white;
-        background-color: $blue;        
-    }
-    .panel-body a:hover {
-        color: $yellow;
-        background-color: $light-blue;
+    .panel-body {
+        background-color: $xtr-light-yellow !important;
+        a {
+            color: $white;
+            background-color: $blue;        
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
     }
 }
 
@@ -397,13 +504,16 @@ footer {
         background-color: $light-red;
         border-color: $red;
     }
-    .panel-body a {
-        color: $white;
-        background-color: $blue;
-    }
-    .panel-body a:hover {
-        color: $yellow;
-        background-color: $light-blue;
+    .panel-body {
+        background-color: $xtr-light-red !important;
+        a {
+            color: $white;
+            background-color: $blue;
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
     }
 }
 
@@ -419,36 +529,7 @@ footer {
 } 
 
 
-/*--------------------------------------------------panel collapse*/
-//panel-default and panel-collapse are bootstrap classes
-.panel-default {
-    .panel-collapse {
-        border-style: solid;
-        border-width: 0 2px 2px 2px;
-        border-color: $black-blue;
-    }
-    .dark_blue_bar {
-        background-image: none;
-        color: $white !important;
-        background-color: $dark-blue !important;
-        padding: 10px 15px;
-        
-        border-style: solid;
-        border-width: 2px;
-        border-color: $black-blue;
-        
-        border-top-left-radius: 3px;
-        border-top-right-radius: 3px;
-    }
-    .dark_blue_bar:hover {
-        background-image: none;
-        background-color: $light-blue !important;
-    }
-}
 
-.panel-group .panel {
-    margin-bottom: 30px !important;
-}
 
 /*-----------------------------------search bar for bugs and features*/
 /*for listings page*/
@@ -473,12 +554,19 @@ footer {
 
 /*-----introduction alert*/
 .alert_introduction {
-    background-color: $light-green;
+    background-color: $xtr-light-blue;
     border: 5px 5px 5px 5px;
     border-color: $black-blue;
     color: $black-blue;
     padding: 10px 5px 10px 5px;
-    
+    p {
+        a {
+            color: $white !important;
+        }
+        a:hover, a:active {
+            color: $light-green !important;
+        }
+    }
     .alert>p+p {
         margin-top: 0 !important;
     }
@@ -497,7 +585,13 @@ footer {
 
 /*-side nav displaying latest bugs and features*/
 .side_nav {
-    background-color: $light-yellow;
+    background-color: $dark-red-white;
+    a{
+        color: $white;
+    }
+    a:hover, a:active {
+        color: $light-green;
+    }
 }
 
 
@@ -593,13 +687,15 @@ footer {
 
 /*----------------------------------------- charts for chart page*/
 .average_graphs {
-    height: 490px
+    height: 450px;
+    margin-bottom: 70px;
 }
-.average_graphs .graph {
+.average_graphs .graph, .vote_graphs .graph {
     position: relative;
     height: 300px;
-    /*height:60vh;
-    width:120vw;*/
+    h2 {
+        font-size: 1.5em;
+    }
 }
 .vote_graphs {
     height: 420px;
@@ -699,7 +795,7 @@ footer {
             }
         }
     }
-    
+
     section {
         padding: 50px 0 164px 0;
     }

@@ -4,7 +4,6 @@
 
 - All active buttons / links change color or tone when hovering over or clicking.
 - All text is differentiated from the backgroung making it easier to read for the user.
-CHANGE TEXT SIZES!
 
 - From navigating the whole website, I found
     - All various sections, buttons, are separated where needed, through different backgrounds, colors and borders.
@@ -59,7 +58,7 @@ CHANGE TEXT SIZES!
     - and checkout page is open, with the form filled in correctly and the confirm checkout button available,
         - upon confirming the payment, I am redirected to the login page without a message.
 
-- Upon opening the bug reports and feature requests pages,
+- Upon opening the bug reports and feature requests listings pages,
     - I am provided with a search form and three drop down panels, with the first open.
     - The panels in order are are Done, Doing and To Do, splitting all posts by they current status. When each are opened they display the all the posts with the status category.
     - each panel has a number displayed next to the status category, correctly displaying the amount of posts it contains.
@@ -74,7 +73,8 @@ CHANGE TEXT SIZES!
     - a create Bug Report button and create Feature Request button, both easily located above their respected panels.
     - The panels embody much of the same panel functionality of the bugs and features pages panels, keeping the website consistent.
 
-- Upon Loading individual Bug Report or Feature Request detail pages, 
+- Upon Loading individual Bug Report or Feature Request detail pages,
+    - First provided with an optional search bar, which allows me search another topic bringing me back to the listings pages.
     - I am provided with the full details of the post (title, description, status, user who created it (will tell me its mine if im logged in and if its mine), status, published date, the countings of likes, views and comments).
     - the list of full comments below the details of post.
     - a set of sticky buttons (and other tools) which scroll along the screen while I read the comments.
@@ -96,7 +96,7 @@ CHANGE TEXT SIZES!
     - to a number greater than 0, the page is reloaded showing the changes.
 
 - For posts in all drop down panels,
-    - they are further destinguished by their status cateogories through different background colors (Red for To Do, Yellow for Doing, and Green for Done), in which is particularly useful for the profile page where they are all mixed together.
+    - they are further destinguished by their status cateogories through different colored status labels (Red for To Do, Yellow for Doing, and Green for Done), in which is particularly useful for the profile page where they are all mixed together.
     - They contain all details of the post, but a shortened title and description. 
     - a view button is included to access the detail page.
     
@@ -108,18 +108,17 @@ CHANGE TEXT SIZES!
     - total money donated to create amount of votes is seen.
     
 - If a feature report or bug post status is 'Done', then the buttons and forms add values to the post are removed.
-###################################
 
 - Upon loading the cart page,
     - as a logged in user 
         - I am prompted with the option to adjust my current payments of my submitted features and a cost summary.
         - the checkout button is available if there are items in the cart.
-        - 
+        
     - as a logged out user
         - I view an empty cart, and I am prompted to Login or Register to use the cart.
 
 - Upon ajusting cart item,
-    - to 0 and then submitting, the cart page is reloaded showing the item removed.
+    - to 0 or emptied input, and then submitting, the cart page is reloaded showing the item removed.
     - 12 and then submitting, the cart page is reloaded showing the values changed accordingly.
 
 - Upon clicking the checkout button from cart page,
@@ -144,15 +143,10 @@ CHANGE TEXT SIZES!
     - The first chart set shows how many bugs and features are worked on, in which the three buttons to allow me to toggle between average per day, per week, and per month. 
     - The second chart shows the current highest voted bugs and features with buttons to toggle between both. 
     - There is a clear indication of which data has been activate because, the button associated with the displayed data is deactivated, and has a different color background, and not hover color scheme. 
-
 - When toggling chart date, the graph fades out and fades back in with the new data displayed. I get a clear understanding of how to toggle between data sets. The two main graphs are neatly separated.
+- All charts keys and values are displayed without having to click the graphs, but clicking the graphs also shows the values and keys.
 
 - Upon opening the blog page, I can see all of the news posts separated by their dates, titles and a line below each, and with the most recently posted seen first.
-
-FINISH HOW THE NUMBERS ARE DISPLAYED.
-
-- After opening the news blog page, I want to be able to view all news reports, with the most recent first shown.
-
 
 ## Django automated tests
 
