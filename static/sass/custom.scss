@@ -55,6 +55,7 @@ body {
     position: relative;
     font-family: Arial, Helvetica, sans-serif !important;
     background-color: $red-white;
+    overflow-wrap: break-word;
 }
 
 header {
@@ -148,12 +149,12 @@ footer {
     margin: 20px 20px 20px 10px;
     min-width: 250px;
     color: $white;
-    background-color: $green;
+    background-color: $dark-green;
 }
 .new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover, 
 .edit_button:hover, .delete_button:hover, .vote_button:hover, .new_post_button:active, .login_button:active, .registration_button:active, 
 .reset_password_button:active, .purchase_button:active, .edit_button:active, .delete_button:active, .vote_button:active {
-    background-color: $light-green;
+    background-color: $green;
     color: $yellow;
 }
 
@@ -277,13 +278,13 @@ footer {
 }
 
 .blog_posts {
-    h2, h3 {
+    h1, h2 {
         font-size: 1.6em;
     }
 }
 
 .dark_blue_bar {
-    h2 {
+    h1 {
         margin-top: 0px;
         margin-bottom: 0px;
         font-size: 1.4em !important;
@@ -292,17 +293,27 @@ footer {
 }
 
 .panel_post_head {
-    h3 {
+    h2 {
         font-size: 1.2em !important;
         margin-top: 0px;
         margin-bottom: 10px;
     }
 }
 
-.comments h2 {
-    font-size: 1.8em;
+.comments {
+    h2 {
+        font-size: 1.8em;
+    }
 }
-
+.comment {
+    h3 {
+        font-size: 1.4em;
+    }
+}
+/*bug bost and feature detail page*/
+.post_details p, .secondary_search_bar h1 {
+    font-size: 1.2em;
+}
 /*--------------------------------------------number display badge classes*/
 .badge-positive {
     background-color: $dark-green;
@@ -359,7 +370,7 @@ footer {
 
 /*-----------------------------ticket panels for bugs and features*/
 /*-------for cart and checkout pages*/
-
+/*
 .panel_cart_item {
     background-color: $xtr-light-yellow;
     .panel-heading {
@@ -400,12 +411,13 @@ footer {
         border-color: $light-blue;
     }
 }
-
+*/
 /*-----for bugs, features, profile pages*/
 
 .panel_item {
     border-color: $blue;
     background-color: $xtr-light-blue !important;
+    height: 375px;
     .panel-heading {
         color: $black-blue;
         background-color: $light-blue;
@@ -416,11 +428,11 @@ footer {
         //for panel drop down items
         a {
             color: $white;
-            background-color: $green;        
+            background-color: $dark-green;        
         }
         a:hover, a:active {
             color: $yellow;
-            background-color: $light-green;
+            background-color: $green;
         }
         
         //for cart items
@@ -454,6 +466,8 @@ footer {
     
 }
 
+
+/*
 .panel_done {
     border-color: $green;
     background-color: $xtr-light-green !important;
@@ -516,7 +530,7 @@ footer {
         }
     }
 }
-
+*/
 
 /*------ticket class changes*/
 .ticket {
@@ -537,9 +551,10 @@ footer {
     margin: 0 0 30px 0;
 }
 /*for post detail page, as an option for users to be redirected to another topic*/
-.secondary_search_bar {
+
+/*.secondary_search_bar {
     margin: 10px 0 0 0;
-}
+}*/
 
 
 /*----------------------------------------------------------------home page*/
@@ -679,7 +694,7 @@ footer {
 
 .comments {
     background-color: $xtr-light-blue;
-    border-radius: 0 0 5px 5px;
+    border-radius: 5px 5px 5px 5px;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -707,7 +722,13 @@ footer {
 
 /*-------------------------------------------------------media-queries*/
 
-    
+
+@media only screen and (min-width: 354px) {
+    .panel_item {
+        height: 305px;
+    }
+}
+
 @media only screen and (min-width: 415px) {
     .sticky_buttons {
         text-align: left;
@@ -742,7 +763,9 @@ footer {
     }
 }
 @media only screen and (min-width: 768px) {
-
+    .panel_item {
+        height: 375px
+    }
     .mast_head {
         .page_heading {
             h1 {
@@ -769,7 +792,7 @@ footer {
 @media only screen and (min-width: 804px) {
     
     .dark_blue_bar {
-        h2 {
+        h1 {
             margin-top: 0px;
             margin-bottom: 0px;
             font-size: 1.6em !important;

@@ -21,6 +21,7 @@ body {
   position: relative;
   font-family: Arial, Helvetica, sans-serif !important;
   background-color: #E4DBDB;
+  overflow-wrap: break-word;
 }
 
 header {
@@ -108,13 +109,13 @@ footer p {
   margin: 20px 20px 20px 10px;
   min-width: 250px;
   color: #fdfdfd;
-  background-color: #31CE44;
+  background-color: #019914;
 }
 
 .new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
 .edit_button:hover, .delete_button:hover, .vote_button:hover, .new_post_button:active, .login_button:active, .registration_button:active,
 .reset_password_button:active, .purchase_button:active, .edit_button:active, .delete_button:active, .vote_button:active {
-  background-color: #52CE80;
+  background-color: #31CE44;
   color: #FFC63D;
 }
 
@@ -244,20 +245,20 @@ footer p {
   font-size: 2em;
 }
 
-.blog_posts h2, .blog_posts h3 {
+.blog_posts h1, .blog_posts h2 {
   font-size: 1.6em;
 }
 
-.dark_blue_bar h2 {
+.dark_blue_bar h1 {
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: 1.4em !important;
 }
-.dark_blue_bar h2 .badge {
+.dark_blue_bar h1 .badge {
   font-size: 0.7em !important;
 }
 
-.panel_post_head h3 {
+.panel_post_head h2 {
   font-size: 1.2em !important;
   margin-top: 0px;
   margin-bottom: 10px;
@@ -265,6 +266,15 @@ footer p {
 
 .comments h2 {
   font-size: 1.8em;
+}
+
+.comment h3 {
+  font-size: 1.4em;
+}
+
+/*bug bost and feature detail page*/
+.post_details p, .secondary_search_bar h1 {
+  font-size: 1.2em;
 }
 
 /*--------------------------------------------number display badge classes*/
@@ -316,47 +326,53 @@ footer p {
 
 /*-----------------------------ticket panels for bugs and features*/
 /*-------for cart and checkout pages*/
+/*
 .panel_cart_item {
-  background-color: #FFE5A7;
-}
-.panel_cart_item .panel-heading {
-  color: #242729;
-  background-color: #FFD266;
-}
-.panel_cart_item .panel-heading .badge-positive {
-  background-color: green;
-}
-.panel_cart_item .panel-heading .badge-negative {
-  background-color: red;
-}
-.panel_cart_item .panel-body form .input-group {
-  margin: 5px 5px 5px 0;
-}
-.panel_cart_item .panel-body form .form-group {
-  max-width: 200px;
-}
-.panel_cart_item .panel-body form .purchase_ammend_button, .panel_cart_item .panel-body form .form-group {
-  margin: 10px 0 10px 0;
-}
-.panel_cart_item .panel-body form .purchase_ammend_button {
-  color: #fdfdfd;
-  background-color: #366FB3;
-}
-.panel_cart_item .panel-body form .purchase_ammend_button:hover {
-  color: #FFC63D;
-  background-color: #5588C5;
-}
-.panel_cart_item .panel-body form .input-group-addon {
-  color: #fdfdfd;
-  background-color: #1558A9;
-  border: 1px 1px 1px 1p;
-  border-color: #5588C5;
-}
+    background-color: $xtr-light-yellow;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-yellow;
 
+        .badge-positive {
+            background-color: green;
+        }
+
+        .badge-negative {
+            background-color: red;
+        }
+    }
+    .panel-body form .input-group {
+        margin: 5px 5px 5px 0;
+    }
+    .panel-body form .form-group {
+        max-width: 200px ;
+    }
+    .panel-body form .purchase_ammend_button, .panel-body form .form-group {
+        margin: 10px 0 10px 0;
+    }
+
+    .panel-body form .purchase_ammend_button
+    {
+        color: $white;
+        background-color: $blue;        
+    }
+    .panel-body form .purchase_ammend_button:hover {
+        color: $yellow;
+        background-color: $light-blue;
+    }
+    .panel-body form .input-group-addon {
+        color: $white;
+        background-color: $dark-blue;
+        border: 1px 1px 1px 1p;
+        border-color: $light-blue;
+    }
+}
+*/
 /*-----for bugs, features, profile pages*/
 .panel_item {
   border-color: #366FB3;
   background-color: #7295BF !important;
+  height: 375px;
 }
 .panel_item .panel-heading {
   color: #242729;
@@ -368,11 +384,11 @@ footer p {
 }
 .panel_item .panel-body a {
   color: #fdfdfd;
-  background-color: #31CE44;
+  background-color: #019914;
 }
 .panel_item .panel-body a:hover, .panel_item .panel-body a:active {
   color: #FFC63D;
-  background-color: #52CE80;
+  background-color: #31CE44;
 }
 .panel_item .panel-body form .input-group {
   margin: 5px 5px 5px 0;
@@ -398,69 +414,70 @@ footer p {
   border-color: #5588C5;
 }
 
+/*
 .panel_done {
-  border-color: #31CE44;
-  background-color: #A5DCAC !important;
-}
-.panel_done .panel-heading {
-  color: #242729;
-  background-color: #52CE80;
-  border-color: #31CE44;
-}
-.panel_done .panel-body {
-  background-color: #A5DCAC !important;
-}
-.panel_done .panel-body a {
-  color: #fdfdfd;
-  background-color: #366FB3;
-}
-.panel_done .panel-body a:hover, .panel_done .panel-body a:active {
-  color: #FFC63D;
-  background-color: #5588C5;
+    border-color: $green;
+    background-color: $xtr-light-green !important;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-green;
+        border-color: $green;
+    }
+    .panel-body {
+        background-color: $xtr-light-green !important;
+        a {
+            color: $white;
+            background-color: $blue;        
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
+    }
 }
 
 .panel_doing {
-  border-color: #FFC63D;
-  background-color: #FFE5A7 !important;
-}
-.panel_doing .panel-heading {
-  color: #242729;
-  background-color: #FFD266;
-  border-color: #FFC63D;
-}
-.panel_doing .panel-body {
-  background-color: #FFE5A7 !important;
-}
-.panel_doing .panel-body a {
-  color: #fdfdfd;
-  background-color: #366FB3;
-}
-.panel_doing .panel-body a:hover, .panel_doing .panel-body a:active {
-  color: #FFC63D;
-  background-color: #5588C5;
+    border-color: $yellow;
+    background-color: $xtr-light-yellow !important;
+    .panel-heading {
+        color: $black-blue;
+        background-color:$light-yellow;
+        border-color: $yellow;
+    }
+    .panel-body {
+        background-color: $xtr-light-yellow !important;
+        a {
+            color: $white;
+            background-color: $blue;        
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
+    }
 }
 
 .panel_to_do {
-  border-color: #F83B4D;
-  background-color: #F2A5AC;
+    border-color: $red;
+    background-color: $xtr-light-red;
+    .panel-heading {
+        color: $black-blue;
+        background-color: $light-red;
+        border-color: $red;
+    }
+    .panel-body {
+        background-color: $xtr-light-red !important;
+        a {
+            color: $white;
+            background-color: $blue;
+        }
+        a:hover, a:active {
+            color: $yellow;
+            background-color: $light-blue;
+        }
+    }
 }
-.panel_to_do .panel-heading {
-  color: #242729;
-  background-color: #F96371;
-  border-color: #F83B4D;
-}
-.panel_to_do .panel-body {
-  background-color: #F2A5AC !important;
-}
-.panel_to_do .panel-body a {
-  color: #fdfdfd;
-  background-color: #366FB3;
-}
-.panel_to_do .panel-body a:hover, .panel_to_do .panel-body a:active {
-  color: #FFC63D;
-  background-color: #5588C5;
-}
-
+*/
 /*------ticket class changes*/
 .ticket {
   height: 390px;
@@ -478,10 +495,9 @@ footer p {
 }
 
 /*for post detail page, as an option for users to be redirected to another topic*/
-.secondary_search_bar {
-  margin: 10px 0 0 0;
-}
-
+/*.secondary_search_bar {
+    margin: 10px 0 0 0;
+}*/
 /*----------------------------------------------------------------home page*/
 /*-----masshead*/
 .mast_head {
@@ -615,7 +631,7 @@ footer p {
 
 .comments {
   background-color: #7295BF;
-  border-radius: 0 0 5px 5px;
+  border-radius: 5px 5px 5px 5px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -644,6 +660,11 @@ footer p {
 }
 
 /*-------------------------------------------------------media-queries*/
+@media only screen and (min-width: 354px) {
+  .panel_item {
+    height: 305px;
+  }
+}
 @media only screen and (min-width: 415px) {
   .sticky_buttons {
     text-align: left;
@@ -671,6 +692,10 @@ footer p {
   }
 }
 @media only screen and (min-width: 768px) {
+  .panel_item {
+    height: 375px;
+  }
+
   .mast_head .page_heading h1 {
     font-size: 3em !important;
   }
@@ -691,12 +716,12 @@ footer p {
   }
 }
 @media only screen and (min-width: 804px) {
-  .dark_blue_bar h2 {
+  .dark_blue_bar h1 {
     margin-top: 0px;
     margin-bottom: 0px;
     font-size: 1.6em !important;
   }
-  .dark_blue_bar h2 .badge {
+  .dark_blue_bar h1 .badge {
     font-size: 0.8em !important;
   }
 

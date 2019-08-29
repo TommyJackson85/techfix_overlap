@@ -6,9 +6,9 @@
 <!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 secondary_search_bar">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-lg-7 secondary_search_bar">
             <form action="{% url 'search_feature_posts' %}" method="get">
-                <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
+                <h1><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></h1>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="other feature request" name="q">
                     <span class="input-group-btn">
@@ -31,21 +31,35 @@
         <h1>{{ feature_post.title }}</h1>
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ feature_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ feature_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ feature_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ feature_post.published_date }} </p>
+        
+        {% if feature_post.votes_cost > 0 %}
+            <label class="badge badge-positive">{{ feature_post.votes_cost }} € donated</label>
+        {% else %}
+            <label class="badge badge-negative">{{ feature_post.votes_cost }} € donated</label>
+        {% endif %}
+        
         {% if feature_post.status == "Doing" %}
+            <label class="badge badge-yellow">{{ feature_post.status }}</label>
             <p>Started: {{ feature_post.start_time.date }}</p>
         {% elif feature_post.status == "Done" %}
+            <label class="badge badge-positive">{{ feature_post.status }}</label>
             <p>Started: {{ feature_post.start_time.date }}</p>
             <p>Finished: {{ feature_post.end_time.date }}</p>
+        {% else %}
+            <label class="badge badge-negative">{{ feature_post.status }}</label>
         {% endif %}
+
+        
         {% if feature_post.user == user %}
-            <p><span class="boldtext">This is your post!</span></p>
+            <p><span class="boldtext dark_green_text">This is your post!</span></p>
         {% else %}
             <p><span class="boldtext">By Author:</span>{{ feature_post.user }}</p>
         {% endif %}
+        <p><strong>Content:</strong></p>
         <p>{{ feature_post.content }}</p>
             
         {% if feature_post.status == "Done" %}
-            <p class="green_text">This feature has been fully developed!</p>
+            <p class="dark_green_text">This feature has been fully developed!</p>
         {% else %}
             {% if user.is_authenticated %}
                 {% if feature_post.status == "To Do" and feature_post.user == user %}
@@ -58,7 +72,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Basic Modal</h4>
+                                    <h2 class="modal-title" id="myModalLabel">Basic Modal</h2>
                                 </div>
                                 <div class="modal-body">
                                     <p>To vote a feature, you must give enough money to add a vote or add to a vote. Each 10 euro of total paid from all users, is counted as 1 vote, i.e. if current total is 32 euro (totaling 3 votes) and you add 18 euro, you will be adding two votes.</p>
@@ -116,13 +130,8 @@
             <ul class="media-list">
                 {% for feature_comment in feature_comments %}              
                 <li class="media">
-                    <div class="media-left">
-                      <!--<a href="#">
-                        <img class="media-object" src="..." alt="...">
-                      </a>-->
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{ feature_comment.user }} ~ {{ feature_comment.published_date }}</h4>
+                    <div class="media-body comment">
+                      <h3 class="media-heading"><em class="green_text"><strong>{{ feature_comment.user }}</strong></em> ~ {{ feature_comment.published_date }}</h3>
                       {{ feature_comment.content }}
                     </div>
                 </li>

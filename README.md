@@ -261,6 +261,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 - Stackoverflow posts used for reference.
     - For creating and testing [fake user login instances and login sessions](https://stackoverflow.com/questions/7502116/how-to-use-session-in-testcase-in-django) courtesy of SOF member andreaspelme.
     - For testing [Form posts](https://stackoverflow.com/questions/7304248/how-should-i-write-tests-for-forms-in-django), courtesy of SOF members Filmm and Shane.
+    - For [dispaying fields from Models in Django Adminstration pages](https://stackoverflow.com/questions/10543032/how-to-show-all-fields-of-model-in-admin-page), from SOF user Amirshk.
 
 ## Testing
 
@@ -287,6 +288,13 @@ If this section grows too long, you may want to split it off into a separate fil
 
 ## Deployment
 
+Your README describes the deployment procedure including settings files, 
+environment variables, dependencies and any other differences between the dev and live versions
+
+
+If you have created an automated script to help deploy the project,
+you should include it (or link to it) in your write-up.
+
 - I set up the website for deploy from.
     - GitHub repository to contain the files.
         - made an in initial commit to load files. 
@@ -308,6 +316,14 @@ If this section grows too long, you may want to split it off into a separate fil
     - with custom_storage file, receives the static files, during a collect collecttatic command, and hosts them to AWS. All images and style sheets and JavaScript files are hosted to AWS.
 
 - 'Run' from the AWS C9 project folder will run the project locally.
+
+- Had to move from the old Cloud9 website to AWS C9 when the old one seased to exist.
+    - This took time to configure, and went through various tasks to fix it:
+        - Had to pull changes from GitHub before pushing.
+        - add 'run 'Alias to bash_alias file.
+        - Installed packages that were missing.
+        - Added AWS to allowed hosts variable in settings.py file.
+
 
 This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub Pages or Heroku).
 

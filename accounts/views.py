@@ -27,11 +27,15 @@ def login(request):
     
     if request.user.is_authenticated:
         messages.error(request, "Please logout of current account first!")
-        return redirect('profile')
+        return redirect(index)
         
     if request.method == "POST":
         
         login_form = UserLoginForm(request.POST)
+        
+        if request.user.is_authenticated:
+            messages.error(request, "Please logout of current account first!")
+            return redirect(index)
         
         if login_form.is_valid():
             user = auth.authenticate(username=request.POST['username'],
@@ -54,12 +58,16 @@ def registration(request):
     
     if request.user.is_authenticated:
         messages.error(request, "Please logout of current account first!")
-        return redirect('profile')
+        return redirect(index)
     
     if request.method == "POST":
-        
+    
         registration_form = UserRegistrationForm(request.POST)
-
+        
+        if request.user.is_authenticated:
+            messages.error(request, "Please logout of current account first!")
+            return redirect(index)
+        
         if registration_form.is_valid():
             registration_form.save()
 
@@ -68,6 +76,7 @@ def registration(request):
             if user:
                 auth.login(user=user, request=request)
                 messages.success(request, "You have successfully registered")
+                return redirect('login')
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:

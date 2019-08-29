@@ -50,7 +50,7 @@ class TestAccountsViews(TestCase):
         
         page = self.client.get("/accounts/login/")
         
-        self.assertRedirects(page, '/accounts/profile/', status_code=302, 
+        self.assertRedirects(page, '/', status_code=302, 
         target_status_code=200, fetch_redirect_response=True)       
     
     def test_user_logout(self):
@@ -74,15 +74,32 @@ class TestAccountsViews(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Your username or password is incorrect!')
         
-    def test_user_can_register(self):
+    def test_user_cant_register_if_logged_in(self):
+        
+        user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
         response = self.client.post("/accounts/register/", {
             'username': 'test',
             'email': 'test@email.com',
             'password1': 'Madetotest',
             'password2': 'Madetotest'
         })
-        self.assertRedirects(response, '/accounts/profile/', status_code=302, 
+        self.assertRedirects(response, '/', status_code=302, 
         target_status_code=200, fetch_redirect_response=True)
+        
+
+    def test_user_can_register_if_logged_out(self):
+        
+        response = self.client.post("/accounts/register/", {
+            'username': 'test',
+            'email': 'test@email.com',
+            'password1': 'Madetotest',
+            'password2': 'Madetotest'
+        })
+        self.assertRedirects(response, '/accounts/login/', status_code=302, 
+        target_status_code=302, fetch_redirect_response=True)
         
     def test_error_on_registration(self):
         form_params={

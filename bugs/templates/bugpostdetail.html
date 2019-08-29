@@ -6,9 +6,9 @@
 <!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-lg-7 secondary_search_bar">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-lg-7 secondary_search_bar">
             <form action="{% url 'search_bug_posts' %}" method="get">
-                <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
+                <h1><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></h1>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="other bug issue" name="q">
                     <span class="input-group-btn">
@@ -26,27 +26,31 @@
 <!--Mix of bootrap classes and custom.css classes-->
 <div class="row">
     <!--post details-->
-    <div class="post_details col-md-8 col-md-offset-1">
+    <div class="post_details col-md-8 col-md-offset-1 container">
         <p><em class="dark_green_text"><strong>Bug Report Details:</strong></em></p>
         <h1>{{ bug_post.title }}</h1>
         
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
         {% if feature_post.status == "Doing" %}
-            <p>Started: {{ feature_post.start_time.date }}</p>
+            <label class="badge badge-yellow">{{ bug_post.status }}</label>
+            <p>Started: {{ bug_post.start_time.date }}</p>
         {% elif feature_post.status == "Done" %}
-            <p>Started: {{ feature_post.start_time.date }}</p>
-            <p>Finished: {{ feature_post.end_time.date }}</p>
+            <label class="badge badge-positve">{{ bug_post.status }}</label>
+            <p>Started: {{ bug_post.start_time.date }}</p>
+            <p>Finished: {{ bug_post.end_time.date }}</p>
+        {% else %}
+            <label class="badge badge-negative">{{ bug_post.status }}</label>
         {% endif %}
         {% if bug_post.user == user %}
-            <p><span class="boldtext">This is your post!</span></p>
+            <p><span class="boldtext dark_green_text">This is your post!</span></p>
         {% else %}
                 <!--<a class="story-img" href="#">
             <img src="/media/img/profile.jpg" class="img-circle">
         </a>-->
             <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
         {% endif %}
-        
+        <p><strong>Content:</strong></p>
         <p>{{ bug_post.content }}</p>
     
         {% if bug_post.status == "Done" %}
@@ -92,19 +96,22 @@
         <div class="comments col-md-8 col-md-offset-1">
             <h2>Comments:</h2>
             <ul class="media-list">
-                {% for bug_comment in bug_comments %}              
+                {% for bug_comment in bug_comments %}
                 <li class="media">
-                    <div class="media-left">
-                      <!--<a href="#">
-                        <img class="media-object" src="..." alt="...">
-                      </a>-->
-                    </div>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{ bug_comment.user }} ~ {{ bug_comment.published_date }}</h4>
+                    <div class="media-body comment">
+                      <h3 class="media-heading"><em class="green_text"><strong>{{ bug_comment.user }}</strong></em>  ~ {{ bug_comment.published_date }}</h3>
                       {{ bug_comment.content }}
                     </div>
                 </li>
                 {% endfor %}
+                {% if bug_comments|length == 0 %}
+                <li class="media">
+                    <div class="media-body comment">
+                      <p class="media-heading">No comments found!</p>
+                      {{ bug_comment.content }}
+                    </div>
+                </li>
+                {% endif %}
             </ul>
         </div>
 </div>

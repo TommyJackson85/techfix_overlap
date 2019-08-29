@@ -8,11 +8,11 @@ def view_cart(request):
 
 
 def add_to_cart(request, id):
-    
+        
     if not request.user.is_authenticated:
         messages.error(request, "Please login first before adding feature request votes to cart! Your previous cart items have been removed.")
         return redirect('login')
-        
+    
     """Add a quantity of the specified product to the cart"""
     print(request.POST.get('money_amount'))
     money_amount = request.POST.get('money_amount')

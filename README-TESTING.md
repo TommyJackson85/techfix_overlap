@@ -170,9 +170,29 @@
 - Only partially tested Checkout because it is using stripe code.
 - For testing the majority of the postings.
 
-## Occured bugs
+## Unfix occured bugs
 
-- Stripe Post requests.
-    - Received 402 error in JavaScript console. Attempted to catch this error on static/js/stripe.js through try and catch JavaScript, but it turns out its an error from Stripes end on their own JS file.
+- CSRF verification failed. Request aborted, Python page error page.
+    - When attempting to post from:
+        - login form, registration form, edit/create form, and when another user is logged, 
+        - my code doesn't redirect to the index as it should.
+        - I am receiving "CSRF verification failed. Request aborted" on an error page.
+        - This bug must be fixed.
 
+    
+## Fixed occured bugs
 
+- Installed a pip3 Jasmine package in which automatically updated Django to 2.2.3 which only supports Python 3.5.
+    - Created errors in running the App on AWS Clous 9 (in which only runs on Python 3.4), detecting import issues.
+    - Fixed by installing Django 1.11.17 instead.
+    - Removed Jasmine package.
+
+- Running migrations after changing models.
+    - After making multiple model changes, calling make migrations, didn't update them all.
+    - Initally tried to reset and delete the entire database from Heroku, ran the console from Heroku to try and solve the issue.
+    - Used this [migrations reset tutorial](https://simpleisbetterthancomplex.com/tutorial/2016/07/26/how-to-reset-migrations.html).
+    - This error had taken alot of time from me, but I managed to fix it once I discovered I had to keep calling make migrations for each saved change.
+
+- Errors in running Stripes test bank number 4242424242424242 to payment form on checkout page.
+    - I had to renew my Stripe keys as they were from 2016.
+    - I discovered I had to include a later date as an expery date.

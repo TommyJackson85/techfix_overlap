@@ -78,8 +78,13 @@ def feature_post_detail(request, pk):
         if not request.user.is_authenticated:
             messages.error(request, "Please login first before posting comments!")
             return redirect('login')
-        
+            
         form = FeatureCommentForm(request.POST)
+        
+        if feature_post.status is "Done":
+            messages.error(request, "You cannot comment on feature requests that had been finsihed!")
+            return render(request, "featurepostdetail.html", {'feature_post': feature_post, 'form': form, 'feature_comments': feature_comments})
+        
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post= feature_post
@@ -100,14 +105,52 @@ def create_or_edit_featurepost(request, pk=None):
     or edit a post depending if the Post ID
     is null or not
     """
+    
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login first before posting or editing feature requests!")
+        return redirect('login')
+    
     feature_post = get_object_or_404(FeaturePost, pk=pk) if pk else None
+    
+    if feature_post is not None:
+        if request.user != feature_post.user:
+            messages.error(request, "You cannot edit another users feature request!")
+            if feature_post.status is not "To Do":
+                messages.error(request, "You cannot edit feature requests that had been finsihed or are in progress!")
+            return redirect(feature_post_detail, feature_post.pk)
+
+    try:
+        if feature_post.status != "To Do":
+            messages.error(request, "You cannot edit feature requests that had been finsihed or are in progress!")
+            return redirect(feature_post_detail, feature_post.pk)
+    except AttributeError:
+        #catches errors with new post
+        pass
+        
     if request.method == "POST":
         
         if not request.user.is_authenticated:
             messages.error(request, "Please login first before posting/editing feature requests!")
             return redirect('login')
             
+        if feature_post is not None:    
+            if request.user != feature_post.user:
+                messages.error(request, "You cannot edit another users feature request!")
+                if feature_post.status is not "To Do":
+                    messages.error(request, "You cannot edit feature request that in progress or had been finsihed!")
+                
+                return redirect(feature_post_detail, feature_post.pk)
+        try:
+            if feature_post.status != "To Do":
+                messages.error(request, "You cannot edit feature requests that had been finsihed or are in progress!")
+                return redirect(feature_post_detail, feature_post.pk)
+        except AttributeError:
+            #catches errors with new post
+            pass   
+        
         form = FeaturePostForm(request.POST, request.FILES, instance=feature_post)
+        
+        
         if form.is_valid():
             feature_post = form.save(commit=False)
             feature_post.user = request.user

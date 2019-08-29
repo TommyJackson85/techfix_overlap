@@ -38,14 +38,14 @@
     <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         <div class="dark_blue_bar" role="tab" id="headingOne">
-            <h2 class="green_text">
+            <h1 class="green_text">
                   Finished 
                 {% if done_count > 0 %}
                     <label class="badge badge-positive">{{ done_count }}</label>
                 {% else %}
                     <label class="badge badge-negative">{{ done_count }}</label>
                 {% endif %}
-            </h2>
+            </h1>
         </div>
     </a>
     
@@ -57,7 +57,7 @@
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
             <div class="panel panel_item">
                 <div class="panel-heading panel_post_head">
-                    <h3>
+                    <h2>
                     <strong>
                     {% if bug_post.title|length >= 20 %}
                         {{ bug_post.title|slice:":18" }}..
@@ -65,7 +65,7 @@
                         {{ bug_post.title }}
                     {% endif %}
                     </strong>
-                    </h3>
+                    </h2>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <label class="badge badge-positive">{{ bug_post.status }}</label></p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
@@ -98,14 +98,14 @@
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         <div class="dark_blue_bar" role="tab" id="headingTwo">
-            <h2 class="yellow_text">
+            <h1 class="yellow_text">
                 In Progress 
                 {% if doing_count > 0 %}
                 <label class="badge badge-positive">{{ doing_count }}</label>
                 {% else %}
                 <label class="badge badge-negative">{{ doing_count }}</label>
                 {% endif %}
-            </h2>
+            </h1>
         </div>
     </a>
     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -116,7 +116,7 @@
         <div class="col-xs-12 col-sm-4 col-md-3 ticket">
             <div class="panel panel_item">
                 <div class="panel-heading panel_post_head">
-                    <h3>
+                    <h2>
                     <strong>
                     {% if bug_post.title|length >= 20 %}
                         {{ bug_post.title|slice:":18" }}..
@@ -124,7 +124,7 @@
                         {{ bug_post.title }}
                     {% endif %}
                     </strong>
-                    </h3>
+                    </h2>
                     <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <label class="badge badge-yellow">{{ bug_post.status }}</label></p>
                     <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                 </div>
@@ -157,14 +157,14 @@
   <div class="panel panel-default">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         <div class="dark_blue_bar" role="tab" id="headingThree">
-            <h2 class="light_red_text">
+            <h1 class="light_red_text">
                 To Do
                 {% if to_do_count > 0 %}
                     <label class="badge badge-positive">{{ to_do_count }}</label>
                 {% else %}
                     <label class="badge badge-negative">{{ to_do_count }}</label>
                 {% endif %}
-            </h2>
+            </h1>
         </div>
     </a>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -175,7 +175,7 @@
             <div class="col-xs-12 col-sm-4 col-md-3 ticket">
                 <div class="panel panel_item">
                     <div class="panel-heading panel_post_head">
-                        <h3>
+                        <h2>
                         <strong>
                         {% if bug_post.title|length >= 20 %}
                             {{ bug_post.title|slice:":18" }}..
@@ -183,7 +183,7 @@
                             {{ bug_post.title }}
                         {% endif %}
                         </strong>
-                        </h3>
+                        </h2>
                         <p><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> <label class="badge badge-negative">{{ bug_post.status }}</label></p>
                         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
                     </div>

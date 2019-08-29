@@ -51,13 +51,28 @@ class TestViews(TestCase):
         page = self.client.get("/features/1/")
         self.assertEqual(page.status_code, 404)
         
-    def test_get_edit_page_for_existing_feature_post(self):
+
+    def test_edit_existing_feature_failuere_as_logged_out_user(self):
+        
+        feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg")
+        feature_post.save()
+        page = self.client.get("/features/{0}/edit/".format(feature_post.id))
+        self.assertRedirects(page, '/accounts/login/', status_code=302, 
+        target_status_code=200, fetch_redirect_response=True)
+
+    """    
+    def test_get_edit_page_for_existing_feature_post_as_logged_in_user(self):
+        
+        user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
         feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg")
         feature_post.save()
         page = self.client.get("/features/{0}/edit/".format(feature_post.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "featurepostform.html")
-        
+    """  
     def test_feature_post_create_an_item(self):
         user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
         self.client.login(username='admin', password='admin')
@@ -70,28 +85,10 @@ class TestViews(TestCase):
         target_status_code=200, fetch_redirect_response=True)
         
     def test_get_edit_page_for_nonexisting_feature_post(self):
+        
+        user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
+        self.client.login(username='admin', password='admin')
+        session = self.client.session
+        
         page = self.client.get("/features/1/edit/")
         self.assertEqual(page.status_code, 404)
-    """    
-    def test_deletion_of_existing_feature_post(self):
-        feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg")
-        feature_post.save()
-        page = self.client.get("/features/{0}/delete/".format(feature_post.id))
-        self.assertRedirects(page, '/features/', status_code=302, 
-        target_status_code=200, fetch_redirect_response=True)
-    
-    def test_deletion_for_nonexisting_feature_post(self):
-        page = self.client.get("/features/1/delete/")
-        self.assertEqual(page.status_code, 404)
-    
-    def test_vote_feature_post(self):
-        feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg")
-        feature_post.save()
-        page = self.client.get("/features/{0}/vote/".format(feature_post.id))
-        self.assertRedirects(page, '/features/', status_code=302, 
-        target_status_code=200, fetch_redirect_response=True)
-        
-    def test_vote_bug_post_fail(self):
-        page = self.client.get("/bugs/1/vote/")
-        self.assertEqual(page.status_code, 404)
-    """

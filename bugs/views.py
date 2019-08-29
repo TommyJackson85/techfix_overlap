@@ -10,20 +10,22 @@ def vote_bug_post(request, pk):
     """
     Upvotes bug post redirects to list of bug posts
     """
-   
     if not request.user.is_authenticated:
         messages.error(request, "Please login before voting for bug reports!")
-        return redirect('login')
+        return redirect('/login/')
     
     bug_post = get_object_or_404(BugPost, pk=pk)
+    
+    if bug_post.status == "Done":
+        messages.error(request, "Voting not allowed because this bug report has been finsihed!")
+        return redirect("/bugs/{0}/".format(bug_post.id))
+    
     bug_post.votes += 1
     bug_post.save()
     bug_posts = BugPost.objects.filter(published_date__lte=timezone.now()
         ).order_by('-published_date')
     messages.success(request, "You have successfully voted for the bug report and have been directed to the listings!")
     return redirect(get_bug_posts)
-
-    
 
 def get_bug_posts(request):
     """
@@ -83,10 +85,6 @@ def bug_post_detail(request, pk):
     bug_post.views += 1
     bug_post.save()
     
-
-    print("My Time")
-    print(bug_post.start_time)
-    
     """
     Used this stack overflow post for reference in building comment functions.
     https://stackoverflow.com/questions/43421904/how-to-link-a-comment-to-a-single-post-in-django
@@ -98,8 +96,15 @@ def bug_post_detail(request, pk):
         if not request.user.is_authenticated:
             messages.error(request, "Please login first before posting comments!")
             return redirect('login')
+            
         
         form = BugCommentForm(request.POST)
+        
+        if bug_post.status == "Done":
+            messages.error(request, "Commenting not allowed because this bug report has been finsihed!")
+            return render(request, "bugpostdetail.html", {'bug_post': bug_post, 'form': form, 'bug_comments': bug_comments})
+    
+    
         if form.is_valid():
             comment = form.save(commit=False)
             comment.post = bug_post
@@ -120,13 +125,49 @@ def create_or_edit_bugpost(request, pk=None):
     or edit a post depending if the Post ID
     is null or not
     """
+    
+    if not request.user.is_authenticated:
+        messages.error(request, "Please login first before posting or editing bug reports!")
+        return redirect('login')
+    
     bug_post = get_object_or_404(BugPost, pk=pk) if pk else None
+    
+    if bug_post is not None:
+        if request.user != bug_post.user:
+            if bug_post.status != "To Do":
+                messages.error(request, "Editing not allowed because this bug report has been finsihed or is in progress!")
+            messages.error(request, "You cannot edit another users bug!")
+            return redirect(bug_post_detail, bug_post.pk)
+    
+        try:         
+            if bug_post.status != "To Do":
+                messages.error(request, "Editing not allowed because this bug report has been finsihed or is in progress!")
+                return redirect("/bugs/{0}/".format(bug_post.id))
+        except AttributeError:
+            #catches errors with making new post
+            pass
+        
     if request.method == "POST":
         
         if not request.user.is_authenticated:
             messages.error(request, "Please login first before posting or editing bug reports!")
             return redirect('login')
-        
+    
+        if bug_post is not None:
+            if request.user != bug_post.user:
+                if bug_post.status != "To Do":
+                    messages.error(request, "Editing is not allowed because this bug report has been finsihed or is in progress!")
+                messages.error(request, "You cannot edit another users bug!")
+                return redirect(bug_post_detail, bug_post.pk)
+                
+        try:        
+            if bug_post.status != "To Do":
+                messages.error(request, "Editing not allowed because this bug report has been finsihed or is in progress!")
+                return redirect("/bugs/{0}/".format(bug_post.id))
+        except AttributeError:
+            pass
+            
+
         #receive form
         form = BugPostForm(request.POST, request.FILES, instance=bug_post)
         #receive user name
@@ -158,6 +199,17 @@ def delete_bug_post(request, pk):
         return redirect('login')
     
     post = get_object_or_404(BugPost, pk=pk)
+        
+    if request.user != post.user:
+        if post.status != "To Do":
+            messages.error(request, "Deleting not allowed because this bug report has been finsihed or is in progress!")
+        messages.error(request, "You cannot delete another users bug report!")
+        return redirect(bug_post_detail, post.pk)
+    
+    if post.status != "To Do":
+        messages.error(request, "Deleting not allowed because this bug report has been finsihed or is in progress!")
+        return redirect("/bugs/{0}/".format(post.id))
+    
     post.delete()
     messages.success(request, "You have successfully deleted the bug report and have been directed to the listings!")
     return redirect(get_bug_posts)
