@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% block page_heading %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="container-fluid">
+<header class="container-fluid">
     <div class="row">
         <div class="col-xs-12 mast_head">
             <div class="col-xs-12 col-sm-6 page_heading">
@@ -11,7 +11,7 @@
                 {% if user.is_authenticated %}
                     <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
                     <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
-                    <p class="white_text"><strong>Welcome back {{ user }}!</strong></p>
+                    <p class="white_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
                 {% else %}
                     <a type="button" class="btn login_button" href="{% url 'login' %}">Login Account</a>
                     <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
@@ -20,12 +20,12 @@
             </div>
         </div>
     </div>
-</div>
+</header>
 {% endblock %}
 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
+<section class="alert alert_introduction alert-dismissible col-xs-12" role="alert">
     <button type="button" class="close col-xs-2" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <p class="col-xs-10 col-md-5">
         <strong>Welcome to Techfix-Overlap!</strong> 
@@ -38,10 +38,10 @@
         <strong>Bug Reports</strong> and <strong>Feature Requests</strong> in which garner the most votes, are focused on atleast 50% of the time by a team of two highely qualified Software Engineers! We have in total a team of 20 Engineers and we are growing all the time, meaning multiple bug reports and new features are worked on every day!
         For further analyses please check out our <a href="{% url 'get_charts' %}"><i class="fa fa-pie-chart"></i> Charts</a> page!
     </p>
-</div>
+</section>
 
 <div class="row news_container">
-    <div class="col-xs-12 col-md-8">
+    <article class="col-xs-12 col-md-8">
         <h2 class="news_sub_title"><em class="dark_green_text">News</em></h2>
         {% for blog_post in blog_posts %}
         <div class="new_post_link blog_posts">
@@ -64,7 +64,7 @@
         </div>
         {% endfor %}
         <a href="{% url 'get_blog_posts' %}" class="btn new_post_button">View Full News Blog</a>
-    </div>
+    </article>
     
     <side class="col-xs-12 col-md-4 side_nav">
         <h2><em class="dark_green_text">New Bug Reports!</em></h2>  

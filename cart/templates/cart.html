@@ -3,19 +3,22 @@
 {% load bootstrap_tags %}
 
 {% block page_heading %}
-<!--Mix of bootrap classe-->}
-<div class="container">
+<!--Mix of bootrap classe-->
+<header class="container">
     <h1>Feature Votes Cart:</h1>
     <p>Remember that for each 10 Euro donated by all users counts as 1 vote for the Feature Request. i.e 52 Euro counts as 5 votes only but if a user adds 18 euro it adds to 7 votes.</p>
     <p><strong>Cart items can be removed</strong> on clicking amend, if amends input is <strong>empty</strong> or <strong>0</strong>.</p>
-</div>
+    {% if user.is_authenticated %}
+        <p class="dark_green_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
+    {% endif %}
+</header>
 {% endblock page_heading %} 
 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes-->
 
 <!--list if cart items-->
-<div class="row row-flex">
+<section class="row row-flex">
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel_item">
@@ -69,11 +72,11 @@
         </div>
     </div>
     {% endfor %}
-</div>
+</section>
 
 
 <!--summary-->
-<div class="row text-center">
+<section class="row text-center">
     <strong class="dark_green_text">
         <p>Total Cost</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total_cost }} €</p>
@@ -87,6 +90,6 @@
         <p class="red_text">Don't have an account?</p>
         <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
     {% endif %}
-</div>
+</section>
 
 {% endblock %}

@@ -7,20 +7,20 @@
 
 - From navigating the whole website, I found
     - All various sections, buttons, are separated where needed, through different backgrounds, colors and borders.
-    - All pages have a nav bar and footer which are constantly available and provide links to all the main sections of the site. I know I can scroll to the bottom or top to navigate the website.
+    - All pages have a nav bar and footer which are constantly available and providing links to most the main sections of the site. I know I can scroll to the bottom or top to navigate the website.
     - navbar and footer always contains links for charts, blog, bugs, features and cart pages. For logged in users, they also contain profile and logout links.
     - For logged out users, they also contain login and register links.
     - Having these differences, helps tell me if I am logged in or logged out.
     - On mobile width, the navbar links are located in a drop down box which is accessable from clicking the drop box icon. 
     - All active links/buttons are working and change color upon hovering and clicking, telling me they are working. 
-    - Each button associated with a specific page, brings me to the page upon clicking.
+    - Each button associated with a specific page, brings me to the page upon clicking, unless I have to be redirected.
     - I am always greeted with the correct header for the website.
-    
+
 - Upon first loading the site, as a logged out user, I am located to the home page, which shows the following,
     - The website masthead / header with Login and Register links/buttons and message telling me what I can do as a logged in user.
     - A welcome message, introducing the website, which suggests me to look at the Charts page for further details.
     - Examples of recent bug reports and feature requests in a side nav, which gives me an idea of how what is done on the website and tells what was recently posted. 
-    - Recent news on the website, and refers me to the full news blog page for further news.
+    - Recent news on the website, which refers me to the full news blog page for further news.
     - I get a good strong introduction to the site for this page.
     
 - Upon revisiting the home page as a logged in user, the following changes to the page can be seen
@@ -42,8 +42,11 @@
     
 - If logged in, 
     - but login and register links/buttons are available on an already loaded page
-        - clicking the login and register buttons will redirect me to the profile page, telling me to logout first.
-    
+        - clicking the login and register buttons will redirect me to the index page, telling me to logout first.
+    - but the current page I am on is from another account (not associated with current login session),
+        - I receive a "CSRF verification failed. Request aborted" error from attempting to post from edit / new post forms, comment, feature donations, login, registration forms.
+        - clicking back, brings me to page I was supposed to be redirected to.
+        
 - If logged out, 
     - but profile links/buttons are available on an already loaded page
         - clicking the profile button will redirect me to the login page, telling me to login first. 
@@ -148,6 +151,16 @@
 
 - Upon opening the blog page, I can see all of the news posts separated by their dates, titles and a line below each, and with the most recently posted seen first.
 
+## Code logic of average charts
+
+- Manually tested average charts monthly averages.
+    - Went 3 sets of 30 days back from current date, while going through each bug post.
+        For each 30 days
+            - If the dates overlapped with post start and end dates, I would add one to a whole number. 
+            - Would then divide the collective number by 3 (for 3 months).
+    - I didn't do the same for weeks because it follows the same logic but with 7 instead of 30.
+    - Officially tested on the 29th of August, with returned results of an average of 3.33 bugs worked on per month.
+
 ## Django automated tests
 
 - With permission from the tutors, I used the other resources for to cover the testing. I used:
@@ -162,24 +175,46 @@
 - I set out to cover as much of the code as possible. I tried to get atleast of 90 percent of code that wasn't as easy to test manually.
 - After doing initial bugs, accounts tests I started to use Coverage while testing. I noticed that resources I used did not test everything.
 - I tested models of bug posts and bug comments. However, while using Coverage while testing features I noticed that I didn't need to test the models as the model calls from testing feature views was enough.
-- For Blog, Bugs, Features and Profile app views, I testing the majority of the code. The counts variables (usually for post count display numbers) haven't been tested as they are not of priority and are easy to test from manual testing.
+- For Blog and Profile app views, I testing the majority of the code. The counts variables (usually for post count display numbers) haven't been tested as they are not of priority and are easy to test from manual testing.
+- Bugs and Features, from previous commits, I managed to test the majority of the code, however, when adding more defensive programming in relation to seeing if post belonged to user, i had trouble.
+    - Trying to link foreign user key of a post to the current logged in user was difficult. I have remove these tests for the mean time, and have stored them on my computer if I want to go back to it.
+
 - Fully tested the rest of accounts app except for the for backends file.
-- Fully tested the rest of bugs, features, blog app main files where it was needed.
+- Fully tested the blog app main files where it was needed.
 - For Charts views, I initially just tested the the get charts view. I covered the other global reusued variables by calling them within the tests, and creating fake instances of bug posts and timezones. Did not use feature posts as it was not required. 
 - Tested Cart completely.
 - Only partially tested Checkout because it is using stripe code.
 - For testing the majority of the postings.
 
-## Unfix occured bugs
+## Unfixed occured bugs
 
 - CSRF verification failed. Request aborted, Python page error page.
-    - When attempting to post from:
-        - login form, registration form, edit/create form, and when another user is logged, 
-        - my code doesn't redirect to the index as it should.
+    - When another user is logged in, and when attempting to post, on a different / previously logged in account, from forms:
+        - login, registration, edit/create, comment, feature donations
+        - my code doesn't redirect to the index page as it should.
         - I am receiving "CSRF verification failed. Request aborted" on an error page.
         - This bug must be fixed.
 
+- Users can vote for 'Done' feature requests, if the feature donations modal is available to them.
+    - From the cart and checkout page, I will add more defensive design, in detecting cart items that are already finished. 
+    - This is hard to do because the add to cart and adjust cart refer to the items ids and not the whole feature and are linked to a session. 
+    - Attempted to pass in the full feature on the add to cart function (instead of feature id) from the features detail page but it was bringing up page errors.
     
+- Stripe Post requests.
+    - Received 402 error in JavaScript console. Attempted to catch this error on static/js/stripe.js through try and catch JavaScript, but it turns out its an error from Stripes end on their own JS file.
+    - This is not full filling the ecommerce requirements but its the fault of Stripe.
+
+- Reset password page.
+    - Due to a significant error on reseting passwords with google email account, I had to remove the reset password button from the login page.
+    - When using the the reset password function on a gmail email, it returns a Django error to do with google account authentication.
+    - Will consider catching the error on login, and reloading the login page with the error in an error popup.
+
+- Timezone issues
+    - My Mentor spotted this issue when attempting to create a post. The post's publishing date was in UK time only because it was stored as a string.
+    - Was suggested to use the [time library](https://stackoverflow.com/questions/1111056/get-time-zone-information-of-the-system-in-python) to try and fix this.
+    - On a second meeting with mentor, he said he said the issue seemed to be fixed.
+    - Will retest this issue again to double check.
+
 ## Fixed occured bugs
 
 - Installed a pip3 Jasmine package in which automatically updated Django to 2.2.3 which only supports Python 3.5.

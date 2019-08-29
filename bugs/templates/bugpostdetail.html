@@ -4,11 +4,12 @@
 
 {% block page_heading %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-lg-7 secondary_search_bar">
+<header class="container">
+    <div class="row line_break_border">
+        <div class="col-md-offset-1 col-md-7 secondary_search_bar">
             <form action="{% url 'search_bug_posts' %}" method="get">
-                <h1><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></h1>
+                <h1>Bug Report Details</h1>
+                <p><em class="dark_blue_text"><strong>Search Another Topic:</strong></em></p>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="other bug issue" name="q">
                     <span class="input-group-btn">
@@ -16,46 +17,54 @@
                     </span>
                 </div><!-- /input-group -->
             </form>
+            {% if user.is_authenticated %}
+                <p class="dark_green_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
+            {% endif %}
         </div>
     </div>
-    <hr />
-</div>
+</header>
 {% endblock page_heading %}
 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes-->
 <div class="row">
     <!--post details-->
-    <div class="post_details col-md-8 col-md-offset-1 container">
-        <p><em class="dark_green_text"><strong>Bug Report Details:</strong></em></p>
+    <section class="post_details col-md-10 col-md-offset-1">
+        <p class="dark_green_text"><em><strong>Details:</strong></em></p>
         <h1>{{ bug_post.title }}</h1>
         
         <p><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> {{ bug_post.votes }} ~ <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{ bug_post.views }} ~ <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> {{ bug_post.comment_count }} </p>
         <p><span class="boldtext">Published on:</span> {{ bug_post.published_date }} </p>
-        {% if feature_post.status == "Doing" %}
+        
+        <!--status badges-->
+        {% if bug_post.status == "Doing" %}
             <label class="badge badge-yellow">{{ bug_post.status }}</label>
             <p>Started: {{ bug_post.start_time.date }}</p>
-        {% elif feature_post.status == "Done" %}
-            <label class="badge badge-positve">{{ bug_post.status }}</label>
+        {% elif bug_post.status == "Done" %}
+            <label class="badge badge-positive">{{ bug_post.status }}</label>
             <p>Started: {{ bug_post.start_time.date }}</p>
             <p>Finished: {{ bug_post.end_time.date }}</p>
         {% else %}
             <label class="badge badge-negative">{{ bug_post.status }}</label>
         {% endif %}
+        
+        <!--Post users details-->
         {% if bug_post.user == user %}
             <p><span class="boldtext dark_green_text">This is your post!</span></p>
         {% else %}
-                <!--<a class="story-img" href="#">
-            <img src="/media/img/profile.jpg" class="img-circle">
-        </a>-->
             <p><span class="boldtext">By Author:</span>{{ bug_post.user }}</p>
         {% endif %}
         <p><strong>Content:</strong></p>
         <p>{{ bug_post.content }}</p>
-    
+        
+        <!--alerting its finished-->
         {% if bug_post.status == "Done" %}
-            <p class="green_text">This feature has been fully developed!</p>
-        {% else %}
+            <p class="dark_green_text">This bug has been fully fixed!</p>
+            <p class="red_text">Commenting has been disabled because the bug has been fixed!</p>
+        {% endif %}
+        
+        <!--Users buttons-->
+        {% if bug_post.status != "Done" %}
             {% if user.is_authenticated %}
                 {% if bug_post.status == "To Do" and bug_post.user == user %}
                     <a href="{% url 'edit_bug_post' bug_post.id %}" class="btn edit_button">Edit</a>
@@ -65,55 +74,53 @@
             {% endif %}
         {% endif %}
 
-    </div>
-    <!--sticky buttons-->
-    <div class="sticky_buttons col-md-8 col-md-offset-1">
-            {% if bug_post.status == "Done" %}
-                <p class="red_text">Commenting has been disabled because the issue has been resolved!</p>
-                <hr />
+    </section>
+    <!--sticky buttons and comment form for scrolling through comments-->
+    <section class="sticky_buttons col-md-10 col-md-offset-1">
+        {% if bug_post.status != "Done" %}
+            {% if user.is_authenticated %}
+            <div class="comment_form">
+                <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
+                    Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <div class="collapse" id="collapseCommentBox">
+                    <form class="post_comment_form" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | as_bootstrap }}
+                        <button type="submit" class="btn">Post Comment</button>
+                    </form>
+                </div>
+            </div>
             {% else %}
-                {% if user.is_authenticated %}
-                    <div class="comment_form">
-                        <a class="btn comment_form_toggle" role="button" data-toggle="collapse" href="#collapseCommentBox" aria-expanded="false" aria-controls="collapseExample">
-                            Comment Form <span class="glyphicon glyphicon-chevron-down"></span>
-                        </a>
-                        <div class="collapse" id="collapseCommentBox">
-                            <form class="post_comment_form" method="POST" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                {{ form | as_bootstrap }}
-                                <button type="submit" class="btn">Post Comment</button>
-                            </form>
-                        </div>
-                    </div>
-                {% else %}
-                    <a class="btn login_button" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
-                {% endif %}
+            <a class="btn login_button" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
             {% endif %}
-            <a href="{% url 'get_bug_posts' %}" class="btn get_bug_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
-            <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
-        </div>
-        <!--comments-->
-        <div class="comments col-md-8 col-md-offset-1">
-            <h2>Comments:</h2>
-            <ul class="media-list">
-                {% for bug_comment in bug_comments %}
-                <li class="media">
-                    <div class="media-body comment">
-                      <h3 class="media-heading"><em class="green_text"><strong>{{ bug_comment.user }}</strong></em>  ~ {{ bug_comment.published_date }}</h3>
-                      {{ bug_comment.content }}
-                    </div>
-                </li>
-                {% endfor %}
-                {% if bug_comments|length == 0 %}
-                <li class="media">
-                    <div class="media-body comment">
-                      <p class="media-heading">No comments found!</p>
-                      {{ bug_comment.content }}
-                    </div>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
+        {% endif %}
+        <a href="{% url 'get_bug_posts' %}" class="btn get_bug_posts_button"><span class="glyphicon glyphicon-th-list"></span> Back to Bug Report List</a>
+        <a id="back_to_top" class="btn back_to_top_button"><span class="glyphicon glyphicon-arrow-up"></span> Back to Top</a>
+    </section>
+        
+    
+    <section class="comments col-xs-10 col-xs-offset-1">
+        <h2>Comments:</h2>
+        <ul class="media-list">
+            {% for bug_comment in bug_comments %}
+            <li class="media">
+                <div class="media-body comment">
+                  <h3 class="media-heading"><em class="green_text"><strong>{{ bug_comment.user }}</strong></em>  ~ {{ bug_comment.published_date }}</h3>
+                  {{ bug_comment.content }}
+                </div>
+            </li>
+            {% endfor %}
+            {% if bug_comments|length == 0 %}
+            <li class="media">
+                <div class="media-body comment">
+                    <p class="media-heading">No comments found!</p>
+                    {{ bug_comment.content }}
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </section>
 </div>
 {% endblock %}
 

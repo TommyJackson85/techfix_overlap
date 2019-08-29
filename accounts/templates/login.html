@@ -4,23 +4,22 @@
 {% endblock %}
 {% block page_heading %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="container">
-    <div class="col-xs-12 col-md-8 col-md-offset-2 loging_page_header">
+<header class="container">
+    <div class="col-xs-12 col-md-8 col-md-offset-2 loging_page_header line_break_border">
         <h1>Login Page</h1>
         <p>Register account first if you haven't done so yet...</p>
         <a type="button" class="btn registration_button" href="{% url 'registration' %}">Registration Page</a>
-        <hr />
     </div>
-</div>       
+</header>       
 {% endblock %} 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="col-xs-12 col-md-8 col-md-offset-2 login_form">
+<section class="col-xs-12 col-md-8 col-md-offset-2 login_form">
     <p><em class="dark_green_text">Login here:</em></p>
     <form method="POST">
         {% csrf_token %} {{ login_form | as_bootstrap }}
         <button type="submit" class="btn submit_button">Login</button>
     </form>
     <!-- password reset link to be added here once the reset password view function is fixed. -->
-</div>
+</section>
 {% endblock %}

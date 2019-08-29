@@ -32,6 +32,10 @@ def adjust_cart(request, id):
     if not request.user.is_authenticated:
         messages.error(request, "Please login first before adjust cart items! Your previous cart items have been removed.")
         return redirect('login')
+        
+    if id.feature_voted.status == "Done":
+        messages.error(request, "You cannot vote on feature requests that have been finsihed!")
+        return redirect("/features/{0}/".format(id.pk))
     
     """
     Adjust the quantity of the specified product to the specified

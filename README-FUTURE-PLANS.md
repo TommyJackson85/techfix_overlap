@@ -1,18 +1,7 @@
 # Future Plans
 
-## Bugs/code to fix or work on
+## Code to clean
 
-the ttile on this screen goes off page ? https://techfix-overlap.herokuapp.com/bugs/6/
-there is a back to top button but the page is already at top etc, and isnt even scrollable tbh possible add that button only when screen goes below x pixels
-can achieve this with JS
-when i go to register, if i leave email blank it says must be unquie? maybe this should say can't be blank. then when i do enter stuff properly it refreshes the page but leave my email and user name prepopulated? possibly log em in and go else where or redirect a message and to login page or flush the register form?
-
-oh it goes back to registered page and when i click login it says im already logged in..
-yes not sure its meant to redirect back to register back after registering
-the comment box when expanding overlaps stuff if you scroll might want to fix that
-
-
-Separations of concerns
 - In creating defensive programming, 
     - in attempting various form posts, where you shouldn't have current access to, I redirect the user to another page. 
         - Some redirects are not bypassing the error where 'CSRF token is missing or incorrect', currently found when falsly trying to post from. I plan on catching the CSRF error from the code, to make it more defensive. Potentially using Try and Catch.
@@ -39,21 +28,6 @@ Separations of concerns
         - For the sake of keeping my code clean, I main not keep all my code clean.
     - I was originally considering doing this first, but I thought it would be cleaner the way it is now, and I was unsure of how different the features and bugs may become while developing them.
 
-- Stripe Post requests.
-    - Received 402 error in JavaScript console. Attempted to catch this error on static/js/stripe.js through try and catch JavaScript, but it turns out its an error from Stripes end on their own JS file.
-    - This is not full filling the ecommerce requirements but its the fault of Stripe.
-
-- Reset password page.
-    - Due to a significant error on reseting passwords with google email account, I had to remove the reset password button from the login page.
-    - When using the the reset password function on a gmail email, it returns a Django error to do with google account authentication.
-    - Will consider catching the error on login, and reloading the login page with the error in an error popup.
-
-- Timezone issues
-    - My Mentor spotted this issue when attempting to create a post. The post's publishing date was in UK time only because it was stored as a string.
-    - Was suggested to use the [time library](https://stackoverflow.com/questions/1111056/get-time-zone-information-of-the-system-in-python) to try and fix this.
-    - On a second meeting with mentor, he said he said the issue seemed to be fixed.
-    - Will retest this issue again to double check.
-
 - Setting up a Jasmine testing environment
     - I was considering testing my JavaScript through Jasmine test but decided not to do it yet
         - I was worried about running into bugs, and I needed to find a good documentation on setting it up in a Django application.
@@ -61,8 +35,10 @@ Separations of concerns
         - I am considering using [django-jasmine](https://pypi.org/project/django-jasmine/) or just setting up a regular HTML file for testing JavaScript.
 
 
-## Features to add
+- Update Bootstrap 3.3.7 (it is currently legacy) to Bootstap 4 or a newer better framework.
+- Use a more updated version of jQuery and Font Awesome.
 
+## Features to add
 
 - A page and/or modal popup to demonstrate the rules, terms and conditions of website.
     - Would add a requriement in the registration form for new users to agree on them and to tick a box in agreement.

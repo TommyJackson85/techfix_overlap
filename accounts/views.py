@@ -61,12 +61,13 @@ def registration(request):
         return redirect(index)
     
     if request.method == "POST":
-    
-        registration_form = UserRegistrationForm(request.POST)
         
         if request.user.is_authenticated:
             messages.error(request, "Please logout of current account first!")
             return redirect(index)
+        
+        registration_form = UserRegistrationForm(request.POST)
+        
         
         if registration_form.is_valid():
             registration_form.save()
@@ -75,8 +76,8 @@ def registration(request):
                                      password=request.POST['password1'])
             if user:
                 auth.login(user=user, request=request)
-                messages.success(request, "You have successfully registered")
-                return redirect('login')
+                messages.success(request, "You have successfully registered and are now logged in!")
+                return redirect('profile')
             else:
                 messages.error(request, "Unable to register your account at this time")
     else:

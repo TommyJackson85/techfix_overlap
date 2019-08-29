@@ -8,59 +8,61 @@
 {% endblock head_js %}
 
 {% block page_heading %}
-<div class="container">
-    <div class="col-xs-12">
+<header class="container">
+    <div class="col-xs-12 line_break_border">
         <h1>Techfix<em class="blue_text">-Overlap<i class="fa fa-wrench"></i></em> Charts</h1>
         <p>Our charts demonstrate our progress as a company, displaying how many overall Bug Reports and Feature Requests we tend to regularly and how many users are relying on us to contribute to the the Techfix open source. We are always seeking new top python developers to help further develop the framework and increase user reliance.</p>
-        <hr />
+        {% if user.is_authenticated %}
+            <p class="dark_green_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
+        {% endif %}
     </div>
-</div>
+</header>
 {% endblock page_heading %} 
 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes. Button and graph ids link to charts.js code. Canvas link to chart js library.-->
-
-<div class="col-xs-12 col-md-6">
-    <div class="col-xs-12" role="group" aria-label="...">
-      <button id="daily_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Daily</button>
-      <button id="weekly_graph_toggle" type="button" class="btn graph_toggle_button">Weekly</button>
-      <button id="monthly_graph_toggle" type="button" class="btn graph_toggle_button">Monthly</button>
-    </div>
-
-    <div id="average_graphs" class="col-xs-12 average_graphs">
-        <div id="daily_graph" class="graph daily_graph">
-            <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Daily</em>:</h2>
-            <canvas id="dailyProgressChart"></canvas>
+<div class="all_charts">
+    <section class="col-xs-12 col-md-6">
+        <div class="col-xs-12" role="group" aria-label="...">
+          <button id="daily_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Daily</button>
+          <button id="weekly_graph_toggle" type="button" class="btn graph_toggle_button">Weekly</button>
+          <button id="monthly_graph_toggle" type="button" class="btn graph_toggle_button">Monthly</button>
         </div>
-        <div id="weekly_graph" class="graph weekly_graph">
-         <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Weekly</em>:</h2>
-            <canvas id="weeklyProgressChart"></canvas>
-        </div>
-        <div id="monthly_graph" class="graph monthly_graph">
-            <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Monthly</em>:</h2>
-            <canvas id="monthlyProgressChart"></canvas>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-md-6">
-    <div class="col-xs-12" role="group" aria-label="...">
-      <button id="bugs_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Bugs</button>
-      <button id="features_graph_toggle" type="button" class="btn graph_toggle_button">Features</button>
-    </div>
-    <div class="col-xs-12">
-        <div id="vote_graphs" class="vote_graphs">
-            <div id="bug_votes_graph" class="graph bug_votes_graph">
-                <h2>Highest Voted <em class="dark_green_text">Bugs</em>:</h2>
-                <canvas id="higestBugsVotedChart"></canvas>
+    
+        <div id="average_graphs" class="col-xs-12 average_graphs">
+            <div id="daily_graph" class="graph daily_graph">
+                <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Daily</em>:</h2>
+                <canvas id="dailyProgressChart"></canvas>
             </div>
-            <div id="feature_votes_graph" class="graph bug_votes_graph">
-                <h2>Highest Voted <em class="dark_green_text">Features</em>:</h2>
-                <canvas id="higestFeaturesVotedChart"></canvas>
+            <div id="weekly_graph" class="graph weekly_graph">
+             <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Weekly</em>:</h2>
+                <canvas id="weeklyProgressChart"></canvas>
+            </div>
+            <div id="monthly_graph" class="graph monthly_graph">
+                <h2>Average amount of Bugs/Features attended to <em class="dark_green_text">Monthly</em>:</h2>
+                <canvas id="monthlyProgressChart"></canvas>
             </div>
         </div>
-    </div>
+    </section>
+    <section class="col-xs-12 col-md-6">
+        <div class="col-xs-12" role="group" aria-label="...">
+          <button id="bugs_graph_toggle" type="button" class="btn graph_toggle_button activated_button">Bugs</button>
+          <button id="features_graph_toggle" type="button" class="btn graph_toggle_button">Features</button>
+        </div>
+        <div class="col-xs-12">
+            <div id="vote_graphs" class="vote_graphs">
+                <div id="bug_votes_graph" class="graph bug_votes_graph">
+                    <h2>Highest Voted <em class="dark_green_text">Bugs</em>:</h2>
+                    <canvas id="higestBugsVotedChart"></canvas>
+                </div>
+                <div id="feature_votes_graph" class="graph bug_votes_graph">
+                    <h2>Highest Voted <em class="dark_green_text">Features</em>:</h2>
+                    <canvas id="higestFeaturesVotedChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
-
 
 {% endblock content %}
 

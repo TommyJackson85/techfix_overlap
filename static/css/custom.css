@@ -29,7 +29,7 @@ header {
   margin: 0 0;
 }
 
-section {
+main {
   margin-top: -50px;
   padding: 50px 0 390px 0;
   width: auto;
@@ -273,8 +273,12 @@ footer p {
 }
 
 /*bug bost and feature detail page*/
-.post_details p, .secondary_search_bar h1 {
+.post_details p, .secondary_search_bar p {
   font-size: 1.2em;
+}
+
+.post_details h1 {
+  font-size: 2.4em;
 }
 
 /*--------------------------------------------number display badge classes*/
@@ -293,6 +297,13 @@ footer p {
 .badge-blue {
   /*for footer*/
   background-color: #1558A9;
+}
+
+/*---------------------------------------------------border*/
+.line_break_border {
+  border-bottom-style: solid;
+  border-width: 2px;
+  border-color: #CDCDCD;
 }
 
 /*--------------------------------------------------panel collapse*/
@@ -319,56 +330,15 @@ footer p {
   background-image: none;
   background-color: #5588C5 !important;
 }
+.panel-default .dark_blue_bar:hover h1 {
+  text-decoration: none;
+}
 
 .panel-group .panel {
   margin-bottom: 30px !important;
 }
 
-/*-----------------------------ticket panels for bugs and features*/
-/*-------for cart and checkout pages*/
-/*
-.panel_cart_item {
-    background-color: $xtr-light-yellow;
-    .panel-heading {
-        color: $black-blue;
-        background-color: $light-yellow;
-
-        .badge-positive {
-            background-color: green;
-        }
-
-        .badge-negative {
-            background-color: red;
-        }
-    }
-    .panel-body form .input-group {
-        margin: 5px 5px 5px 0;
-    }
-    .panel-body form .form-group {
-        max-width: 200px ;
-    }
-    .panel-body form .purchase_ammend_button, .panel-body form .form-group {
-        margin: 10px 0 10px 0;
-    }
-
-    .panel-body form .purchase_ammend_button
-    {
-        color: $white;
-        background-color: $blue;        
-    }
-    .panel-body form .purchase_ammend_button:hover {
-        color: $yellow;
-        background-color: $light-blue;
-    }
-    .panel-body form .input-group-addon {
-        color: $white;
-        background-color: $dark-blue;
-        border: 1px 1px 1px 1p;
-        border-color: $light-blue;
-    }
-}
-*/
-/*-----for bugs, features, profile pages*/
+/*-----------------------------ticket panel item for bugs, features, cart/checkout items*/
 .panel_item {
   border-color: #366FB3;
   background-color: #7295BF !important;
@@ -414,159 +384,12 @@ footer p {
   border-color: #5588C5;
 }
 
-/*
-.panel_done {
-    border-color: $green;
-    background-color: $xtr-light-green !important;
-    .panel-heading {
-        color: $black-blue;
-        background-color: $light-green;
-        border-color: $green;
-    }
-    .panel-body {
-        background-color: $xtr-light-green !important;
-        a {
-            color: $white;
-            background-color: $blue;        
-        }
-        a:hover, a:active {
-            color: $yellow;
-            background-color: $light-blue;
-        }
-    }
+/*-------------------------------------post detail page for bugs and featutres*/
+.post_details {
+  padding-top: 15px;
 }
 
-.panel_doing {
-    border-color: $yellow;
-    background-color: $xtr-light-yellow !important;
-    .panel-heading {
-        color: $black-blue;
-        background-color:$light-yellow;
-        border-color: $yellow;
-    }
-    .panel-body {
-        background-color: $xtr-light-yellow !important;
-        a {
-            color: $white;
-            background-color: $blue;        
-        }
-        a:hover, a:active {
-            color: $yellow;
-            background-color: $light-blue;
-        }
-    }
-}
-
-.panel_to_do {
-    border-color: $red;
-    background-color: $xtr-light-red;
-    .panel-heading {
-        color: $black-blue;
-        background-color: $light-red;
-        border-color: $red;
-    }
-    .panel-body {
-        background-color: $xtr-light-red !important;
-        a {
-            color: $white;
-            background-color: $blue;
-        }
-        a:hover, a:active {
-            color: $yellow;
-            background-color: $light-blue;
-        }
-    }
-}
-*/
-/*------ticket class changes*/
-.ticket {
-  height: 390px;
-  padding-top: 10px;
-}
-
-.ticket .panel-body a {
-  margin: 0 15px 15px 0;
-}
-
-/*-----------------------------------search bar for bugs and features*/
-/*for listings page*/
-.search_bar {
-  margin: 0 0 30px 0;
-}
-
-/*for post detail page, as an option for users to be redirected to another topic*/
-/*.secondary_search_bar {
-    margin: 10px 0 0 0;
-}*/
-/*----------------------------------------------------------------home page*/
-/*-----masshead*/
-.mast_head {
-  /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
-  background-image: url("../img/computer_circuit.jpg");
-  background-color: #5588C5;
-  background-blend-mode: multiply;
-  margin-bottom: 10px;
-}
-
-/*-----introduction alert*/
-.alert_introduction {
-  background-color: #7295BF;
-  border: 5px 5px 5px 5px;
-  border-color: #242729;
-  color: #242729;
-  padding: 10px 5px 10px 5px;
-}
-.alert_introduction p a {
-  color: #fdfdfd !important;
-}
-.alert_introduction p a:hover, .alert_introduction p a:active {
-  color: #52CE80 !important;
-}
-.alert_introduction .alert > p + p {
-  margin-top: 0 !important;
-}
-.alert_introduction .close, .alert_introduction .alert-dismissible .close {
-  top: 5px;
-  right: 5px;
-  color: #242729;
-}
-
-/*------display for all news and side nav*/
-.news_container {
-  padding: 10px 0 10px 0;
-}
-
-/*-side nav displaying latest bugs and features*/
-.side_nav {
-  background-color: #BDAEAE;
-}
-.side_nav a {
-  color: #fdfdfd;
-}
-.side_nav a:hover, .side_nav a:active {
-  color: #52CE80;
-}
-
-/*---------------------------------password reset page*/
-.password_reset_form input {
-  /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
-  display: block;
-  width: 100%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border-radius: 4px;
-  border: 2px solid #5588C5;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  margin-bottom: 15px;
-}
-
-/*------------------------forms*/
+/*------------------------comment form, sticky buttons and comments*/
 .form-control {
   border: 2px solid #5588C5;
 }
@@ -633,10 +456,82 @@ footer p {
   background-color: #7295BF;
   border-radius: 5px 5px 5px 5px;
   margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/*------ticket class changes*/
+.ticket {
+  height: 390px;
+  padding-top: 10px;
+}
+
+.ticket .panel-body a {
+  margin: 0 15px 15px 0;
+}
+
+/*-----------------------------------main search bar for bugs and features*/
+/*for listings page*/
+.search_bar {
+  margin: 0 0 30px 0;
+}
+
+/*----------------------------------------------------------------home page*/
+/*-----masshead*/
+.mast_head {
+  /*https://www.istockphoto.com/ie/vector/computer-circuit-board-seamless-black-and-white-technology-background-gm181167778-27262185*/
+  background-image: url("../img/computer_circuit.jpg");
+  background-color: #5588C5;
+  background-blend-mode: multiply;
   margin-bottom: 10px;
 }
 
+/*-----introduction alert*/
+.alert_introduction {
+  background-color: #7295BF;
+  border: 5px 5px 5px 5px;
+  border-color: #242729;
+  color: #242729;
+  padding: 10px 5px 10px 5px;
+}
+.alert_introduction p a {
+  color: #fdfdfd !important;
+}
+.alert_introduction p a:hover, .alert_introduction p a:active {
+  color: #FFC63D !important;
+  text-decoration: none;
+}
+.alert_introduction .alert > p + p {
+  margin-top: 0 !important;
+}
+.alert_introduction .close, .alert_introduction .alert-dismissible .close {
+  top: 5px;
+  right: 5px;
+  color: #242729;
+}
+
+/*------display for all news and side nav*/
+.news_container {
+  padding: 10px 0 10px 0;
+}
+
+/*-side nav displaying latest bugs and features*/
+.side_nav {
+  background-color: #BDAEAE;
+}
+.side_nav a {
+  color: #fdfdfd;
+}
+.side_nav a:hover, .side_nav a:active {
+  color: #FFC63D;
+  text-decoration: none;
+}
+
 /*----------------------------------------- charts for chart page*/
+.all_charts {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 .average_graphs {
   height: 450px;
   margin-bottom: 70px;
@@ -659,10 +554,29 @@ footer p {
   height: 300px;
 }
 
+/*---------------------------------password reset page (section removed due to bug!)*/
+.password_reset_form input {
+  /*reusing bootstrap's form-control class styling, due to issues accesing the input form*/
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 2px solid #5588C5;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  margin-bottom: 15px;
+}
+
 /*-------------------------------------------------------media-queries*/
 @media only screen and (min-width: 354px) {
   .panel_item {
-    height: 305px;
+    height: 320px;
   }
 }
 @media only screen and (min-width: 415px) {
@@ -700,7 +614,7 @@ footer p {
     font-size: 3em !important;
   }
 
-  section {
+  main {
     margin-top: -100px;
     padding: 100px 0 390px 0;
   }
@@ -725,7 +639,7 @@ footer p {
     font-size: 0.8em !important;
   }
 
-  section {
+  main {
     margin-top: -50px;
     padding: 50px 0 390px 0;
   }
@@ -738,7 +652,7 @@ footer p {
     font-size: 4em !important;
   }
 
-  section {
+  main {
     padding: 50px 0 164px 0;
   }
 

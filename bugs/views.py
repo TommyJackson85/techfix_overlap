@@ -12,7 +12,7 @@ def vote_bug_post(request, pk):
     """
     if not request.user.is_authenticated:
         messages.error(request, "Please login before voting for bug reports!")
-        return redirect('/login/')
+        return redirect('/accounts/login/')
     
     bug_post = get_object_or_404(BugPost, pk=pk)
     
@@ -100,6 +100,13 @@ def bug_post_detail(request, pk):
         
         form = BugCommentForm(request.POST)
         
+        if bug_post is not None:
+            if request.user != bug_post.user:
+                if bug_post.status == "Doing":
+                    messages.error(request, "Commenting not allowed because this bug report has been finsihed!")
+                messages.error(request, "You cannot post comments on another users bug report!")
+                return redirect(bug_post_detail, bug_post.pk)
+        
         if bug_post.status == "Done":
             messages.error(request, "Commenting not allowed because this bug report has been finsihed!")
             return render(request, "bugpostdetail.html", {'bug_post': bug_post, 'form': form, 'bug_comments': bug_comments})
@@ -113,6 +120,7 @@ def bug_post_detail(request, pk):
             
             bug_post.comment_count = bug_comments.count()
             bug_post.save()
+            form = BugCommentForm()
             messages.success(request, "You have successfully commented on this bug report!")
     else:
         form = BugCommentForm()

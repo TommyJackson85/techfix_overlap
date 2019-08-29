@@ -16,14 +16,17 @@
 
 {% block page_heading %}
 <!--bootrap class-->
-<div class="container">
+<header class="container">
     <h1>Checkout Feature Votes Cart</h1>
-</div>
+    {% if user.is_authenticated %}
+        <p class="dark_green_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
+    {% endif %}
+</header>
 {% endblock page_heading %} 
 
 {% block content %}
 <!--Mix of bootrap classes and custom.css classes-->
-<div class="row row-flex">
+<section class="row row-flex">
     <!--list cart times-->
     {% for item in cart_items %}
     <div class="col-md-3 col-sm-6 col-xs-12">
@@ -65,14 +68,14 @@
         </div>
     </div>
     {% endfor %}
-</div>
+</section>
 <!--checkout summary-->
-<div class="row text-center">
+<article class="row text-center">
     <strong class="dark_green_text">
         <p>Total Cost:</p>
         <p>€{{ total_cost }}</p>
     </strong>
-</div>
+</article>
 
 <!--checkout form-->
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">

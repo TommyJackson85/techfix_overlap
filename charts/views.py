@@ -73,6 +73,8 @@ def get_averages(objects, now, all_days, user):
     """splits all days into sets of 7 and 30 to create all weeks and all months data."""
     all_weeks = list(chunks(all_days[::-1], 7))
     all_months = list(chunks(all_days[::-1], 30))
+    
+
     #chunks is global variable above, using array in descending order
     
     """sets weekly summary array for next analysis"""

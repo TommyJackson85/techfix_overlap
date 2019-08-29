@@ -81,7 +81,14 @@ def feature_post_detail(request, pk):
             
         form = FeatureCommentForm(request.POST)
         
-        if feature_post.status is "Done":
+        if feature_post is not None:
+            if request.user != feature_post.user:
+                messages.error(request, "You cannot post comments from another users account!")
+                if feature_post.status == "Done":
+                    messages.error(request, "You cannot comment on feature requests that have been finsihed!")
+                return redirect(feature_post_detail, feature_post.pk)
+        
+        if feature_post.status == "Done":
             messages.error(request, "You cannot comment on feature requests that had been finsihed!")
             return render(request, "featurepostdetail.html", {'feature_post': feature_post, 'form': form, 'feature_comments': feature_comments})
         
@@ -92,6 +99,7 @@ def feature_post_detail(request, pk):
             comment.save()
             feature_post.comment_count = feature_comments.count()
             feature_post.save()
+            form = FeatureCommentForm()
             messages.success(request, "You have successfully commented on this feature request!")
             
     else:
@@ -115,7 +123,7 @@ def create_or_edit_featurepost(request, pk=None):
     if feature_post is not None:
         if request.user != feature_post.user:
             messages.error(request, "You cannot edit another users feature request!")
-            if feature_post.status is not "To Do":
+            if feature_post.status != "To Do":
                 messages.error(request, "You cannot edit feature requests that had been finsihed or are in progress!")
             return redirect(feature_post_detail, feature_post.pk)
 
@@ -136,7 +144,7 @@ def create_or_edit_featurepost(request, pk=None):
         if feature_post is not None:    
             if request.user != feature_post.user:
                 messages.error(request, "You cannot edit another users feature request!")
-                if feature_post.status is not "To Do":
+                if feature_post.status != "To Do":
                     messages.error(request, "You cannot edit feature request that in progress or had been finsihed!")
                 
                 return redirect(feature_post_detail, feature_post.pk)

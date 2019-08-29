@@ -1,7 +1,6 @@
 {% load staticfiles %}
-
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>{% block page_title %}{% endblock %}</title>
     <!-- Latest compiled and minified CSS -->
@@ -19,28 +18,6 @@
 </head>
 
 <body id="main_body">
-<!--<nav class="navbar navbar-default">
-        <ul class="nav navbar-nav">
-            <li><a href="{% url 'get_bug_posts' %}">Bugs</a></li>
-            <li><a href="{% url 'get_feature_posts' %}">Features</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' %}">Profile</a></li>
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">Login</a></li>
-                <li><a href="{% url 'registration' %}">Register</a></li>
-            {% endif %}
-            <li>
-                <a href="{% url 'view_cart' %}">
-                    <i class="fa fa-shipping-cart"></i>Cart
-                    {% if product_count > 0 %}
-                        <label class="badge badge-warning">{{ product_count }}</label>
-                    {% endif %}
-                </a>
-            </li>
-        </ul>
-    </nav>-->
- 
 <nav class="black_background">
    <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -120,7 +97,7 @@
 
 {% block page_heading %}{% endblock page_heading %}
 
-<section class="container">
+<main class="container">
     {% if messages %}
     <div class="row">
         {% for message in messages %}
@@ -141,7 +118,7 @@
     
     {% block content %}
     {% endblock content %}
-</section>
+</main>
 
 <footer class="dark_blue_background">
     <!--

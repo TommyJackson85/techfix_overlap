@@ -5,13 +5,12 @@
 {% block page_heading %}
 <!--Mix of bootrap classes and custom.css classes-->
 <div class="container">
-    <div class="col-md-12">
+    <div class="col-md-12 line_break_border">
         <h1><em class="dark_green_text">{{ user }}</em>'s Account</h1>
         {% if profile.email %}
             <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email: {{ profile.email }}</p>
         {% endif %}
     </div>
-    <hr />
 </div>
 
 {% endblock page_heading %} 
@@ -23,7 +22,7 @@
     <!--Create Bug Post button and Bug Post Panel-->
     <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
               
-    <div class="panel panel-default">
+    <section class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <div class="dark_blue_bar" role="tab" id="headingOne">
                 <h1 class="light_red_text">
@@ -88,13 +87,13 @@
                 {% endif %}
             </div>
         </div>
-    </div>
+    </section>
     
     <!--Create Feature Post button and Feature Post Panel-->
     
     <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
     
-    <div class="panel panel-default">
+    <section class="panel panel-default">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div class="dark_blue_bar" role="tab" id="headingTwo">
                 <h1 class="yellow_text">
@@ -163,7 +162,7 @@
                 <p>No posts found.</p>
             {% endif %}
         </div>
-    </div>
+    </section>
 </div>
 </div>
 
