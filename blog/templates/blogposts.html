@@ -33,4 +33,7 @@
         <h2>No blog posts have been posted.</h2>
     {% endif %}
 </section>
+<div class="row optional_button_div">
+    <a href="{% url 'get_charts' %}" class="btn get_charts col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">View Our Progress Charts</a>
+</div>
 {% endblock content %}

@@ -100,28 +100,47 @@ footer p {
   color: #CDCDCD;
 }
 
-/*---------------------buttons colors, borders and margins, sizes*/
+/*---------------------buttons colors, borders and margins, paddings sizes*/
 .current_page {
   background: #61686D;
 }
 
-.new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .edit_button, .delete_button, .vote_button {
-  margin: 20px 20px 20px 10px;
-  min-width: 250px;
+.get_blogs, .get_charts, .get_feature_posts_button, .get_bug_posts_button, .new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .edit_button, .delete_button, .vote_button {
+  /*margin: 20px 20px 20px 10px;
+  min-width: 250px;*/
   color: #fdfdfd;
   background-color: #019914;
 }
 
-.new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
-.edit_button:hover, .delete_button:hover, .vote_button:hover, .new_post_button:active, .login_button:active, .registration_button:active,
+.get_blogs:hover, .get_charts:hover .get_feature_posts_button:hover,
+.get_bug_posts_button:hover, .new_post_button:hover, .login_button:hover, .registration_button:hover, .reset_password_button:hover, .purchase_button:hover,
+.edit_button:hover, .delete_button:hover, .vote_button:hover,
+.get_blogs:active, .get_charts:active,
+.get_feature_posts_button:active, .get_bug_posts_button:active,
+.new_post_button:active, .login_button:active, .registration_button:active,
 .reset_password_button:active, .purchase_button:active, .edit_button:active, .delete_button:active, .vote_button:active {
   background-color: #31CE44;
   color: #FFC63D;
 }
 
-.submit_button {
+.header_button {
   margin: 20px 20px 20px 10px;
-  min-width: 250px;
+  min-width: 230px;
+}
+
+.optional_button_div .btn {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.toggle_buttons .btn {
+  margin-bottom: 25px !important;
+}
+
+.submit_button {
+  /*
+  margin: 20px 20px 20px 10px;
+  min-width: 230px;*/
   color: #fdfdfd;
   background-color: #5588C5;
 }
@@ -131,14 +150,13 @@ footer p {
   color: #FFC63D;
 }
 
-.graph_toggle_button {
+.graph_toggle_button, .back_to_top_button {
   background-color: #366FB3;
   color: #fdfdfd;
-  margin: 0 20px 20px 0;
-  min-width: 190px;
+  /*min-width: 190px;*/
 }
 
-.graph_toggle_button:hover, .graph_toggle_button:active {
+.graph_toggle_button:hover, .back_to_top_button:hover, .graph_toggle_button:active, .back_to_top_button:active {
   background-color: #5588C5;
   color: #FFC63D;
 }
@@ -281,6 +299,11 @@ footer p {
   font-size: 2.4em;
 }
 
+.detail_post_buttons {
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+}
+
 /*--------------------------------------------number display badge classes*/
 .badge-positive {
   background-color: #019914;
@@ -389,43 +412,46 @@ footer p {
   padding-top: 15px;
 }
 
+.detail_post_buttons {
+  margin-top: 45px !important;
+}
+.detail_post_buttons .btn {
+  margin-bottom: 25px !important;
+}
+
+.back_to_top_section {
+  height: 60px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 /*------------------------comment form, sticky buttons and comments*/
 .form-control {
   border: 2px solid #5588C5;
 }
 
 .comment_form {
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 10;
   padding: 10px 10px 10px 10px;
 }
 
-.sticky_buttons {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10;
-  z-index: 10;
-}
-
-.sticky_buttons {
+.comment_form_login {
   text-align: center;
 }
 
-.sticky_buttons a {
+.comment_form_login a {
   background-color: #F83B4D;
   color: #fdfdfd;
   min-width: 190px;
   margin: 10px auto 10px auto;
 }
-.sticky_buttons a .comment_form {
+.comment_form_login a .comment_form {
   text-align: center;
 }
-.sticky_buttons a .comment_form a {
+.comment_form_login a .comment_form a {
   margin: 10px 20px 10px 0;
 }
 
-.sticky_buttons a:hover {
+.comment_form_login a:hover {
   background-color: #F96371;
   color: #FFC63D;
 }
@@ -595,11 +621,13 @@ footer p {
     margin: 10px 20px 10px 0;
   }
 }
+/*
 @media only screen and (min-width: 444px) {
-  .edit_button, .delete_button, .vote_button, .graph_toggle_button {
-    margin: 0 15px 20px 0;
-  }
+    .edit_button, .delete_button, .vote_button, .graph_toggle_button, .get_bug_posts_button, .get_feature_posts_button {
+        margin: 0 15px 20px 0;
+    }
 }
+*/
 @media only screen and (min-width: 517px) {
   .mast_head .page_heading h1 {
     font-size: 4em !important;

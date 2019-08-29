@@ -83,12 +83,18 @@
     </strong>
     {% if user.is_authenticated %}
         {% if total_cost > 0 %}
-        <a href="{% url 'checkout' %}" class="btn purchase_button" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        <div class="row optional_button_div">
+            <a href="{% url 'checkout' %}" class="btn purchase_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        </div>
         {% endif %}
     {% else %}
-        <a type="button" class="btn login_button" href="{% url 'login' %}">Login To Purchase Feature Votes</a>
+        <div class="row optional_button_div">
+            <a type="button" class="btn login_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'login' %}">Login To Purchase Feature Votes</a>
+        </div>
         <p class="red_text">Don't have an account?</p>
-        <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
+        <div class="row optional_button_div">
+            <a type="button" class="btn registration_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'registration' %}">Register Account</a>
+        </div>
     {% endif %}
 </section>
 

@@ -195,6 +195,11 @@
         - I am receiving "CSRF verification failed. Request aborted" on an error page.
         - This bug must be fixed.
 
+- Sticky buttons doesn't work on Safari.
+    - The sticky buttons don't work in Safari.
+    - Looking at alternatives to position 'sticky' such as from this [Stack Overflow Post](https://stackoverflow.com/questions/51792783/safari-positionsticky-not-working-in-an-overflowauto-element).
+    - Also condsidering removing it all together. Maybe include a modal popup instead.
+    
 - Users can vote for 'Done' feature requests, if the feature donations modal is available to them.
     - From the cart and checkout page, I will add more defensive design, in detecting cart items that are already finished. 
     - This is hard to do because the add to cart and adjust cart refer to the items ids and not the whole feature and are linked to a session. 

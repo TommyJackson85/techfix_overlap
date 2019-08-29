@@ -20,8 +20,9 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
     <!--Create Bug Post button and Bug Post Panel-->
-    <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
-              
+    <div class="row optional_button_div">
+        <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'new_bug_post' %}">Create Bug Report</a>
+    </div>
     <section class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
             <div class="dark_blue_bar" role="tab" id="headingOne">
@@ -90,9 +91,11 @@
     </section>
     
     <!--Create Feature Post button and Feature Post Panel-->
-    
-    <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
-    
+    <div class="row">
+        <div class="row optional_button_div">
+            <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+        </div>
+    </div>
     <section class="panel panel-default">
         <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div class="dark_blue_bar" role="tab" id="headingTwo">

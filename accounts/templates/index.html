@@ -9,12 +9,12 @@
             </div>
             <div class="col-xs-12 col-sm-6">
                 {% if user.is_authenticated %}
-                    <a type="button" class="btn new_post_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
-                    <a type="button" class="btn new_post_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+                    <a type="button" class="btn new_post_button header_button" href="{% url 'new_bug_post' %}">Create Bug Report</a>
+                    <a type="button" class="btn new_post_button header_button" href="{% url 'new_feature_post' %}">Create Feature Request</a>
                     <p class="white_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
                 {% else %}
-                    <a type="button" class="btn login_button" href="{% url 'login' %}">Login Account</a>
-                    <a type="button" class="btn registration_button" href="{% url 'registration' %}">Register Account</a>
+                    <a type="button" class="btn login_button header_button" href="{% url 'login' %}">Login Account</a>
+                    <a type="button" class="btn registration_button header_button" href="{% url 'registration' %}">Register Account</a>
                     <p class="white_text"><strong>Register and/or login to create posts.</strong></p>
                 {% endif %}
             </div>
@@ -63,7 +63,9 @@
             <p>{{ blog_post.content }}</p>
         </div>
         {% endfor %}
-        <a href="{% url 'get_blog_posts' %}" class="btn new_post_button">View Full News Blog</a>
+        <div class="row optional_button_div">
+            <a href="{% url 'get_blog_posts' %}" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">View Full News Blog</a>
+        </div>
     </article>
     
     <side class="col-xs-12 col-md-4 side_nav">
