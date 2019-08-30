@@ -84,7 +84,7 @@
     {% if user.is_authenticated %}
         {% if total_cost > 0 %}
         <div class="row optional_button_div">
-            <a href="{% url 'checkout' %}" class="btn purchase_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+            <a href="{% url 'checkout' %}" class="btn purchase_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
         </div>
         {% endif %}
     {% else %}

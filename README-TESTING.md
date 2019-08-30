@@ -239,8 +239,13 @@ These are done in reflection of the Readm files user stories, but observes other
         - At the moment, it is jus the user name in bright green text.
         - Panel drop down items need to be ajusted aswell. On ipad width screens, they get too big for the amount of text and information in them.
         - This is one of the downfalls of Bootstrap. Their small columns are quite big compared to their extra small columns.
+        - Aready gave each panel item a max height as suggested by other testers.
         - Will pontentially allow more text to be in the panel items from, and maybe uses media queries to help fix this.
         - Add better images. The Masthead image is just a prototype to get the correct feeling of the page.
+        - I will add a removable alert box on the profile, features and bugs pages, explaining some rules about the site.
+                i.e. describing you cant delete features, you have to pay for feature votes, how you can only edit posts if 
+                they are yours and still at To Do status. How you cant comment or vote on Done posts. I thought users need to be known these things before they pass.
+                Ideally, this is longer development to build a terms and conditions section of the site.
 
 - Made more of an effor to implement HTML Semantics in my project, using Headers for hierarchy.
         - I need to fix the structure of my sections, side navs. For example, my Side Nav is located in my main section.
