@@ -81,7 +81,7 @@
                         <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
@@ -140,7 +140,7 @@
                         <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ bug_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
@@ -199,7 +199,7 @@
                             <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                             {% endif %}
                         {% else %}
-                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ bug_post.user|slice:":7" }}</p>
                         {% endif %}
                         <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                         <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>

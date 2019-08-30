@@ -57,7 +57,7 @@
         {% if feature_post.user == user %}
             <p><span class="boldtext dark_green_text">This is your post!</span></p>
         {% else %}
-            <p><span class="boldtext">By Author:</span>{{ feature_post.user }}</p>
+            <p><span class="boldtext">By Author:</span> {{ feature_post.user }}</p>
         {% endif %}
         <p><strong>Content:</strong></p>
         <p>{{ feature_post.content }}</p>
@@ -109,7 +109,7 @@
 
     </section>
     <!--sticky buttons-->
-    <section class="comment_form_login col-md-10 col-md-offset-1">
+    <section class="comment_form_section col-md-10 col-md-offset-1">
         {% if feature_post.status != "Done" %}
             {% if user.is_authenticated %}
                 <div class="comment_form">
@@ -120,12 +120,14 @@
                         <form class="post_comment_form" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form | as_bootstrap }}
-                            <button type="submit" class="btn">Post Comment</button>
+                            <button type="submit" class="btn submit_button">Post Comment</button>
                         </form>
                   </div>
                 </div>
             {% else %}
-                <a class="btn login_button col-xs-10 col-xs-offset-1 col-md-6" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
+            <div="row optional_button_div">
+                <a class="btn login_button col-xs-10 col-xs-offset-1 col-md-offset-3 col-md-6" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login To Comment</a>
+            </div>
             {% endif %}
         {% endif %}
     </section>

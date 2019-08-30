@@ -48,8 +48,8 @@ footer {
   clear: both;
 }
 
-/*--------------------------------------------section colors and borders*/
-/*----------------------navbar*/
+/*----------------------nav bar and footer*/
+/*--navbar*/
 nav {
   background: #242729;
 }
@@ -83,6 +83,7 @@ nav button {
   background: #61686D;
 }
 
+/*---footer*/
 footer {
   background: #0B4181;
 }
@@ -102,12 +103,12 @@ footer p {
 
 /*---------------------buttons colors, borders and margins, paddings sizes*/
 .current_page {
+  /*a visual indicater for users to know where they are on the site*/
   background: #61686D;
 }
 
+/*green buttons*/
 .get_blogs, .get_charts, .get_feature_posts_button, .get_bug_posts_button, .new_post_button, .login_button, .registration_button, .reset_password_button, .purchase_button, .edit_button, .delete_button, .vote_button {
-  /*margin: 20px 20px 20px 10px;
-  min-width: 250px;*/
   color: #fdfdfd;
   background-color: #019914;
 }
@@ -124,10 +125,16 @@ footer p {
 }
 
 .header_button {
+  /*designed to not take up too much space*/
   margin: 20px 20px 20px 10px;
   min-width: 230px;
 }
 
+.optional_button_div {
+  /*used for optional (alternative links) buttons mostly, in which are on their own, makes sure they have enough space*/
+  /*also applied it to form submit buttons*/
+  height: 90px;
+}
 .optional_button_div .btn {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -138,9 +145,6 @@ footer p {
 }
 
 .submit_button {
-  /*
-  margin: 20px 20px 20px 10px;
-  min-width: 230px;*/
   color: #fdfdfd;
   background-color: #5588C5;
 }
@@ -153,7 +157,6 @@ footer p {
 .graph_toggle_button, .back_to_top_button {
   background-color: #366FB3;
   color: #fdfdfd;
-  /*min-width: 190px;*/
 }
 
 .graph_toggle_button:hover, .back_to_top_button:hover, .graph_toggle_button:active, .back_to_top_button:active {
@@ -171,18 +174,8 @@ footer p {
   color: #FFC63D;
 }
 
-.post_comment_form button {
-  background-color: #31CE44;
-  color: #fdfdfd;
-}
-
-.post_comment_form button:hover {
-  background-color: #52CE80;
-  color: #FFC63D;
-}
-
 .close {
-  /*changing bootstrap class*/
+  /*changing bootstrap class to make x bigger*/
   font-size: 31px;
   font-weight: 800;
   filter: alpha(opacity=20);
@@ -204,6 +197,7 @@ footer p {
 }
 
 .activated_button {
+  /*Used for graph toggling on the Graph page to show which button is turned on*/
   background-color: #FFC63D !important;
   color: #019914 !important;
 }
@@ -295,6 +289,10 @@ footer p {
   font-size: 1.2em;
 }
 
+.secondary_search_bar form .input-group {
+  margin-bottom: 20px;
+}
+
 .post_details h1 {
   font-size: 2.4em;
 }
@@ -305,6 +303,7 @@ footer p {
 }
 
 /*--------------------------------------------number display badge classes*/
+/*to add extra highlights to data*/
 .badge-positive {
   background-color: #019914;
 }
@@ -318,7 +317,6 @@ footer p {
 }
 
 .badge-blue {
-  /*for footer*/
   background-color: #1558A9;
 }
 
@@ -434,26 +432,15 @@ footer p {
   padding: 10px 10px 10px 10px;
 }
 
-.comment_form_login {
-  text-align: center;
+.comment_form_section {
+  text-align: left;
 }
 
-.comment_form_login a {
-  background-color: #F83B4D;
-  color: #fdfdfd;
-  min-width: 190px;
-  margin: 10px auto 10px auto;
+.comment_form_section .comment_form {
+  text-align: left;
 }
-.comment_form_login a .comment_form {
-  text-align: center;
-}
-.comment_form_login a .comment_form a {
+.comment_form_section .comment_form a {
   margin: 10px 20px 10px 0;
-}
-
-.comment_form_login a:hover {
-  background-color: #F96371;
-  color: #FFC63D;
 }
 
 .comment_form {
@@ -621,21 +608,24 @@ footer p {
     margin: 10px 20px 10px 0;
   }
 }
-/*
-@media only screen and (min-width: 444px) {
-    .edit_button, .delete_button, .vote_button, .graph_toggle_button, .get_bug_posts_button, .get_feature_posts_button {
-        margin: 0 15px 20px 0;
-    }
-}
-*/
 @media only screen and (min-width: 517px) {
   .mast_head .page_heading h1 {
     font-size: 4em !important;
+  }
+
+  /*where panel is big*/
+  .panel_post_head h2 {
+    font-size: 1.8em !important;
   }
 }
 @media only screen and (min-width: 768px) {
   .panel_item {
     height: 375px;
+  }
+
+  /*where panel is small*/
+  .panel_post_head h2 {
+    font-size: 1.2em !important;
   }
 
   .mast_head .page_heading h1 {
@@ -673,9 +663,6 @@ footer p {
   }
 }
 @media only screen and (min-width: 992px) {
-  /*nav {
-      margin: 0 0 -50px 0;
-  }*/
   .mast_head .page_heading h1 {
     font-size: 4em !important;
   }

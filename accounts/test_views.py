@@ -98,8 +98,8 @@ class TestAccountsViews(TestCase):
             'password1': 'Madetotest',
             'password2': 'Madetotest'
         })
-        self.assertRedirects(response, '/accounts/login/', status_code=302, 
-        target_status_code=302, fetch_redirect_response=True)
+        self.assertRedirects(response, '/accounts/profile/', status_code=302, 
+        target_status_code=200, fetch_redirect_response=True)
         
     def test_error_on_registration(self):
         form_params={

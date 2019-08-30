@@ -21,7 +21,7 @@
 
     <!--Create Bug Post button and Bug Post Panel-->
     <div class="row optional_button_div">
-        <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'new_bug_post' %}">Create Bug Report</a>
+        <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" href="{% url 'new_bug_post' %}">Create Bug Report</a>
     </div>
     <section class="panel panel-default">
        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -74,7 +74,7 @@
                                 <a href="{% url 'delete_bug_post' bug_post.id %}" class="btn">Delete</a>
                                 {% endif %}
                             {% else %}
-                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ bug_post.user|slice:":7" }}</p>
+                            <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ bug_post.user|slice:":7" }}</p>
                             {% endif %}
                             <a href="{% url 'bug_post_detail' bug_post.id %}"  class="btn">View</a>
                             <p><span class="boldtext">Published:</span> {{ bug_post.published_date }} </p>
@@ -93,7 +93,7 @@
     <!--Create Feature Post button and Feature Post Panel-->
     <div class="row">
         <div class="row optional_button_div">
-            <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-xs-offset-2" href="{% url 'new_feature_post' %}">Create Feature Request</a>
+            <a type="button" class="btn new_post_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2" href="{% url 'new_feature_post' %}">Create Feature Request</a>
         </div>
     </div>
     <section class="panel panel-default">
@@ -152,7 +152,7 @@
                                     <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn">Edit</a>
                                     {% endif %}
                                 {% else %}
-                                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ feature_post.user|slice:":7" }}</p>
+                                <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ feature_post.user|slice:":7" }}</p>
                                 {% endif %}
                                 <a href="{% url 'feature_post_detail' feature_post.id %}"  class="btn">View</a>
                                 <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
@@ -166,7 +166,6 @@
             {% endif %}
         </div>
     </section>
-</div>
 </div>
 
 {% endblock %}

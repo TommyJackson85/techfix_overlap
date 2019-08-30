@@ -2,17 +2,6 @@
 
 ## Code to clean
 
-- In creating defensive programming, 
-    - in attempting various form posts, where you shouldn't have current access to, I redirect the user to another page. 
-        - Some redirects are not bypassing the error where 'CSRF token is missing or incorrect', currently found when falsly trying to post from. I plan on catching the CSRF error from the code, to make it more defensive. Potentially using Try and Catch.
-            - login and register posts as an already logged in user.
-            - Potential more situations, need to to keep testing application under various circustances.
-        - Some messages dont appear on redirects such as,
-            - As a logged out user 
-                - When logging out again, going to checkout page, making a checkout request.
-                    - I am redirect to login page without a message. For this I need to re-analyse this code of these views.
-    
-
 - The bug and feature posts/comments models, use alot of the same values and functions. Alot of their html templates are simular too. I will ceate a User Post app, in which will contain all the code and templates that both features and bugs have incommon.
     - Any data in the models that is relevant to multiple apps will be shared, rather than duplicated.
 - This new app would then be imported into the bugs and features apps, in which it might be altered.
@@ -27,6 +16,10 @@
             - Add new keys to the global functions.
         - For the sake of keeping my code clean, I main not keep all my code clean.
     - I was originally considering doing this first, but I thought it would be cleaner the way it is now, and I was unsure of how different the features and bugs may become while developing them.
+
+- I have too many class names for green buttons, for this, I will set one class for this button and and swap buttons classes with with it.
+
+- Some of the class colour classes are not used. I kept them there incase I need them. For future development I may need them but I will remove them eventually if they dont get used.
 
 - Setting up a Jasmine testing environment
     - I was considering testing my JavaScript through Jasmine test but decided not to do it yet
@@ -119,3 +112,4 @@
 - Multiple commits were made to try and solve Heroku errors, particularly during th early stages of project when setting it up, as a result my commit history is not clean.
     - Will attempt to merger smaller commits as one commit, and/or merge them with other larger commits.
 
+- Removed files from GitHub which I deleted from my development repository.

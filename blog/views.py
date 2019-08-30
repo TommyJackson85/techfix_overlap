@@ -12,7 +12,6 @@ def get_blog_posts(request):
     blog_count = 0
     for post in list(blog_posts):
         blog_count += 1
-        
-    print(blog_count)
     return render(request, "blogposts.html", {'blog_posts': blog_posts, 'blog_count': blog_count, 'user': user})
- 
+    
+    

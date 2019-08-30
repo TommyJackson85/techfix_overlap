@@ -87,7 +87,7 @@
                         <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn">Edit</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ feature_post.user|slice:":7" }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ feature_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'feature_post_detail' feature_post.id %}" class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
@@ -153,7 +153,7 @@
                         <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn">Edit</a>
                         {% endif %}
                     {% else %}
-                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ feature_post.user|slice:":7" }}</p>
+                    <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ feature_post.user|slice:":7" }}</p>
                     {% endif %}
                     <a href="{% url 'feature_post_detail' feature_post.id %}"  class="btn">View</a>
                     <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>
@@ -221,7 +221,7 @@
                             <a href="{% url 'edit_feature_post' feature_post.id %}" class="btn">Edit</a>
                             {% endif %}
                         {% else %}
-                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author: {{ feature_post.user|slice:":7" }}</p>
+                        <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="boldtext">Author:</span> {{ feature_post.user|slice:":7" }}</p>
                         {% endif %}
                         <a href="{% url 'feature_post_detail' feature_post.id %}"  class="btn">View</a>
                         <p><span class="boldtext">Published:</span> {{ feature_post.published_date }} </p>

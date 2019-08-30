@@ -28,7 +28,7 @@ var scrollToTop = function(){
 			scrollTo(0, stopY); return;
 		}
 		var speed = Math.round(distance / 100);
-		if (speed >= 20) { speed = 20 };
+		if (speed >= 20) { speed = 20; }
 		var step = Math.round(distance / 25);
 		
 		var leapY;
@@ -50,7 +50,7 @@ var scrollToTop = function(){
 		}
 	}
 	return smoothScroll(eID);
-}
+};
 
 $('#back_to_top').click(
-    function(){ return scrollToTop();  })
+    function(){ return scrollToTop();  });

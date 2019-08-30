@@ -43,12 +43,12 @@
                 </h3>
                 
                 <p>Collective user donations:</p> 
-                <p><em>
+                <p>
                  
                 {% if item.feature_voted.votes_cost == 0 %} 
-                    <strong class="light_red_text">{{ item.feature_voted.votes_cost}} €</strong>
+                    <strong class="light_red_text"><em>{{ item.feature_voted.votes_cost}} €</em></strong>
                 {% else %}
-                    <strong class="light_green_text">{{ item.feature_voted.votes_cost}} €</strong>
+                    <strong class="light_green_text"><em>{{ item.feature_voted.votes_cost}} €</em></strong>
                 {% endif %}
                 <!--label starts-->
                 {% if item.feature_voted.votes == 0 %}
@@ -56,10 +56,12 @@
                 {% else %}
                     <label class="badge badge-positive">
                 {% endif %}
+                    <em>
                     {{ item.feature_voted.votes }} Votes so far!
                     <!--label ends-->
+                    </em>
                     </label>
-                </em></p>
+                </p>
             </div>
             <div class="panel-body">
                 <p><strong class="light_green_text">You will add:</strong></p>
@@ -70,12 +72,12 @@
     {% endfor %}
 </section>
 <!--checkout summary-->
-<article class="row text-center">
+<section class="row text-center">
     <strong class="dark_green_text">
         <p>Total Cost:</p>
         <p>€{{ total_cost }}</p>
     </strong>
-</article>
+</section>
 
 <!--checkout form-->
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">

@@ -1,9 +1,11 @@
 //Charts page
-//https://stackoverflow.com/questions/44396737/how-to-shorten-chart-js-label
-//https://jsfiddle.net/6bexkyd9/
-/*var progress_options = {
-    maintainAspectRatio: false
-};*/
+/*
+Used the following links to help me build the frontenf part of the site.
+https://www.chartjs.org/docs/latest/charts/doughnut.html
+https://stackoverflow.com/questions/44396737/how-to-shorten-chart-js-label
+https://jsfiddle.net/6bexkyd9/
+*/
+/*chart js options variable adjusted to allow number values with strings (shortened) to be displayed. */
 var options = {
         maintainAspectRatio: false,
         legend: {
@@ -47,14 +49,14 @@ var options = {
             }
         }
     }
-//Chart.defaults.global.elements.rectangle
 
 
 //doughnut chart
+//created global variables for Chart.js code
 var ctx = function(id) { 
     return document.getElementById(id).getContext('2d'); 
 }
-
+//each refering to id on charts.html
 var ctxDaily = ctx('dailyProgressChart');
 var ctxWeekly = ctx('weeklyProgressChart');
 var ctxMonthly = ctx('monthlyProgressChart');
@@ -64,33 +66,24 @@ var daily_progress_chart = new Chart(ctxDaily, {
     data: daily_data,
     options: options
 });
+
+
 var weekly_progress_chart = new Chart(ctxWeekly, {
     type: 'doughnut',
     data: weekly_data,
     options: options
 });
+
 var monthly_progress_chart = new Chart(ctxMonthly, {
     type: 'doughnut',
     data: monthly_data,
     options: options
 });
 
-
+/*the different graphs are switched between from clicking the toggled buttons*/
 $('#monthly_graph').show();
 $('#weekly_graph').hide();
 $('#monthly_graph').hide();
-
-/* 
-
-$("#bugs_graph_toggle").click(function(){
-    $("#vote_graphs").fadeOut( "slow", function(){
-            $("#feature_votes_graph").hide();
-            $("#bug_votes_graph").show();
-    });
-    $("#vote_graphs").fadeIn( "slow" );
-});
-*/
-
 
 $("#monthly_graph_toggle").click(function () {
     $("#average_graphs").fadeOut( "slow", function(){
@@ -143,7 +136,6 @@ $('#daily_graph_toggle').click(function(){
     $('#daily_graph_toggle').addClass('activated_button');
     $("#weekly_graph_toggle").removeClass('activated_button');
     $("#monthly_graph_toggle").removeClass('activated_button');
-    
     
     $("#average_graphs").fadeIn("slow");
 })

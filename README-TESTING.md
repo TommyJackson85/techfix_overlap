@@ -2,65 +2,57 @@
 
 ## User Tests
 
+These are done in reflection of the Readm files user stories, but observes other UX experiences.
+
+- Website has been tested on Chrome, Firefox and Safari. The website looks very simular on all browser but there were no error.
 - All active buttons / links change color or tone when hovering over or clicking.
 - All text is differentiated from the backgroung making it easier to read for the user.
+- text that needs to be highlighted is a different bright color to attract my attention, which is helpful.
+        - For example, on a post detail page that belongs to me, it tells me, this is your post! in bright green text. 
 
 - From navigating the whole website, I found
     - All various sections, buttons, are separated where needed, through different backgrounds, colors and borders.
-    - All pages have a nav bar and footer which are constantly available and providing links to most the main sections of the site. I know I can scroll to the bottom or top to navigate the website.
+    - All pages have a nav bar and footer which are constantly available and provide links most the main sections of the site. I know I can scroll to the bottom or top to navigate the website.
     - navbar and footer always contains links for charts, blog, bugs, features and cart pages. For logged in users, they also contain profile and logout links.
     - For logged out users, they also contain login and register links.
     - Having these differences, helps tell me if I am logged in or logged out.
     - On mobile width, the navbar links are located in a drop down box which is accessable from clicking the drop box icon. 
     - All active links/buttons are working and change color upon hovering and clicking, telling me they are working. 
-    - Each button associated with a specific page, brings me to the page upon clicking, unless I have to be redirected.
+    - Each button associated with a specific page, brings me to the page upon clicking, unless I have to be redirected. If I am redirected, most of the tell it leaves me a message telling me why. I can still access the nav bar for other links.
     - I am always greeted with the correct header for the website.
-
+   
 - Upon first loading the site, as a logged out user, I am located to the home page, which shows the following,
     - The website masthead / header with Login and Register links/buttons and message telling me what I can do as a logged in user.
     - A welcome message, introducing the website, which suggests me to look at the Charts page for further details.
     - Examples of recent bug reports and feature requests in a side nav, which gives me an idea of how what is done on the website and tells what was recently posted. 
     - Recent news on the website, which refers me to the full news blog page for further news.
     - I get a good strong introduction to the site for this page.
-    
-- Upon revisiting the home page as a logged in user, the following changes to the page can be seen
-    - A message welcome me (my user name) back, plus Create Bug Report and Create Feature Request buttons on the masthead, instead of the Login and Register buttons.
 
-- On loading registration page..
+- If logged in,    
+        - A message welcome me (my user name) back is seen though out the site on top of most pages except login and registration pages.
+                - This always tells my im logged in.
+                
+- Upon revisiting the home page as a logged in user, the following changes to the page can be seen
+    - a Create Bug Report and Create Feature Request buttons on the masthead, instead of the Login and Register buttons.
+
+- On loading registration page.
     - I am first suggested to Login instead, if I already have an account, followed by a login link/button.
     - I can see the registration form, requiring an email, username, password and password confirmation.
 - Upon going into the login page, 
     - I am first suggested to Register first if I haven't done so, followed by a registration link/button.
     - I can see the login form, requiring my username and password.
 - Upon confirming registration..
-    - If succesful, I am brought to the login page, with a message telling me I succesfully logged in.
+    - If succesful, I am brought to the profile page, officially logging me in aswell, with a message telling me I succesfully logged in.
 - Upon confirming login..
-        If succesful, I am brought to the Profile page, and greeted with a message.
+        If succesful, I am brought to the profile page, and greeted with a message.
 - Upon attempting to register OR login,
     - If required inputs are missing, It alerts me without reloading the page.
     - If its a failed attempt, the page reloads with a message telling me what happened.
-    
-- If logged in, 
-    - but login and register links/buttons are available on an already loaded page
-        - clicking the login and register buttons will redirect me to the index page, telling me to logout first.
-    - but the current page I am on is from another account (not associated with current login session),
-        - I receive a "CSRF verification failed. Request aborted" error from attempting to post from edit / new post forms, comment, feature donations, login, registration forms.
-        - clicking back, brings me to page I was supposed to be redirected to.
-        
-- If logged out, 
-    - but profile links/buttons are available on an already loaded page
-        - clicking the profile button will redirect me to the login page, telling me to login first. 
-    - and bug report detail page is already open with links to vote, delete, comment
-        - activating these links redirects me to the login page, telling me to login.
-    - and feature request detail page is already open with a link to comment, modal pop up to vote (with money in input)
-        - activating these links redirects me to the login page, telling me to login.
-    - and bug report/feature request edit or new form is open,
-        - upon posting I am redirected to the login page, telling me to login.
-    - and cart page is open, with items and their adjust buttons available, aswell as the checkout button.
-        - upon adjusting or checking out, I am redirected to login page, telling me to login first (message excluded from clicking checkout.)
-    - and checkout page is open, with the form filled in correctly and the confirm checkout button available,
-        - upon confirming the payment, I am redirected to the login page without a message.
 
+- If post status is Done, but from other pages I access to an editing form of page, the post page with buttons and comment form (originally from a time when it was To Do).
+        - If clicking Vote on bug post, I am redirected to the post page, telling me I cant vote for a Done post.
+        - If clicking edit and/or delete on both posts (delete excluded from Feature posts),  I am redirected to Post telling me I cant edit or delete posts that are in progress or finished (same result from a post that was Doing). 
+        
 - Upon opening the bug reports and feature requests listings pages,
     - I am provided with a search form and three drop down panels, with the first open.
     - The panels in order are are Done, Doing and To Do, splitting all posts by they current status. When each are opened they display the all the posts with the status category.
@@ -77,18 +69,22 @@
     - The panels embody much of the same panel functionality of the bugs and features pages panels, keeping the website consistent.
 
 - Upon Loading individual Bug Report or Feature Request detail pages,
+    - The header tells me if its a Bug Report or Feature Request page. 
     - First provided with an optional search bar, which allows me search another topic bringing me back to the listings pages.
-    - I am provided with the full details of the post (title, description, status, user who created it (will tell me its mine if im logged in and if its mine), status, published date, the countings of likes, views and comments).
+    - I am provided with the full details of the post title, description, status, user who created it (will tell me its mine if im logged in and if its mine), status, published date, the countings of likes, views and comments.
     - the list of full comments below the details of post.
-    - a set of sticky buttons (and other tools) which scroll along the screen while I read the comments.
-    - a 'Back to top' button (located on the sticky buttons), in which on clicking brings the user back to the top of page through animation.
-    - a back to listings button (located on the sticky buttons), which brings the user back to the listings page (bugs report or feature request listings page).
-    - if logged in, 
-        - a vote button is available if the post status is not 'Done'.
-        - if post's status is not 'Done', a comment form (located on the sticky buttons) in which drops down on clicking a button. 
-    - if logged out, 
-        - if post's status is not 'Done', a login page button is seen.
-        - 
+    - a 'Back to top' button (located below the comments), in which on clicking brings the user back to the top of page through animation.
+    - a set buttons (above comment form) related to what I am permitted to do with the post,
+        - a back to listings button (for all users) , which brings the user back to the listings page (bugs report or feature request listings page).
+        - if logged in, 
+                - a vote button is available if the post status is not 'Done'.
+                - if post's status is not 'Done', a comment form in which drops down on clicking a button. 
+                - If it is my post,
+                        - A edit button for 'To Do' status posts
+                        - A delete button for 'To Do' status bug posts only.
+        - if logged out,
+                - if post's status is not 'Done', a login button link is seen.
+                 
 - Upon voting for 
     - bug reports, I am brought back to the bugs listings page.
     - feature requests, 
@@ -110,7 +106,7 @@
     - if the post's status is 'To Do', an Edit button is available.
     - total money donated to create amount of votes is seen.
     
-- If a feature report or bug post status is 'Done', then the buttons and forms add values to the post are removed.
+- If a feature report or bug post status is 'Done', then buttons and the form, in which alter posts, are removed.
 
 - Upon loading the cart page,
     - as a logged in user 
@@ -137,8 +133,6 @@
     - A real or fake address and post code (usually a 5 digit number)
     - A the Stripe fake credit card number 4242424242424242, security number 111, and a date later than the current date (usually a year later).
 
-- The wrong payment info is giving console errors. Needs to be fixed!!
-
 - When going back to cart page from checkout page, without having submitted payment, the cart items are still there.
 
 - When opening the charts page, 
@@ -151,6 +145,10 @@
 
 - Upon opening the blog page, I can see all of the news posts separated by their dates, titles and a line below each, and with the most recently posted seen first.
 
+- The blog page link is located below the charts on the charts page, and a charts link is below the blog page.
+        - Both pages inform me alot about the site.
+ 
+
 ## Code logic of average charts
 
 - Manually tested average charts monthly averages.
@@ -160,6 +158,12 @@
             - Would then divide the collective number by 3 (for 3 months).
     - I didn't do the same for weeks because it follows the same logic but with 7 instead of 30.
     - Officially tested on the 29th of August, with returned results of an average of 3.33 bugs worked on per month.
+
+## Passing code through automated testers.
+
+- stripe.js, each_post_detail.js, charts.js files all pass JSHINT.
+- Tested all my HTML files in the [w3 validator](https://validator.w3.org/).
+        - Make relevent changes when ever I could. 
 
 ## Django automated tests
 
@@ -175,35 +179,43 @@
 - I set out to cover as much of the code as possible. I tried to get atleast of 90 percent of code that wasn't as easy to test manually.
 - After doing initial bugs, accounts tests I started to use Coverage while testing. I noticed that resources I used did not test everything.
 - I tested models of bug posts and bug comments. However, while using Coverage while testing features I noticed that I didn't need to test the models as the model calls from testing feature views was enough.
-- For Blog and Profile app views, I testing the majority of the code. The counts variables (usually for post count display numbers) haven't been tested as they are not of priority and are easy to test from manual testing.
-- Bugs and Features, from previous commits, I managed to test the majority of the code, however, when adding more defensive programming in relation to seeing if post belonged to user, i had trouble.
-    - Trying to link foreign user key of a post to the current logged in user was difficult. I have remove these tests for the mean time, and have stored them on my computer if I want to go back to it.
-
+- For Blog, Profile Bugs and Features app views, I covered the majority of the code. The counts variables (usually for post count display numbers) haven't been tested as they are not of priority and are easy to test from manual testing.
 - Fully tested the rest of accounts app except for the for backends file.
 - Fully tested the blog app main files where it was needed.
 - For Charts views, I initially just tested the the get charts view. I covered the other global reusued variables by calling them within the tests, and creating fake instances of bug posts and timezones. Did not use feature posts as it was not required. 
 - Tested Cart completely.
 - Only partially tested Checkout because it is using stripe code.
-- For testing the majority of the postings.
+- My initial plan for Django testing was to cover all the code and anything relevent that can't be tested manually.
+- As I have now also manually tested my my website, the next stage is to test, specific parts of view / model functions covered.
+        - i.e. through assertEquals functions.
+
 
 ## Unfixed occured bugs
-
+ 
 - CSRF verification failed. Request aborted, Python page error page.
     - When another user is logged in, and when attempting to post, on a different / previously logged in account, from forms:
         - login, registration, edit/create, comment, feature donations
-        - my code doesn't redirect to the index page as it should.
+        - each form doesn't redirect to their respective pages.
         - I am receiving "CSRF verification failed. Request aborted" on an error page.
-        - This bug must be fixed.
+        - Clicking back from Chrome browser, brings me to page I was supposed to be redirected to.
+        
+        - Quite common on the Chrome browser but for Firefox and Safari, it is more varied.
+                - For example, when creating a bug report, but another user is logged in (thinking it is my own account), the post is done from the users account, and not my.
+                - they get the error from attempting logins and registrations, when another user is logged in.
+        - This is a very sponataneous error, it will need to be tested more.
+        - Looking at ways to catch the error aswell, through defensive programming.
 
-- Sticky buttons doesn't work on Safari.
-    - The sticky buttons don't work in Safari.
+- Sticky css position doesn't work on Safari.
+    - Originally wanted to have a sticky comment form with other buttons.
     - Looking at alternatives to position 'sticky' such as from this [Stack Overflow Post](https://stackoverflow.com/questions/51792783/safari-positionsticky-not-working-in-an-overflowauto-element).
-    - Also condsidering removing it all together. Maybe include a modal popup instead.
+    - However, in heinseight of other user feedback, I may not go back to it. Maybe include a modal popup instead, from a sticky button, if I decide to do it.
+    - As of now, it is a regular drop down form and the other sticky buttons have been moved to other areas (scroll to the top button is now at the bottom of the details page below the comments.).
     
-- Users can vote for 'Done' feature requests, if the feature donations modal is available to them.
+- Users can vote for 'Done' feature requests, if the feature donations modal is available to them or by calling the add to chart function with specific reference to the posts id.
     - From the cart and checkout page, I will add more defensive design, in detecting cart items that are already finished. 
     - This is hard to do because the add to cart and adjust cart refer to the items ids and not the whole feature and are linked to a session. 
     - Attempted to pass in the full feature on the add to cart function (instead of feature id) from the features detail page but it was bringing up page errors.
+    - I will do simular defensive programming, in relation post statuses.
     
 - Stripe Post requests.
     - Received 402 error in JavaScript console. Attempted to catch this error on static/js/stripe.js through try and catch JavaScript, but it turns out its an error from Stripes end on their own JS file.
@@ -220,7 +232,49 @@
     - On a second meeting with mentor, he said he said the issue seemed to be fixed.
     - Will retest this issue again to double check.
 
+- User experiences.
+        - I get mixed reactions from the color tone of my sight, some like it others don't.
+        - I am trying to tone down the color schemes as much as possible.
+        - The comments section needs better design of color schemes. When I bring in user images, it will help make user comments feel more personal, being able to see an individual picture.
+        - At the moment, it is jus the user name in bright green text.
+        - Panel drop down items need to be ajusted aswell. On ipad width screens, they get too big for the amount of text and information in them.
+        - This is one of the downfalls of Bootstrap. Their small columns are quite big compared to their extra small columns.
+        - Will pontentially allow more text to be in the panel items from, and maybe uses media queries to help fix this.
+        - Add better images. The Masthead image is just a prototype to get the correct feeling of the page.
+
+- Made more of an effor to implement HTML Semantics in my project, using Headers for hierarchy.
+        - I need to fix the structure of my sections, side navs. For example, my Side Nav is located in my main section.
+        - I didn't do any major changes to this, due to lack of time, and I was a afraid I would break the code.
+        - I had the wrong Idea how to implement headers too. Need to fix this.
+
+- Github repository currently has a severe Django error and pycrypto error.
+
+
 ## Fixed occured bugs
+
+- unwarrented user actions.
+        - I used defensive programming techniques for this. 
+        - Attempting to edit (entering a link posting from a form), delete a bug post when the post status is "Doing".
+                - I am brought back to the post, explainin the error. The post page is now updated correctly. 
+                - Initially might of happened if the page was at To Do status recently.
+                - Same errors might occur for Done statuses, in whiching commenting and voting on the post will bring the user back to the page.
+        - If logged in, 
+            - but login and register links/buttons are available on an already loaded page
+                - clicking the login and register buttons will redirect me to the index page, telling me to logout first.
+        - If logged out, 
+            - but profile links/buttons are available on an already loaded page
+            - but bug report detail page is already open with links to vote, delete, comment
+            - but feature request detail page is already open with a link to comment, modal pop up to vote (with money in input)
+            - but bug report/feature request edit or new form is open,
+            - but cart page is open, with items and their adjust buttons available, aswell as the checkout button.
+            - but checkout page is open, with the form filled in correctly and the confirm checkout button available,
+                - activation any actions these places, where being logged in is required, redirects me ot the login page, telling me to login.
+        - I have manually tested these situations in all browsers, but it would be no harm to continuously do user tests on these situations as they are complex and come from places you don't expect.
+
+
+- Issues testing Bugs and Features when referencing a user id. When adding more defensive programming in relation to seeing if post belonged to user, i had trouble.
+    - Trying to link foreign user key of a post to the current logged in user was difficult.
+    - But I figured it out by referencing the pk value of a post, regardless if its a fake instance.
 
 - Installed a pip3 Jasmine package in which automatically updated Django to 2.2.3 which only supports Python 3.5.
     - Created errors in running the App on AWS Clous 9 (in which only runs on Python 3.4), detecting import issues.

@@ -34,7 +34,7 @@ class TestViews(TestCase):
         self.client.login(username='admin', password='admin')
         session = self.client.session
         
-        feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg", views=0)
+        feature_post = FeaturePost(id=3, user_id=user.pk, title="Create a Test", content="ggggg", views=0)
         feature_post.save()
         
         feature_comments = FeatureComment.objects.filter(post=feature_post).order_by('published_date')
@@ -60,19 +60,19 @@ class TestViews(TestCase):
         self.assertRedirects(page, '/accounts/login/', status_code=302, 
         target_status_code=200, fetch_redirect_response=True)
 
-    """    
+       
     def test_get_edit_page_for_existing_feature_post_as_logged_in_user(self):
         
         user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
         self.client.login(username='admin', password='admin')
         session = self.client.session
         
-        feature_post = FeaturePost(user_id=5, title="Create a Test", content="ggggg")
+        feature_post = FeaturePost(user_id=user.pk, title="Create a Test", content="ggggg")
         feature_post.save()
         page = self.client.get("/features/{0}/edit/".format(feature_post.id))
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "featurepostform.html")
-    """  
+     
     def test_feature_post_create_an_item(self):
         user = User.objects.create_superuser('admin', 'foo@foo.com', 'admin')
         self.client.login(username='admin', password='admin')

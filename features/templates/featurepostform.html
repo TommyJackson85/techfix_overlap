@@ -9,17 +9,23 @@
         {% else %}
             <h1>Edit Feature Report</h1>
         {% endif %}
+        {% if user.is_authenticated %}
+            <p class="dark_green_text"><strong><em>Welcome back {{ user }}!</em></strong></p>
+        {% endif %}
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | as_bootstrap }}
-            <button type="submit" class="btn submit_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-            {% if feature_post.id is None %}
-                Save New Post
-            {% else %}
-                Save Post Edit
-            {% endif %}
+            <div class="optional_button_div">
+                <button type="submit" class="btn submit_button col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
                 
-            </button>
+                {% if feature_post.id is None %}
+                    Save New Post
+                {% else %}
+                    Save Post Edit
+                {% endif %}
+                    
+                </button>
+            </div>
         </form>
     </div>
 {% endblock %}

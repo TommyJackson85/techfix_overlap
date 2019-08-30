@@ -83,7 +83,7 @@
             }],
             labels: ['Bugs', 'Features']
         };
-    }
+    };
         
     var rechieveVotesData = function(votes, titles) {
         return {
@@ -98,8 +98,8 @@
                 ],
             }],
             labels: titles
-        }
-    }
+        };
+    };
     var daily_data = retrieveData(JSON.parse('{{ data.daily }}'));
     var weekly_data = retrieveData(JSON.parse('{{ data.weekly }}'));
     var monthly_data = retrieveData(JSON.parse('{{ data.monthly }}'));
