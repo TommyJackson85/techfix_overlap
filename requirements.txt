@@ -1,4 +1,4 @@
-Django==1.11.17
+Django==1.11.23
 Pillow==3.4.2
 aliyunsdkcore==1.0.3
 boto3==1.9.155
