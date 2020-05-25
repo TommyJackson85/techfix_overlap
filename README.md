@@ -1,34 +1,31 @@
-# Your Project's Name
+# TECHFIX-OVERLAP
 
-Techfix Overlap is an organisation dedicated to futher developing and building the Python framework Techfix.
-Our website is for users to report bugs in the framework and suggest new features for it, through the user of the forums. 
-Users may search for other bug reports or feature requests and may vote in favour of them.
-They will only have to pay for features. Our team of developers and administrators will constantly check on new posts from 
-users and will work on the most voted for. Users will always beable to see their progress status.
+This is an Open Source website template based on pythons Django framework.
 
-Under certain circumstances users will be able to edit, delete or comment on posts. We will have a team of moderators to look out for users who don't obey the sites rules.
-On searching and viewing post listings, all posts are split by their current status through panel dropdown boxes, i.e. posts that are finished being worked on are separated by posts in progress or waiting progress.
-This allows users to open and close panels as they choose, helping them break down what they are looking for. We always try to accomodate for different users needs.
-We are always seeking new innovated ways providing the best user experience as possible to increase the reliance on our site for Techfix developers. So far, we are getting strong feedback from users on our website.
+Developers are free use and contribute to this project as they need.
 
-We are a new organsistion, but already have a strong active user database due to our progress in responding to user requests.
-We provide constant updates from our home, charts and blog pages. These pages are also usfull in attracting new developers to use the Techfix framework.
+It's a project that is still in it's infancy but alot of work has already been done on it.
+
+It's current potential use is for a dynamic forum for discussion. For example, it is currently designed as an organisation dedicated to futher develop and build a Python framework called Techfix. Users can report bugs in the framework and suggest new features for it, through the use of the forums. Users may search for other bug reports or feature requests and may vote in favour of them. They will only have to pay for features. A team of developers and administrators would constantly check on new posts from users and will work on the most voted for. Users will always be able to see their progress status. Under certain circumstances users are able to edit, delete or comment on posts. A team of moderators would potentially look out for users who don't obey the sites rules.
+
+On searching and viewing post listings, all posts are split by their current status through panel dropdown boxes, i.e. posts that are finished being worked on are separated by posts in progress or waiting progress. This allows users to open and close panels as they choose, helping them break down what they are looking for. The moderators would always try to accomodate for different users needs. The home, charts and blog pages are designed for constant progress reports and updating users. These pages are also usfull in attracting new developers to use the Techfix framework.
 
 Travis Testing Build Status:
 [![Build Status](https://travis-ci.org/TommyJackson85/techfix_overlap.svg?branch=master)](https://travis-ci.org/TommyJackson85/techfix_overlap)
 
-## UX
- 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
+## Contribute
 
-Our website has two overall functions. The first function is to attract new developers to the Techfix community in a process to grow it. Our home page, charts page and blog page are designed for this purpose first and foremost.
+To contribute to this Open Source application please refer to the [Contributers Read me page](https://github.com/TommyJackson85/techfix_overlap/blob/master/README-CONTRIBUTIONS.md).
+
+## UX
+
+The website template has two overall functions. The first function is to attract new developers to the Techfix community in a process to grow it. Our home page, charts page and blog page are designed for this purpose first and foremost.
 The second function is to keep our regular users updated and interestested, through news, new postings, and through our post forums.
 Our main home page, introduces the website to new users and also informs regular users on new information. The charts page is designed to add transperancy to our progress, to entice users.
 The blog page is for constant updates on new jobs in our company, new updates on are progress and to advertise events. The profile, bug reports, and feature requests pages are all designed to build a community and to run a buisness from our side in developing new features for the Techfix library.
 The panel drop downs of the bugs and features listing pages, help break down search results, in that some users might not want to vote for a feature or bug thats not in progress, and it helps update users on whats finished being developed.
 
-- For my main home page, I took alot of inspiration from the [Stack Exchange website](https://stackexchange.com/), particularly in its home page structure, layout and color scheme.
+- The main home page was inspired by from the [Stack Exchange website](https://stackexchange.com/), particularly in its home page structure, layout and color scheme.
     - Evidence of this,
         - the structure of homepage.
         - A removable introduction which provides links to another page to "learn more".
@@ -37,13 +34,11 @@ The panel drop downs of the bugs and features listing pages, help break down sea
     - I originally went with a white background simular to it, but decided to go for a reddish white.
         
 
-- Used [StackOverFLow](https://stackoverflow.com/questions/tagged/php) for examples on how to display search results previews (i.e. the listings of forum posts which might show only a portion of the text as a preview).
+- [StackOverFLow](https://stackoverflow.com/questions/tagged/php) examples were used as a reference on how to display search results previews (i.e. the listings of forum posts which might show only a portion of the text as a preview).
     - Helpful with developing listings of bug reports and feature requests, when trying to show as much information as possible in each.
     - The sites postal listing are still different in structure, design and purpose.
 
-- I didn't use alot of wireframes, as I kept the design for each page very simple and straight forward.
-
-### User stories to follow.
+### User stories this template follows
 
 - As a user on all pages, 
     - I want constant access to the
@@ -216,7 +211,6 @@ It covers all future plans.
     - our developer teams may take a break from a post to focus on a more prioritised post, depending on the circumstances of their current progress.
     - because of this rule, we allow users to vote on posts constantly, as long as they are not of Done status.  
 
-
 ## Administrators and Developers Guide
 
 - Each team of administrators and developers is set on regular tasks each working day.
@@ -232,8 +226,6 @@ It covers all future plans.
 - Regular team meetings should take place, once or twice a week.
 
 ## Technologies and Code base Used
-
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 
 - [Heroku Posgres](https://www.heroku.com/postgres) database system.
     - Used for storing data for user accounts and posts.
@@ -261,7 +253,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
 - [Chart js doughnut charts](https://www.chartjs.org/docs/latest/charts/doughnut.html).
     - Used as main charts to display data for charts page.
 
-- Video tutorial material (All from the Full Stack Frameworks with Django).
+- Video tutorial material (All from Code Institute's tutorials on the Full Stack Frameworks with Django).
     - The Testing Django tutorial from the Beginning Django section from Aaron Sinnott.
     - Deployment tutorial, by Aaron Sinnott, 
         - as a guide to set GitHub with Heroku.
@@ -290,7 +282,6 @@ Please refer to the [Readme Testing Document](https://github.com/TommyJackson85/
 
 Your README describes the deployment procedure including settings files, 
 environment variables, dependencies and any other differences between the dev and live versions
-
 
 If you have created an automated script to help deploy the project,
 you should include it (or link to it) in your write-up.
