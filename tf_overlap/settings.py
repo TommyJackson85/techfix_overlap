@@ -8,26 +8,42 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+#new
+from pathlib import Path
 import dj_database_url
 
 if os.path.exists('env.py'):
     import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+print(BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+#new
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-for-local")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#old
+#DEBUG = True
+#DEBUG = os.environ.get("DEBUG", "False") == "True"
+#new
+DEBUG = False
 
-ALLOWED_HOSTS = [os.environ.get("C9_HOSTNAME"), '127.0.0.1', 'techfix-overlap.herokuapp.com', 'e250120587744819b6019d98fcf374d4.vfs.cloud9.us-east-1.amazonaws.com']
-
+#new
+ALLOWED_HOSTS = [os.environ.get("C9_HOSTNAME"), '127.0.0.1', 'yourusername.pythonanywhere.com', 'e250120587744819b6019d98fcf374d4.vfs.cloud9.us-east-1.amazonaws.com']
+#old
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",") #set on Railway
+#['yourusername.pythonanywhere.com']).
 
 # Application definition
 
@@ -90,9 +106,15 @@ WSGI_APPLICATION = 'tf_overlap.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#OLDER:
+ #   DATABASES = {
+  #       'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+ #   }
+
+
 if "DATABASE_URL" in os.environ:
     DATABASES = {
-         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        "default": dj_database_url.config(default=os.environ.get("DATABASE_URL"))
     }
 else:
     print("Postgres URL not found, using sqlite instead")
@@ -165,9 +187,17 @@ STATICFILES_LOCATION = 'static'
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+#new
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+#old
+#STATICFILES_DIRS = (
+ #   os.path.join(BASE_DIR, "static"),
+#)
+#new
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
